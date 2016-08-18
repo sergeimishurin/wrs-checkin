@@ -1,0 +1,85 @@
+.co-pay-sum{
+  /*border: 1px solid red;*/
+  border-left: 8px solid #27AE60;
+  width: 696px;
+  height: 110px;
+  margin-top: 16px;
+  background: #ffffff;
+}
+.co-pay-method{
+  border: 1px solid red;
+  width: 334px;
+  height: 110px;
+  margin-top: 16px;
+  float: left;
+  margin-right: 12px;
+  border: 5px solid #27AE60;
+  background: #ffffff;
+}
+.co-pay-sum-text-conteiner{
+  width: 25%;
+  height: 100%;
+  float: left;
+}
+.co-pay-description{
+  width: 85px;
+  font-size: 24px;
+  font-family: 'Open sans Regular', 'Open sans';
+  color: #666666;
+  margin-left: 25px;
+  margin-top: 15px;
+}
+.co-pay-sum-text{
+  width: 38%;
+  height: 100%;
+  float: left;
+  position: relative;
+}
+.co-pay-input{
+  text-align: right;
+  position: absolute;
+  padding-right: 5px;
+  right: 20px;
+  top: 25px;
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 175px;
+  height: 48px;
+  font-size: 30px;
+  background: #F4F4F4;
+  color: #999999;
+  font-family: 'Open sans';
+}
+.input-special{
+  border: 1px dotted !important;
+  color: #00529C !important;
+}
+.co-pay-sum-text-description{
+  width: 35%;
+  height: 100%;
+  float: left;
+}
+.co-pay-question{
+  position: absolute;
+  top: 40px;
+  color: #FF8000;
+  font-size: 12px;
+}
+.co-pay-method-description{
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-top: 30px;
+  width: 30%;
+  height: 80px;
+  float: left;
+  font-size: 20px;
+  font-family: 'Arial Italic';
+  text-align: center;
+  color: #27AE60;
+}
+.co-pay-method-image{
+  width: 56%;
+  height: 110px;
+  border: 1px solid blue;
+  float: left;
+}

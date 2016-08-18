@@ -1,0 +1,180 @@
+.some-text{
+  padding-left: 25px;
+  padding-top: 40px;
+  background: #ffffff;
+  height: 68px;
+  border-left: 6px solid #BDC3C7;
+  margin-top: 16px;
+  font-size: 22px;
+  color: #666666;
+}
+.question{
+  padding-left: 25px;
+  padding-top: 40px;
+  background: #ffffff;
+  height: 320px;
+  border-left: 6px solid #BDC3C7;
+  margin-top: 16px;
+  font-size: 24px;
+  color: #00529C;
+}
+.likes{
+  padding-left: 20px;
+  width: 40%;
+  height: 80%;
+  float: left;
+  font-size: 14px;
+}
+.doc-photo{
+  /*border: 1px solid blue;*/
+  /*width: 56%;*/
+  /*height: 80%;*/
+  float: left;
+}
+.first{
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+.second{
+  margin-bottom: 30px;
+}
+.third{
+  margin-bottom: 30px;
+}
+.likes-icon{
+  float: left;
+  margin-right: 20px;
+}
+.likes-text{
+  padding-top: 10px;
+}
+.clear{
+  clear: both;
+}
+.finished{
+  float: left;
+}
+.return-conteiner{
+  height: 530px;
+  width: 47%; float: left;
+  background: #ffffff;
+  font-family: Arial;
+  font-size: 36px;
+  color: #FF8000;
+  padding-left: 20px;
+  position: relative;
+}
+.return-text{
+  position: absolute;
+  margin-top: 355px;
+}
+.markers{
+  height: 530px;
+  width: 50%;
+  float: left;
+  position: relative;
+}
+.big-marker{
+  height: 50px;
+  width: 50px;
+  background: #FF8000;
+  position: absolute;
+  margin-top: 290px;
+  border-radius: 50%;
+  margin-left: 17px;
+}
+.medium-marker{
+  height: 40px;
+  width: 40px;
+  background: #FF8000;
+  position: absolute;
+  margin-top: 265px;
+  border-radius: 50%;
+  margin-left: 117px;
+}
+.small-marker{
+  height: 30px;
+  width: 30px;
+  background: #FF8000;
+  position: absolute;
+  margin-top: 285px;
+  border-radius: 50%;
+  margin-left: 217px;
+  z-index: 100000;
+}
+.finish-image{
+  height: 280px;
+  width: 280px;
+  position: absolute;
+  margin-top: 154px;
+  margin-left: 190px;
+}
+.area{
+  width: 320px;
+}
+.line{
+  border-bottom: 2px solid #BDC3C7;
+  margin-right: 30px;
+  margin-left: 30px;
+}
+.finish-header{
+  width: 320px;
+  float: left;
+}
+.add_pharmacy{
+  width: 100%;
+  height: 80px;
+  position: relative;
+}
+.text_add_pharmacy{
+  position: absolute;
+  bottom: 0;
+  right: 55px;
+  background: #F4F4F4;
+  font-family: 'Open sans';
+  font-size: 16px;
+  color: #219297;
+}
+.add_pharmacy_if_empty{
+  text-align: center;
+  width: 100%;
+  position: relative;
+  height: 300px;
+  padding-top: 130px;
+}
+.text_add_pharmacy_if_empty{
+  background: #F4F4F4;
+  font-family: 'Open sans';
+  font-size: 32px;
+  color: #219297;
+  line-height: 27px;
+}
+.pharmacy_back_next{
+  position: relative;
+  width: 100%;
+  height: 140px;
+}
+.left_btn{
+  position: absolute;
+  width: 140px;
+  height: 48px;
+  bottom: 30px;
+  left: 30px;
+  border: none;
+  background: #BDC3C7;
+}
+.right_btn{
+  position: absolute;
+  width: 140px;
+  height: 48px;
+  bottom: 30px;
+  right: 30px;
+  border: none;
+  background: #2199E8;
+  color: #F4F4F4;
+}
+/*.row{*/
+  /*position: absolute;*/
+  /*right: 25px;*/
+  /*top: 20px;*/
+/*}*/

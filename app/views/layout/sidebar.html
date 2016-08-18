@@ -1,0 +1,28 @@
+<div class="sidebar">
+  <div class="head-logo-area">
+    <img src="/images/logo_ent_white.png" alt="">
+  </div>
+  <div class="date-area">
+      <span>Date {{today.date}}</span>
+      <span>Time  {{today.time}}</span>
+  </div>
+  <div class="step-area">
+
+    <div class="step" ng-class="{'active': step.active}" ng-repeat="step in steps">
+      {{step.title}}
+      <span ng-if="step.passed" class="passed">&#x2713;</span>
+      <span class="passed" ng-class="{'active-arrow': step.active}"></span>
+    </div>
+  </div>
+
+  <div class="progress-bar-box">
+    <div class="progress-indicator">
+      <div class="progress-complete" ng-style="{'width': (currentStep+1)*20 + 5 +'%'}"></div>
+    </div>
+    <div ng-style="{'left': (currentStep+1)*20 - 7 + '%'}" class="percent">{{(currentStep+1)*20}}%</div>
+  </div>
+
+  <div class="footer-logo-area">
+    <img src="/images/wrs-logo-white.png" alt="">
+  </div>
+</div>

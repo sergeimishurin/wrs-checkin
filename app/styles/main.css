@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+body {
+  font-family: Open Sans;
+}
+.form-control {
+  border-radius: 0;
+  border-color: #BDC3C7;
+  height: 48px;
+}
+
+.form-control:focus {
+  border-color: #2199E8;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.btn {
+  border-radius: 0 !important;
+  height: 48px;
+}
+
+.btn:hover, .btn:focus, .btn:active {
+  color: #FFFFFF;
+  outline: 0!important;
+}
+
+.btn-wrs-primary {
+  background-color: #00529C!important;
+  color: #FFFFFF;
+}
+
+.btn-wrs-primary:hover {
+  opacity: 0.8;
+}
+
+.panel-body {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.logo {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.progress-bar-box {
+  padding:0 20px;
+}
+
+.progress-indicator {
+  background: url('/images/progress.gif');
+  height:16px;
+  overflow: hidden;
+}
+.progress-complete {
+  border-bottom: 16px solid #219297;
+  border-left: 0px solid transparent;
+  border-right: 14px solid transparent;
+  height: 16px;
+  width: 50%;
+}
+.percent {
+  position: relative;
+  color: #219297;
+}
+
+form input.ng-invalid.ng-touched {
+  border-color: #e74c3c;
+}
+
+/*.invalid .form-control{*/
+  /*border-color: #e74c3c;*/
+/*}*/
+
+/*.invalid .control-label {*/
+  /*color: #e74c3c;*/
+/*}*/
+
+.checkbox label:after,
+.radio label:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.checkbox .cr,
+.radio .cr {
+  position: relative;
+  display: inline-block;
+  border-radius: 0;
+  width: 1em;
+  background: #85bc20;
+  height: 1em;
+  color: #fff;
+  float: left;
+  margin-right: .5em;
+  margin-top: 2px;
+}
+
+.radio .cr {
+  border-radius: 50%;
+}
+
+.checkbox .cr .cr-icon,
+.radio .cr .cr-icon {
+  position: absolute;
+  font-size: .8em;
+  line-height: 0;
+  top: 50%;
+  left: 20%;
+}
+
+.radio .cr .cr-icon {
+  margin-left: 0.04em;
+}
+
+.checkbox label input[type="checkbox"],
+.radio label input[type="radio"] {
+  display: none;
+}
+
+.checkbox label input[type="checkbox"] + .cr > .cr-icon,
+.radio label input[type="radio"] + .cr > .cr-icon {
+  transform: scale(3) rotateZ(-20deg);
+  opacity: 0;
+  transition: all .3s ease-in;
+}
+
+.checkbox label input[type="checkbox"]:checked + .cr > .cr-icon,
+.radio label input[type="radio"]:checked + .cr > .cr-icon {
+  transform: scale(1) rotateZ(0deg);
+  opacity: 1;
+}
+
+.checkbox label input[type="checkbox"]:disabled + .cr,
+.radio label input[type="radio"]:disabled + .cr {
+  opacity: .5;
+}
+
+h1 {
+  font-family: "Open Sans";
+  font-size: 24px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 500;
+  line-height: 26.4px;
+}
+h3 {
+  font-family: "Open Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 500;
+  line-height: 15.4px;
+}
+p {
+  font-family: "Open Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+blockquote {
+  font-family: "Open Sans";
+  font-size: 21px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 30px;
+}
+pre {
+  font-family: "Open Sans";
+  font-size: 13px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 18.5714px;
+}
