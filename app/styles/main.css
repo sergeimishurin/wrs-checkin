@@ -65,6 +65,12 @@ body {
   color: #219297;
 }
 
+.gender-button {
+  width: 145px;
+  padding: 15px;
+  text-align: center!important;
+  color: #fff!important;
+}
 form input.ng-invalid.ng-touched {
   border-color: #e74c3c;
 }
@@ -177,4 +183,33 @@ pre {
   font-variant: normal;
   font-weight: 400;
   line-height: 18.5714px;
+}
+
+.content-patient .form-group {
+  margin-top: 25px;
+}
+
+.edit-patient-content {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+.header-with-img {
+  background: #B6BCC1;
+  height: 121px;
+}
+.edit-heading {
+  width: 78%;
+  padding-top: 17px;
+  padding-left: 47px;
+  position: relative;
+  color:#fff;
+}
+.logout-icon{
+  top:30px!important;
+  right: 0!important;
+}
+.pharmacy-arrow {
+  position: absolute;
+  right: 22px;
+  top: 11px;
 }

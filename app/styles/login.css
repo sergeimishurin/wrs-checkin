@@ -39,7 +39,7 @@
   margin-top: 30px;
 }
 
-.panel-login label, .patient-login-box label {
+.panel-login label, .patient-login-box label, .content-patient label {
   font-weight: normal;
   font-family: 'Arial Regular', 'Arial';
   font-weight: 400;

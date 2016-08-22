@@ -1,9 +1,8 @@
-<div class="main">
+<div class="main" ng-if="!patientEditMode">
   <div class="header">
     <span class="title">Patient Check-In</span>
     <i class="header-icon-area fa fa-4x fa-sign-out"></i>
     <div class="info-line">Let's start. Simply Follow the instructions shown below</div>
-    </span>
   </div>
   <div class="content-patient">
     <div class="info-holder patient-info-holder">
@@ -13,7 +12,7 @@
       <div class="person-info-holder">
         <ul class="left">
           <li class="left">
-            <span class="left person-info"><i class="fa fa-user"></i>  John Smith | 53 Yrs</span>
+            <span class="left person-info"><i class="fa fa-user"></i>{{patient.lastName}} {{patient.firstName}} | {{patient.dateOfBirth | dateToAge}} Yrs</span>
             <div class="clear"></div>
           </li>
           <li class="clear">
@@ -21,21 +20,97 @@
             <div class="clear"></div>
           </li>
           <li>
-            <span class="left person-info"><i class="fa fa-envelope"></i>  john.smith@gmail.com</span>
+            <span class="left person-info"><i class="fa fa-envelope"></i> {{patient.email}}</span>
             <div class="clear"></div>
           </li>
         </ul>
         <ul class="left">
           <li class="left address-info">
             <span class="left icon"><i class="fa fa-home fa-2x"></i></span>
-                            <span class="left person-info">  4416 Shinn Street<br>
-                            <span class="left person-info">  New York, NY 10022</span></span>
+                            <span class="left person-info">  {{patient.address.street1}}<br>
+                            <span class="left person-info">  {{patient.address.city}} {{patient.address.state}} {{patient.address.zip}}</span></span>
             <div class="clear"></div>
           </li>
         </ul>
       </div>
-      <button class="btn edit-btn">Edit</button>
+      <button ng-click="changePatientViewType(patientEditMode)" class="btn edit-btn">Edit</button>
     </div>
-    <button class="btn complete-btn">Patient Profile Completed</button>
+    <button ng-click="nextStep()" class="btn complete-btn">Patient Profile Completed</button>
+  </div>
+</div>
+
+<div class="main" ng-if="patientEditMode">
+  <div class="header-with-img">
+    <div class="pull-left edit-heading">
+      <h2 class="title">Patient Check-In</h2>
+      <i class="header-icon-area fa fa-4x fa-sign-out logout-icon"></i>
+      <div class="info-line">Let's start. Simply Follow the instructions shown below</div>
+    </div>
+    <div class="pull-right">
+      <img  src="/images/person.png" alt="">
+    </div>
+  </div>
+
+  <div class="clearfix"></div>
+
+  <div class="content-patient edit-patient-content">
+    <div class="col-md-6">
+      <fieldset>
+        <div class="form-group">
+          <label class="control-label" for="first_name">Name</label>
+          <input class="form-control" id="first_name" ng-model="patient.personalInfo.first_name" type="text">
+        </div>
+        <div class="form-group has-feedback">
+          <label class="control-label">Date of Birth</label>
+          <input type="text" class="form-control" ng-model="patient.personalInfo.date_of_birth">
+          <i class="dob-icon form-control-feedback fa fa-calendar"></i>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="email">Email</label>
+          <input class="form-control" id="email" ng-model="patient.personalInfo.email"type="text">
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="address">Address</label>
+          <input class="form-control" id="address" ng-model="patient.address.street1" type="text">
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="state">State</label>
+          <input class="form-control" id="state" ng-model="patient.address.state" placeholder="family name" type="text">
+        </div>
+      </fieldset>
+    </div>
+    <div class="col-md-6">
+      <fieldset>
+        <div class="form-group">
+          <label class="control-label" for="username">&nbsp;</label>
+          <input class="form-control" id="last_name" ng-model="patient.personalInfo.last_name" type="text">
+        </div>
+        <div class="form-group">
+          <label class="control-label">Gender</label>
+          <div class="clearfix"></div>
+          <input type="radio" class="hidden"  name="sex" ng-model="patient.personalInfo.sex" value="male">
+          <input type="radio" class="hidden"  name="sex" ng-model="patient.personalInfo.sex" value="female">
+          <label class="btn btn-default gender-button">Male</label>
+          <label class="btn btn-default pull-right gender-button">Female</label>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="username">Phone Number</label>
+          <input class="form-control" id="username" ng-model="user.username" type="text">
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="city">City</label>
+          <input class="form-control" id="city" ng-model="patient.address.city" type="text">
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="zip">Zip Code</label>
+          <input class="form-control" id="zip" ng-model="patient.address.zip" type="text">
+        </div>
+      </fieldset>
+    </div>
+    <div class="col-md-12">
+      <button ng-click="changePatientViewType(patientEditMode)" class="btn btn-default pull-left">Cancel</button>
+      <button ng-click="changePatientViewType(patientEditMode)" class="btn btn-success pull-right">Confirm</button>
+    </div>
   </div>
 </div>

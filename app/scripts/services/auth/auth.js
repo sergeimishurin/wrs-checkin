@@ -15,6 +15,7 @@ angular.module('checkinApp')
         .post(ENV.apiEndpoint + "/client/patient/checkin-login", credentials)
         .then(function(res) {
           window.sessionStorage.setItem('patient_id', res.data.id);
+          return res.data;
         });
     };
 
@@ -23,6 +24,7 @@ angular.module('checkinApp')
         .post(ENV.apiEndpoint + "/oauth/token", credentials)
         .then(function(res) {
           window.sessionStorage.setItem('access_token', res.data.access_token);
+          return res.data;
         });
     };
 
