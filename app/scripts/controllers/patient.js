@@ -8,7 +8,7 @@
  * Controller of the checkinApp
  */
 angular.module('checkinApp')
-    .controller('PatientCtrl', function ($scope, $q, moment, AuthService, States, Patient) {
+    .controller('PatientCtrl', function ($scope, $q, moment, Pharmacy, AuthService, States, Patient) {
         $scope.patient = {};
         $scope.patientEditMode = false;
         States.query({countryId: 1}, function (response) {
@@ -29,6 +29,54 @@ angular.module('checkinApp')
         $scope.searchPharmacy = function(){
             $scope.searchPharmacyView = !$scope.searchPharmacyView;
         };
+
+        $scope.pharmacies = [];
+        $scope.pharmacy = {};
+        $scope.doSearchPharmacy = function(pharmacy){
+            pharmacy.type = 'retail';
+            pharmacy.name = 'cvs';
+            Pharmacy.query(pharmacy, function(response){
+                $scope.pharmacies = response.data;
+            });
+        };
+
+        $scope.selectPharmacy = function(pharmacy){
+            $scope.patient.pharmacies.push(pharmacy);
+        };
+
+        $scope.deletePharmacy = function(pharmacy){
+            var index = $scope.patient.pharmacies.indexOf(pharmacy);
+            $scope.patient.pharmacies.splice(index,1);
+        };
+
+        $scope.paymentMethod = '';
+        $scope.setPaymentMethod = function(method){
+            $scope.paymentMethod = method;
+        };
+
+        $scope.cardMethodActive = false;
+        $scope.doPayment = function(){
+            if( $scope.paymentMethod == 'card') {
+                $scope.cardMethodActive = true;
+            } else {
+                Patient.updatePatientDataAndAppointmentStage({id:$scope.patient.id}, $scope.patient, function(response){
+                    $scope.nextStep();
+                });
+            }
+        };
+
+        $scope.cancelPayment = function(){
+            $scope.cardMethodActive = false;
+        };
+
+        $scope.makePayment = function(){
+            $scope.cardMethodActive = false;
+            $scope.successPayment = true;
+            Patient.updatePatientDataAndAppointmentStage({id:$scope.patient.id}, $scope.patient, function(response){
+                console.log(response);
+            });
+
+    };
 
         $scope.patientLogin = function (userdata) {
             var credentials = {

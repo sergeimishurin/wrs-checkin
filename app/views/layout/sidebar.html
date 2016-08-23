@@ -11,7 +11,7 @@
     <div class="step" ng-class="{'active': step.active}" ng-repeat="step in steps">
       {{step.title}}
       <span ng-if="step.passed" class="passed">&#x2713;</span>
-      <span class="passed" ng-class="{'active-arrow': step.active}"></span>
+      <span class="passed" ng-if="!step.passed" ng-class="{'active-arrow': step.active}"></span>
     </div>
   </div>
 

@@ -31,41 +31,45 @@
     <div class="header">
         <span class="title">Pharmacy</span>
         <i class="header-icon-area fa fa-3x fa-sign-out"></i>
-        <button class="btn add-pharmacy-btn">Add</button>
+        <button ng-click="searchPharmacy()" class="btn add-pharmacy-btn">Add</button>
         <div class="info-line">If you have more than one pharmacy, you can prioritize your list by dragging</div>
         </span>
     </div>
     <div class="content-pharmacy">
         <ul>
-            <li class="left">
-                <div class="pharmacy-logo-holder">
-                    <img src="/images/u209.png" alt="">
-                </div>
-            </li>
-            <li class="left">
-                <div class="pharmacy-info-holder left">
-                    <div><i class="fa fa-flag" aria-hidden="true"></i> RITE AID Pharmacy</div>
-                    <div><i class="fa fa-phone" aria-hidden="true"></i> 212 555 2222</div>
-                </div>
-            </li>
-            <li class="left">
-                <div class="pharmacy-info-holder">
-                    <div><i class="fa fa-bars" aria-hidden="true"></i> 212 555 742</div>
-                    <div>
-                        <div class="left icon"><i class="fa fa-map-marker "></i></div>
-                        <div class="left person-address-info">  4416 Shinn Street<br>
-                            New York, NY 10022
+            <li class="search-holder" ng-repeat="pharmacy in patient.pharmacies">
+                <ul>
+                    <li class="left">
+                        <div class="pharmacy-logo-holder">
+                            <img src="/images/u209.png" alt="">
                         </div>
-                    </div>
-                </div>
+                    </li>
+                    <li class="left">
+                        <div class="pharmacy-info-holder left">
+                            <div><i class="fa fa-flag" aria-hidden="true"></i>{{pharmacy.name}}</div>
+                            <div><i class="fa fa-phone" aria-hidden="true"></i>{{pharmacy.area}} {{pharmacy.prefix}} {{pharmacy.phone}}</div>
+                        </div>
+                    </li>
+                    <li class="left">
+                        <div class="pharmacy-info-holder">
+                            <div><i class="fa fa-bars" aria-hidden="true"></i>{{pharmacy.fax}}</div>
+                            <div>
+                                <div class="left icon"><i class="fa fa-map-marker "></i></div>
+                                <div class="left person-address-info">{{pharmacy.street1}}<br>
+                                    {{pharmacy.city}} {{pharmacy.state}} {{pharmacy.zip}}
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="left">
+                        <div class="pharmacy-info-holder last clear">
+                            <span class="left icon"><i class="fa fa-home fa-2x"></i></span>
+                            <span class="left person-info">  0.3 miles</span>
+                        </div>
+                    </li>
+                    <button ng-click="deletePharmacy(pharmacy)" class="btn pharmacy-info-btn">Delete</button>
+                </ul>
             </li>
-            <li class="left">
-                <div class="pharmacy-info-holder last clear">
-                    <span class="left icon"><i class="fa fa-home fa-2x"></i></span>
-                    <span class="left person-info">  0.3 miles</span>
-                </div>
-            </li>
-            <button class="btn pharmacy-info-btn">Delete</button>
         </ul>
 
         <div class="">
@@ -89,16 +93,13 @@
             <div class="search_group" style="">
                 <form method="" action="#">
 
-                    <input type="text" class="big_input search_big" style="">
-                    <input type="text" class="big_input search_small" style="">
-                    <!--<input type="text" class="big_input search_small" style="position: absolute; top: 42px; left: 500px; width: 150px;">-->
-                    <button class="btn_search" style="">Search</button>
-
-
+                    <input type="text" ng-model="pharmacy.name" class="big_input search_big" style="">
+                    <input type="text" ng-model="pharmacy.zip" class="big_input search_small" style="">
+                    <button class="btn_search" ng-click="doSearchPharmacy(pharmacy)" style="">Search</button>
                 </form>
             </div>
             <ul>
-                <li class="search-holder">
+                <li class="search-holder" ng-repeat="pharmacy in pharmacies">
                     <ul>
                         <li class="left">
                             <div class="pharmacy-logo-holder">
@@ -107,17 +108,17 @@
                         </li>
                         <li class="left">
                             <div class="pharmacy-info-holder left">
-                                <div><i class="fa fa-flag" aria-hidden="true"></i> RITE AID Pharmacy</div>
-                                <div><i class="fa fa-phone" aria-hidden="true"></i> 212 555 2222</div>
+                                <div><i class="fa fa-flag" aria-hidden="true"></i>{{pharmacy.name}}</div>
+                                <div><i class="fa fa-phone" aria-hidden="true"></i>{{pharmacy.area}} {{pharmacy.prefix}} {{pharmacy.phone}}</div>
                             </div>
                         </li>
                         <li class="left">
                             <div class="pharmacy-info-holder">
-                                <div><i class="fa fa-bars" aria-hidden="true"></i> 212 555 742</div>
+                                <div><i class="fa fa-bars" aria-hidden="true"></i>{{pharmacy.fax}}</div>
                                 <div>
                                     <div class="left icon"><i class="fa fa-map-marker "></i></div>
-                                    <div class="left person-address-info">  4416 Shinn Street<br>
-                                        New York, NY 10022
+                                    <div class="left person-address-info">{{pharmacy.street1}}<br>
+                                        {{pharmacy.city}} {{pharmacy.state}} {{pharmacy.zip}}
                                     </div>
                                 </div>
                             </div>
@@ -128,7 +129,7 @@
                                 <span class="left person-info">  0.3 miles</span>
                             </div>
                         </li>
-                        <button class="btn pharmacy-search-select">Select</button>
+                        <button ng-click="selectPharmacy(pharmacy)" class="btn pharmacy-search-select">Select</button>
                     </ul>
                 </li>
             </ul>
