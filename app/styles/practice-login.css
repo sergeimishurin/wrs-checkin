@@ -1,0 +1,96 @@
+.panel-login {
+    background-color: #F4F4F4;
+    border-radius: 0;
+    border: none;
+    margin-bottom: 10px;
+}
+
+.title-white {
+    color: #FFFFFF;
+    font-size: 22px;
+    font-family: 'Arial Regular', 'Arial';
+}
+
+.checkbox {
+    margin-top: 25px;
+}
+
+.radio label, .checkbox label {
+    padding-left: 0px;
+}
+
+.heading-green {
+    background-color: #85BC20 !important;
+    font-size: 18px;
+    border-radius: 0;
+    border: none;
+    padding-top: 17px;
+    padding-bottom: 17px;
+    padding-right: 48px;
+    padding-left: 48px;
+}
+
+.remember-me {
+    font-size: 14px;
+    color: #6F6F6F;
+}
+
+.login-box {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.btn-login {
+    margin-top: 30px;
+}
+
+.panel-login label, .patient-login-box label, .content-patient label {
+    font-weight: normal;
+    font-family: 'Arial Regular', 'Arial';
+    font-weight: 400;
+    color: #6F6F6F;
+    font-style: normal;
+    font-size: 16px;
+    text-align: left;
+    line-height: normal;
+}
+
+.login-footer-text {
+    text-align: center;
+    color: #999999;
+    font-family: 'Arial Regular', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    text-align: center;
+    line-height: normal;
+}
+
+.login-footer-text a {
+    color: #00529C;
+}
+
+.login-box {
+    width: 515px;
+}
+
+.logo {
+    padding-top: 33px;
+    padding-bottom: 33px;
+}
+
+.panel-login {
+    height: 410px;
+}
+
+.panel-login .form-group {
+    margin-top: 23px;
+}
+
+.panel-login .panel-body {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 48px;
+    padding-right: 48px;
+}
+

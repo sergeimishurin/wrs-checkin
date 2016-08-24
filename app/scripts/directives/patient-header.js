@@ -1,0 +1,20 @@
+'use strict';
+
+/**
+ * @ngdoc directive
+ * @name checkinApp.directive:patientHeader
+ * @description
+ * # patientHeader
+ */
+angular.module('checkinApp')
+  .directive('patientHeader', function () {
+    return {
+      templateUrl: 'views/pages/patient/components/header.html',
+      restrict: 'E',
+      scope:{
+        title:"@",
+        info:"@info",
+        image:"@image"
+      }
+    };
+  });

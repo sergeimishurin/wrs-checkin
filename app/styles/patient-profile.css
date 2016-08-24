@@ -1,0 +1,49 @@
+.patient-info {
+    width: 100%;
+    list-style: none;
+    height: 106px;
+    padding: 0;
+}
+ul.patient-info li{
+    float: left;
+}
+.patient-profile-image {
+    height: 107px;
+    width: 108px;
+}
+.patient-profile-image img {
+    height: 100%;
+}
+.info-item {
+    padding: 0;
+    margin: 0;
+    margin-top: 12px;
+}
+.info-patient-fullname {
+    width: 305px;
+}
+.info-patient-address {
+    width: 221px;
+}
+.info-edit-button {
+    padding-top: 27px;
+}
+.patient-edit-button {
+    width: 140px;
+    margin-top: 83px;
+}
+
+.gender-button {
+    width: 135px;
+    padding: 15px;
+    text-align: center !important;
+    color: #fff !important;
+    background:#ccc;
+}
+
+.gender-input:checked + label {
+    background:  #0094D4;
+}
+.gender-group {
+    height: 73px;
+}

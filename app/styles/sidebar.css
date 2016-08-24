@@ -1,0 +1,96 @@
+.sidebar {
+    width: 330px;
+    float: left;
+    padding-left: 20px;
+    padding-right: 24px;
+}
+
+.sidebar-practice-logo {
+    padding-top: 7px;
+}
+
+.sidebar-practice-logo img{
+    width: 117px;
+    height: 53px;
+}
+
+.sidebar-practice-fullname {
+    font-family: 'Verdana Regular', 'Verdana';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 19px;
+    color: #3f4b94;
+    text-align: left;
+    padding-top: 20px;
+    padding-bottom: 2px;
+}
+
+.sidebar-devider {
+    margin: 8px 0;
+    width: 286px;
+}
+.sidebar-dates {
+    font-family: 'Verdana Regular', 'Verdana';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    color: #219297;
+    text-align: left;
+}
+
+.sidebar-steps .step {
+    font-family: "Open Sans";
+    font-size: 22px;
+    color: #ffffff;
+    padding: 21px 20px;
+    background: #999999;
+    margin: 15px auto;
+    line-height: 1;
+    position: relative;
+}
+
+.sidebar-steps .step.active {
+    background: #219297;
+}
+
+.active-arrow {
+    position: absolute;
+    right: -19px;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 32px 0 32px 20px;
+    border-color: transparent transparent transparent #219297;
+}
+
+.progress-indicator {
+    background: url('/images/progress.gif');
+    height: 16px;
+    overflow: hidden;
+}
+
+.progress-complete {
+    border-bottom: 16px solid #219297;
+    border-left: 0px solid transparent;
+    border-right: 14px solid transparent;
+    height: 16px;
+    width: 50%;
+}
+
+.percent {
+    position: relative;
+    color: #219297;
+}
+
+.sidebar-footer-logo {
+    position: absolute;
+    bottom: 0;
+    padding-bottom: 22px;
+}
+
+.sidebar-footer-logo img {
+    width: 226px;
+}
+
+

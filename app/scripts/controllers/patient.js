@@ -11,16 +11,15 @@ angular.module('checkinApp')
     .controller('PatientCtrl', function ($scope, $q, moment, Pharmacy, AuthService, States, Patient) {
         $scope.patient = {};
         $scope.patientEditMode = false;
-        States.query({countryId: 1}, function (response) {
-            $scope.states = response.data;
-        });
-
         var check = new moment();
-
         $scope.today = {
             date: check.format('MMMM') + ' ' + check.format('D') + ', ' + check.format('YYYY'),
             time: check.format("HH:mm")
         };
+
+        States.query({countryId: 1}, function (response) {
+            $scope.states = response.data;
+        });
 
         $scope.changePatientViewType = function() {
             $scope.patientEditMode = !$scope.patientEditMode;
@@ -85,32 +84,34 @@ angular.module('checkinApp')
                 "date_of_birth": '01/01/1990',
             };
 
-            AuthService.patientLogin(credentials).then(function (response) {
-                $scope.patient = response;
-                $q.all([
-                    Patient.personalInfo({id: response.id}).$promise,
-                    Patient.address({id: response.id}).$promise,
-                    Patient.phoneNumbers({id: response.id}).$promise,
-                    Patient.pharmacies({id: response.id}).$promise,
-                    Patient.insurance({id: response.id, index: 0}).$promise,
-                    Patient.totalOwedSum({id: response.id}).$promise,
-                    Patient.emergencyContacts({id: response.id}).$promise,
-                ]).then(function (response) {
-                    $scope.patient.personalInfo = response[0].data[0];
-                    $scope.patient.address = response[1].data;
-                    $scope.patient.phoneNumbers = response[2].data;
-                    $scope.patient.pharmacies = response[3].data;
-                    $scope.patient.insurance = response[4].data;
-                    $scope.patient.totalOwedSum = response[5].data;
-                    $scope.patient.emergencyContacts = response[6].data;
+            $scope.nextStep();
 
-                    console.log($scope.patient);
-                    $scope.nextStep();
-                });
-                //$scope.nextStep();
-            }, function (response) {
-
-            });
+            //AuthService.patientLogin(credentials).then(function (response) {
+            //    $scope.patient = response;
+            //    $q.all([
+            //        Patient.personalInfo({id: response.id}).$promise,
+            //        Patient.address({id: response.id}).$promise,
+            //        Patient.phoneNumbers({id: response.id}).$promise,
+            //        Patient.pharmacies({id: response.id}).$promise,
+            //        Patient.insurance({id: response.id, index: 0}).$promise,
+            //        Patient.totalOwedSum({id: response.id}).$promise,
+            //        Patient.emergencyContacts({id: response.id}).$promise,
+            //    ]).then(function (response) {
+            //        $scope.patient.personalInfo = response[0].data[0];
+            //        $scope.patient.address = response[1].data;
+            //        $scope.patient.phoneNumbers = response[2].data;
+            //        $scope.patient.pharmacies = response[3].data;
+            //        $scope.patient.insurance = response[4].data;
+            //        $scope.patient.totalOwedSum = response[5].data;
+            //        $scope.patient.emergencyContacts = response[6].data;
+            //
+            //        console.log($scope.patient);
+            //        $scope.nextStep();
+            //    });
+            //
+            //}, function (response) {
+            //
+            //});
         };
 
 
@@ -148,6 +149,103 @@ angular.module('checkinApp')
                 }
             }
         };
+
+
+        ////////////////////////////////////////////
+        $scope.today = function() {
+            $scope.dt = new Date();
+        };
+        $scope.today();
+
+        $scope.clear = function() {
+            $scope.dt = null;
+        };
+
+        $scope.inlineOptions = {
+            customClass: getDayClass,
+            minDate: new Date(),
+            showWeeks: true
+        };
+
+        $scope.dateOptions = {
+            dateDisabled: disabled,
+            formatYear: 'yy',
+            maxDate: new Date(2020, 5, 22),
+            minDate: new Date(),
+            startingDay: 1
+        };
+
+        // Disable weekend selection
+        function disabled(data) {
+            var date = data.date,
+                mode = data.mode;
+            return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
+        }
+
+        $scope.toggleMin = function() {
+            $scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
+            $scope.dateOptions.minDate = $scope.inlineOptions.minDate;
+        };
+
+        $scope.toggleMin();
+
+        $scope.open1 = function() {
+            $scope.popup1.opened = true;
+        };
+
+        $scope.open2 = function() {
+            $scope.popup2.opened = true;
+        };
+
+        $scope.setDate = function(year, month, day) {
+            $scope.dt = new Date(year, month, day);
+        };
+
+        $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+        $scope.format = $scope.formats[0];
+        $scope.altInputFormats = ['M!/d!/yyyy'];
+
+        $scope.popup1 = {
+            opened: false
+        };
+
+        $scope.popup2 = {
+            opened: false
+        };
+
+        var tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        var afterTomorrow = new Date();
+        afterTomorrow.setDate(tomorrow.getDate() + 1);
+        $scope.events = [
+            {
+                date: tomorrow,
+                status: 'full'
+            },
+            {
+                date: afterTomorrow,
+                status: 'partially'
+            }
+        ];
+
+        function getDayClass(data) {
+            var date = data.date,
+                mode = data.mode;
+            if (mode === 'day') {
+                var dayToCheck = new Date(date).setHours(0,0,0,0);
+
+                for (var i = 0; i < $scope.events.length; i++) {
+                    var currentDay = new Date($scope.events[i].date).setHours(0,0,0,0);
+
+                    if (dayToCheck === currentDay) {
+                        return $scope.events[i].status;
+                    }
+                }
+            }
+
+            return '';
+        }
+
 
 
     });
