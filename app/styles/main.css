@@ -49,6 +49,16 @@ body {
     right: 0;
     width: 264px;
 }
+
+.btn-centered-fixed-bottom {
+    position: fixed;
+    bottom: 21px;
+    margin-left: 55%;   
+    left: 0;
+    right: 0;
+    width: 264px;
+}
+
 .btn:hover, .btn:focus, .btn:active {
     color: #FFFFFF;
     outline: 0 !important;

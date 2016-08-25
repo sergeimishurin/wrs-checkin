@@ -83,3 +83,50 @@
   border: 1px solid blue;
   float: left;
 }
+
+.copay-credit-card-button {
+    background: url('/images/card.png');
+    border: 6px solid #ccc;
+    width: 327px;
+    height: 97px;
+    float: left;
+}
+
+
+.copay-front-button {
+    background: url('/images/front.png');
+    border: 6px solid #ccc;
+    width: 327px;
+    height: 97px;
+    float: right;
+}
+
+.copay-credit-card-button.card, .copay-front-button.front {
+  border-color: #27AE60!important;
+}
+
+.payment-buttons {
+  margin-top: 20px;
+}
+.copay-info-container {
+    height: 455px;
+    background: #fff;
+    border-left: 6px solid #27AE60;
+    padding-top: 10px;
+}
+.copay-controls-buttons {
+  margin-top: 100px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.billing-edit-button {
+  text-align: right;
+  padding-right: 0px;
+}
+.billing-address{
+  padding-right: 0px;
+  margin-top: 96px;
+}
+.billing-img {
+  padding-right: 20px;
+}

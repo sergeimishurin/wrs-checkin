@@ -21,12 +21,28 @@ angular.module('checkinApp')
             $scope.states = response.data;
         });
 
+      $scope.patient_temp={};
         $scope.changePatientViewType = function() {
             $scope.patientEditMode = !$scope.patientEditMode;
+            if($scope.patientEditMode) {
+                angular.copy($scope.patient, $scope.patient_temp); 
+                console.log(45);           
+            }
+        };
+
+        $scope.confirmPatientChanges = function(patient_temp){
+           angular.copy(patient_temp, $scope.patient);
+            $scope.patientEditMode = false;
+            console.log($scope.patient);
         };
 
         $scope.searchPharmacy = function(){
             $scope.searchPharmacyView = !$scope.searchPharmacyView;
+        };
+
+        $scope.selectPharmacies = function(){
+           $scope.patient.pharmacies = $scope.chossedPharmacies; 
+           $scope.searchPharmacyView = false;
         };
 
         $scope.pharmacies = [];
@@ -39,9 +55,18 @@ angular.module('checkinApp')
             });
         };
 
-        $scope.selectPharmacy = function(pharmacy){
-            $scope.patient.pharmacies.push(pharmacy);
-        };
+        $scope.chossedPharmacies = [];
+        $scope.selectPharmacy = function(pharmacy){ 
+            var index = $scope.chossedPharmacies.indexOf(pharmacy);
+            if(index === -1) {
+                pharmacy.selected = true;        
+                $scope.chossedPharmacies.push(pharmacy);
+            } else {
+                 $scope.chossedPharmacies.splice(index,1);
+                  pharmacy.selected = false;
+            }
+           
+        };      
 
         $scope.deletePharmacy = function(pharmacy){
             var index = $scope.patient.pharmacies.indexOf(pharmacy);
@@ -50,6 +75,7 @@ angular.module('checkinApp')
 
         $scope.paymentMethod = '';
         $scope.setPaymentMethod = function(method){
+            console.log(method);
             $scope.paymentMethod = method;
         };
 
@@ -82,36 +108,34 @@ angular.module('checkinApp')
                 "first_name_initial": 'a',
                 "last_name": 'test',
                 "date_of_birth": '01/01/1990',
-            };
+            };  
 
-            $scope.nextStep();
-
-            //AuthService.patientLogin(credentials).then(function (response) {
-            //    $scope.patient = response;
-            //    $q.all([
-            //        Patient.personalInfo({id: response.id}).$promise,
-            //        Patient.address({id: response.id}).$promise,
-            //        Patient.phoneNumbers({id: response.id}).$promise,
-            //        Patient.pharmacies({id: response.id}).$promise,
-            //        Patient.insurance({id: response.id, index: 0}).$promise,
-            //        Patient.totalOwedSum({id: response.id}).$promise,
-            //        Patient.emergencyContacts({id: response.id}).$promise,
-            //    ]).then(function (response) {
-            //        $scope.patient.personalInfo = response[0].data[0];
-            //        $scope.patient.address = response[1].data;
-            //        $scope.patient.phoneNumbers = response[2].data;
-            //        $scope.patient.pharmacies = response[3].data;
-            //        $scope.patient.insurance = response[4].data;
-            //        $scope.patient.totalOwedSum = response[5].data;
-            //        $scope.patient.emergencyContacts = response[6].data;
-            //
-            //        console.log($scope.patient);
-            //        $scope.nextStep();
-            //    });
-            //
-            //}, function (response) {
-            //
-            //});
+            AuthService.patientLogin(credentials).then(function (response) {
+               $scope.patient = response;
+               $q.all([
+                   Patient.personalInfo({id: response.id}).$promise,
+                   Patient.address({id: response.id}).$promise,
+                   Patient.phoneNumbers({id: response.id}).$promise,
+                   Patient.pharmacies({id: response.id}).$promise,
+                   Patient.insurance({id: response.id, index: 0}).$promise,
+                   Patient.totalOwedSum({id: response.id}).$promise,
+                   Patient.emergencyContacts({id: response.id}).$promise,
+               ]).then(function (response) {
+                   $scope.patient.personalInfo = response[0].data[0];
+                   $scope.patient.address = response[1].data;
+                   $scope.patient.phoneNumbers = response[2].data[0];
+                   $scope.patient.pharmacies = response[3].data;
+                   $scope.patient.insurance = response[4].data;
+                   $scope.patient.totalOwedSum = response[5].data;
+                   $scope.patient.emergencyContacts = response[6].data;
+            
+                   console.log($scope.patient);
+                   $scope.nextStep();
+               });
+            
+            }, function (response) {
+            
+            });
         };
 
 

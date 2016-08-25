@@ -21,9 +21,18 @@ ul.patient-info li{
 }
 .info-patient-fullname {
     width: 305px;
+    padding-left: 6px;
 }
 .info-patient-address {
     width: 221px;
+    position: relative;
+}
+.info-patient-address i {
+    position: absolute;
+    top: 20px;
+}
+.info-patient-address p {
+    padding-left: 21px;
 }
 .info-edit-button {
     padding-top: 27px;

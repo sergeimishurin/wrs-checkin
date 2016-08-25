@@ -1,17 +1,16 @@
 <div class="main" ng-if="!cardMethodActive && !successPayment">
-  <div class="header">
-    <span class="title">Co-Pay</span>
-    <i class="header-icon-area fa fa-3x fa-sign-out"></i>
-    <div class="info-line">You will recieve a emailed confirmation reciept after your payment has been made</div>
-    </span>
-  </div>
-  <div class="content" style="padding: 0;">
+  <patient-header title="Co-Pay"
+                    info="You will recieve a emailed confirmation reciept after your payment has been made"
+                  >
+    </patient-header>
+ 
+  <div class="content-no-padding">
     <div class="co-pay-sum">
       <div class="co-pay-sum-text-conteiner">
         <div class="co-pay-description" style="">Today Co-Pay</div>
       </div>
       <div class="co-pay-sum-text">
-        <input type="text" class="co-pay-input" value="${{patient.insurance.ins_co_pay || 0}}">
+        <input type="text" class="co-pay-input" disabled readonly value="${{patient.insurance.ins_co_pay || 0}}">
       </div>
       <div class="co-pay-sum-text-description">
 
@@ -33,29 +32,35 @@
         <div class="co-pay-description" style="width: 110px; margin-top: 18px;"><span style="display: block;">Total</span><span>Due Now</span></div>
       </div>
       <div class="co-pay-sum-text" style="width: 38%;">
-        <input type="text" class="co-pay-input" value="{{patient.insurance.ins_co_pay + patient.insurance.ins_co_pay}}">
+        <input type="text" class="co-pay-input"  disabled readonly value="{{patient.insurance.ins_co_pay + patient.insurance.ins_co_pay}}">
       </div>
       <div class="co-pay-sum-text" style="width: 35%;">
       </div>
     </div>
 
+    <div class="payment-buttons">
+       <button class="copay-credit-card-button" ng-class="[paymentMethod]" ng-click="setPaymentMethod('card')"></button>
+        <button class="copay-front-button"      ng-class="[paymentMethod]" ng-click="setPaymentMethod('front')"></button>
 
-    <button ng-click="setPaymentMethod('card')">Pay By Credit Card</button>
-    <button ng-click="setPaymentMethod('front')">Pay at Front Desk</button>
-
-    <button ng-click="backStep()" class="left_btn" style="margin-left: 320px;">Back</button>
-    <button ng-click="doPayment()"  ng-disabled="!paymentMethod" class="right_btn">Next</button>
+    </div>
+   
+    <div class="">
+          <button ng-click="backStep()" class="left_btn">Back</button>
+          <button ng-click="doPayment()" ng-disabled="!paymentMethod" class="right_btn">Next</button>
+    </div> 
+  
   </div>
 </div>
 
 <div class="main" ng-if="cardMethodActive && !successPayment">
-  <div class="header">
-    <span class="title">Co-Pay</span>
-    <i class="header-icon-area fa fa-3x fa-sign-out"></i>
-    <div class="info-line">You will receive a emailed confirmation receipt after payment has been made.</div>
-    </span>
-  </div>
-  <div class="content">
+
+   <patient-header title="Co-Pay"
+                    info="You will recieve a emailed confirmation reciept after your payment has been made"
+                  >
+
+    </patient-header>
+  <div class="content-no-padding">
+    <div class="copay-info-container">
     <div class="patient-login-box col-md-6">
       <fieldset>
         <div class="form-group">
@@ -78,26 +83,33 @@
           <input type="text" class="form-control"  />
         </div>
         <div class="form-group">
-           <input type="checkbox" class="form-control"  />
+           <input type="checkbox" class=""  />
           Store credit card info for future transactions
         </div>
       </fieldset>
     </div>
-    <div class="patient-login-box col-md-6">
-      <div class="form-group">
-        <label class="control-label">&nbsp;</label>
-        <input type="text" class="form-control"  />
+    <div class="patient-login-box col-md-6 billing-address">
+        <div class="col-md-6">
+           <label class="control-label">Billing Address</label>
+          4416 Shinn Street
+          New York, NY 10022
+        </div>
+        <div class="col-md-6 billing-edit-button">
+           <button class="btn btn-warning">EDIT</button>
+        </div>
       </div>
-      <div class="form-group">
-        <label class="control-label">Billing Address</label>
-        4416 Shinn Street
-        New York, NY 10022
-        <button class="btn btn-toolbar">EDIT</button>
+      <div class="text-right billing-img">
+         <img src="/images/transfirst.png">
       </div>
+     
     </div>
+    <div class="clearfix"></div>
+  
+  <div class="copay-controls-buttons">
+     <button ng-click="cancelPayment()" class="btn btn-default pull-left">Cancel</button>
+    <button ng-click="makePayment()" class="btn btn-primary pull-right">Make Payment</button>
   </div>
-  <button ng-click="cancelPayment()" class="btn btn-default pull-left">Cancel</button>
-  <button ng-click="makePayment()" class="btn btn-default pull-right">Make Payment</button>
+ 
 </div>
 
 <div class="main" ng-if="successPayment">

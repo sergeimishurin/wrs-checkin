@@ -12,24 +12,25 @@
         <li class="info-patient-fullname">
           <p class="info-item">
             <i class="fa fa-user fa-2x"></i>
-            <span>{{patient.lastName}} {{patient.firstName}} | {{patient.dateOfBirth | dateToAge}} Yrs</span>
+            <span>{{patient.personalInfo.last_name}} {{patient.personalInfo.first_name}} | {{patient.dateOfBirth | dateToAge}} Yrs</span>
           </p>
           <p class="info-item">
             <i class="fa fa-envelope fa-2x"></i>
-            <span>{{patient.email}}</span>
+            <span>{{patient.personalInfo.email}}</span>
           </p>
           <p class="info-item">
             <i class="fa fa-phone fa-2x"></i>
-            <span>212 55 789</span>
+            <span>{{patient.phoneNumbers.area}} {{patient.phoneNumbers.phone}}</span>
           </p>
         </li>
-        <li class="info-patient-address">
-            <p class="info-item home-icon">
-            <i class="fa fa-home fa-2x"></i>
-                <span>{{patient.address.street1}}<br>
-                {{patient.address.city}} {{patient.address.state}} {{patient.address.zip}}
-                  </span>
+        <li class="info-patient-address">           
+            <i class="fa fa-home fa-2x"></i>           
+            <p class="info-item home-icon"> {{patient.address.street1}}
+              <br>
+              {{patient.address.city}} {{patient.address.state}} {{patient.address.zip}}
+
             </p>
+                   
         </li>
         <li class="info-edit-button">
           <button ng-click="changePatientViewType(patientEditMode)" class="btn btn-primary">Edit</button>
@@ -53,24 +54,24 @@
       <fieldset>
         <div class="form-group">
           <label class="control-label" for="first_name">Name</label>
-          <input class="form-control" id="first_name" ng-model="patient.personalInfo.first_name" type="text">
+          <input class="form-control" id="first_name" ng-model="patient_temp.personalInfo.first_name" type="text">
         </div>
         <div class="form-group has-feedback">
           <label class="control-label">Date of Birth</label>
-          <input type="text" class="form-control" ng-model="patient.personalInfo.date_of_birth">
+          <input type="text" class="form-control" ng-model="patient_temp.personalInfo.date_of_birth">
           <i class="dob-icon form-control-feedback fa fa-calendar"></i>
         </div>
         <div class="form-group">
           <label class="control-label" for="email">Email</label>
-          <input class="form-control" id="email" ng-model="patient.personalInfo.email"type="text">
+          <input class="form-control" id="email" ng-model="patient_temp.personalInfo.email"type="text">
         </div>
         <div class="form-group">
           <label class="control-label" for="address">Address</label>
-          <input class="form-control" id="address" ng-model="patient.address.street1" type="text">
+          <input class="form-control" id="address" ng-model="patient_temp.address.street1" type="text">
         </div>
         <div class="form-group">
           <label class="control-label" for="state">State</label>
-          <input class="form-control" id="state" ng-model="patient.address.state" placeholder="family name" type="text">
+          <input class="form-control" id="state" ng-model="patient_temp.address.state" placeholder="family name" type="text">
         </div>
       </fieldset>
     </div>
@@ -78,35 +79,42 @@
       <fieldset>
         <div class="form-group">
           <label class="control-label" for="username">&nbsp;</label>
-          <input class="form-control" id="last_name" ng-model="patient.personalInfo.last_name" type="text">
+          <input class="form-control" id="last_name" ng-model="patient_temp.personalInfo.last_name" type="text">         
         </div>
         <div class="form-group gender-group">
           <label class="control-label">Gender</label>
           <div class="clearfix"></div>
-          <input type="radio" class="gender-input hidden"  id="male" name="sex" ng-model="patient.personalInfo.sex" value="male">
+          <input type="radio" class="gender-input hidden"  id="male" name="sex" ng-model="patient_temp.personalInfo.sex" value="male">
           <label for="male" class="btn  pull-left gender-button">Male</label>
-          <input type="radio" class="gender-input hidden"  id="female" name="sex" ng-model="patient.personalInfo.sex" value="female">
+          <input type="radio" class="gender-input hidden"  id="female" name="sex" ng-model="patient_temp.personalInfo.sex" value="female">
           <label for="female" class="btn  pull-right gender-button">Female</label>
         </div>
 
         <div class="form-group">
           <label class="control-label" for="username">Phone Number</label>
-          <input class="form-control" id="username" ng-model="user.username" type="text">
+          <select class="form-control" ng-model="patient_temp.phoneNumbers.type">
+            <option value="home">Home</option>
+            <option>Mobile</option>
+          </select>
+
+          <input class="form-control" ng-model="patient_temp.phoneNumbers.area" type="text">
+          <input class="form-control" ng-model="patient_temp.phoneNumbers.phone" type="text">
+
         </div>
         <div class="form-group">
           <label class="control-label" for="city">City</label>
-          <input class="form-control" id="city" ng-model="patient.address.city" type="text">
+          <input class="form-control" id="city" ng-model="patient_temp.address.city" type="text">
         </div>
         <div class="form-group">
           <label class="control-label" for="zip">Zip Code</label>
-          <input class="form-control" id="zip" ng-model="patient.address.zip" type="text">
+          <input class="form-control" id="zip" ng-model="patient_temp.address.zip" type="text">
         </div>
       </fieldset>
       <div class="clearfix"></div>
     </div>
     <div class="col-md-12">
       <button ng-click="changePatientViewType(patientEditMode)" class="btn btn-default pull-left patient-edit-button">Cancel</button>
-      <button ng-click="changePatientViewType(patientEditMode)" class="btn btn-success pull-right patient-edit-button">Confirm</button>
+      <button ng-click="confirmPatientChanges(patient_temp)" class="btn btn-success pull-right patient-edit-button">Confirm</button>
     </div>
   </div>
 </div>

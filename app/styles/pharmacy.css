@@ -1,0 +1,63 @@
+.pharmacy-controls {
+	margin-top: 150px;
+}
+.pharmacy-list {
+	width: 100%;
+	list-style: none;
+	padding:0;
+}
+.pharmacy-list li {
+	clear: both;
+}
+.search-pharmacy-button {
+	background: #ff8000;
+    color: #fff;
+    border: none;
+}
+.pharmacy-list{
+	height: 520px;
+	overflow-x:scroll;
+}
+.pharmacy-list-item  {
+	float: left;
+	background: #fff;
+	padding-top: 4px;
+	height: 70px;
+	
+}
+
+.pharmacy-list-container {
+	margin-bottom: 20px;
+}
+.pharmacy-list-item:first-child {
+	 border-left: 11px solid #2F8FD7;
+}
+
+.pharmacy-list-item.logo img{
+	height: 60px;
+}
+
+.pharmacy-list-item.logo {
+	width: 15%;
+	padding: 5px;
+}
+
+.pharmacy-list-item.name {
+	width: 25%;
+	padding-top: 15px;
+	padding-left: 12px;
+}
+.pharmacy-list-item.address {
+	width: 30%;
+	padding-top: 15px;
+	padding-left: 12px;
+}
+.pharmacy-list-item.miles {
+	width: 15%;
+	padding-top: 15px;
+	padding-left: 12px;
+}
+.pharmacy-list-item.buttons {
+	width: 15%;
+	padding-top: 10px;	
+}
