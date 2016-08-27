@@ -53,7 +53,7 @@ body {
 .btn-centered-fixed-bottom {
     position: fixed;
     bottom: 21px;
-    margin-left: 55%;   
+    margin-left: 55%;
     left: 0;
     right: 0;
     width: 264px;
@@ -220,4 +220,25 @@ form input.ng-invalid.ng-touched {
     position: absolute;
     right: 22px;
     top: 11px;
+}
+
+.no-padding {
+  padding:0 !important;
+}
+
+.state-arrow {
+  position: absolute;
+  top: 40px;
+  right:15px;
+}
+.currencyinput {
+  border: 1px inset #ccc;
+}
+.currencyinput input {
+  border: 0;
+}
+
+.custom-billing-amount {
+  position: absolute;
+  top: -73px;
 }

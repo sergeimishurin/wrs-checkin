@@ -8,7 +8,7 @@
   <div class="content-no-padding">
     <div class="info-container">
       <ul class="patient-info">
-        <li class="patient-profile-image"> <img src="/images/profile.png" alt=""></li>
+        <li class="patient-profile-image"><img src="/images/profile.png" alt=""></li>
         <li class="info-patient-fullname">
           <p class="info-item">
             <i class="fa fa-user fa-2x"></i>
@@ -23,14 +23,14 @@
             <span>{{patient.phoneNumbers.area}} {{patient.phoneNumbers.phone}}</span>
           </p>
         </li>
-        <li class="info-patient-address">           
-            <i class="fa fa-home fa-2x"></i>           
-            <p class="info-item home-icon"> {{patient.address.street1}}
-              <br>
-              {{patient.address.city}} {{patient.address.state}} {{patient.address.zip}}
+        <li class="info-patient-address">
+          <i class="fa fa-home fa-2x"></i>
+          <p class="info-item home-icon"> {{patient.address.street1}}
+            <br>
+            {{patient.address.city}} {{patient.address.state}} {{patient.address.zip}}
 
-            </p>
-                   
+          </p>
+
         </li>
         <li class="info-edit-button">
           <button ng-click="changePatientViewType(patientEditMode)" class="btn btn-primary">Edit</button>
@@ -58,20 +58,28 @@
         </div>
         <div class="form-group has-feedback">
           <label class="control-label">Date of Birth</label>
-          <input type="text" class="form-control" ng-model="patient_temp.personalInfo.date_of_birth">
+          <input type="text" class="form-control" ng-click="dobOptions.open()" type="text" class="form-control"
+                 uib-datepicker-popup ng-model="patient_temp.personalInfo.date_of_birth"
+                 is-open="dobOptions.opened" datepicker-options="dobOptions" placeholder="mm /dd/ yyyy">
           <i class="dob-icon form-control-feedback fa fa-calendar"></i>
         </div>
         <div class="form-group">
           <label class="control-label" for="email">Email</label>
-          <input class="form-control" id="email" ng-model="patient_temp.personalInfo.email"type="text">
+          <input class="form-control" id="email" ng-model="patient_temp.personalInfo.email" type="text">
         </div>
         <div class="form-group">
           <label class="control-label" for="address">Address</label>
           <input class="form-control" id="address" ng-model="patient_temp.address.street1" type="text">
         </div>
         <div class="form-group">
-          <label class="control-label" for="state">State</label>
-          <input class="form-control" id="state" ng-model="patient_temp.address.state" placeholder="family name" type="text">
+          <div class="col-md-12 no-padding selectwrap">
+            <label class="control-label">State</label>
+            <i class="glyphicon glyphicon-menu-down state-arrow"></i>
+            <select ng-model="patient.credit_card.state" type="text" class="form-control">
+              <option value="">Select</option>
+              <option value="k" ng-repeat="(k,v) in states">{{v.name}}</option>
+            </select>
+          </div>
         </div>
       </fieldset>
     </div>
@@ -79,31 +87,42 @@
       <fieldset>
         <div class="form-group">
           <label class="control-label" for="username">&nbsp;</label>
-          <input class="form-control" id="last_name" ng-model="patient_temp.personalInfo.last_name" type="text">         
+          <input class="form-control" id="last_name" ng-model="patient_temp.personalInfo.last_name" type="text">
         </div>
         <div class="form-group gender-group">
           <label class="control-label">Gender</label>
           <div class="clearfix"></div>
-          <input type="radio" class="gender-input hidden"  id="male" name="sex" ng-model="patient_temp.personalInfo.sex" value="male">
+          <input type="radio" class="gender-input hidden" id="male" name="sex" ng-model="patient_temp.personalInfo.sex"
+                 value="male">
           <label for="male" class="btn  pull-left gender-button">Male</label>
-          <input type="radio" class="gender-input hidden"  id="female" name="sex" ng-model="patient_temp.personalInfo.sex" value="female">
+          <input type="radio" class="gender-input hidden" id="female" name="sex"
+                 ng-model="patient_temp.personalInfo.sex" value="female">
           <label for="female" class="btn  pull-right gender-button">Female</label>
         </div>
 
-        <div class="form-group">
-          <label class="control-label" for="username">Phone Number</label>
-          <select class="form-control" ng-model="patient_temp.phoneNumbers.type">
-            <option value="home">Home</option>
-            <option>Mobile</option>
-          </select>
+        <div class="form-group no-padding">
 
-          <input class="form-control" ng-model="patient_temp.phoneNumbers.area" type="text">
-          <input class="form-control" ng-model="patient_temp.phoneNumbers.phone" type="text">
+          <label class="control-label" for="username">Phone Number</label><br>
+          <div class="col-md-5 no-padding selectwrap">
+            <i class="glyphicon glyphicon-menu-down select-arrow"></i>
+            <select class="form-control " ng-model="patient_temp.phoneNumbers.type">
+              <option value="home">Home</option>
+              <option>Mobile</option>
+            </select>
+          </div>
 
+          <div class="col-md-1 no-padding"></div>
+          <div class="col-md-2 no-padding">
+            <input class="form-control border-right-none" ng-model="patient_temp.phoneNumbers.area" type="text">
+          </div>
+          <div class="col-md-4 no-padding">
+            <input class="form-control border-left-none" ng-model="patient_temp.phoneNumbers.phone" type="text">
+          </div>
+          <div class="clearfix"></div>
         </div>
         <div class="form-group">
           <label class="control-label" for="city">City</label>
-          <input class="form-control" id="city" ng-model="patient_temp.address.city" type="text">
+          <input class="form-control " id="city" ng-model="patient_temp.address.city" type="text">
         </div>
         <div class="form-group">
           <label class="control-label" for="zip">Zip Code</label>
@@ -113,8 +132,12 @@
       <div class="clearfix"></div>
     </div>
     <div class="col-md-12">
-      <button ng-click="changePatientViewType(patientEditMode)" class="btn btn-default pull-left patient-edit-button">Cancel</button>
-      <button ng-click="confirmPatientChanges(patient_temp)" class="btn btn-success pull-right patient-edit-button">Confirm</button>
+      <button ng-click="changePatientViewType(patientEditMode)" class="btn btn-default pull-left patient-edit-button">
+        Cancel
+      </button>
+      <button ng-click="confirmPatientChanges(patient_temp)" class="btn btn-success pull-right patient-edit-button">
+        Confirm
+      </button>
     </div>
   </div>
 </div>

@@ -188,3 +188,6 @@
   list-style: none;
   padding:0;
 }
+.has-feedback-finished {
+  color: #FFAE00;
+}

@@ -8,21 +8,25 @@
 
     <div class="content">
         <div class="patient-login">
+          <form ng-submit="patientLogin()" name="patient_login">
             <fieldset>
                 <div class="form-group">
                     <label class="control-label" for="username">Last Name</label>
-                    <input class="form-control" id="username" ng-model="user.username" placeholder="family name" type="text">
+                    <input class="form-control" id="username" ng-model="user.username" placeholder="family name" type="text" required>
                 </div>
                 <div class="form-group has-feedback">
                     <label class="control-label">Date of Birth</label>
-                    <input ng-click="dateOptions.open()" type="text" class="form-control" uib-datepicker-popup ng-model="dt" is-open="dateOptions.opened" datepicker-options="dateOptions" placeholder="mm /dd/ yyyy"/>
+                    <input ng-click="dateOptions.open()"
+                           type="text" class="form-control" uib-datepicker-popup ng-model="dt"
+                           is-open="dateOptions.opened" datepicker-options="dateOptions" placeholder="mm /dd/ yyyy" required/>
                     <i class="dob-icon form-control-feedback fa fa-calendar"></i>
                 </div>
                 <div class="form-group">
                     <label>&nbsp;</label>
-                    <input ng-click="patientLogin()" class="btn btn-lg btn-block btn-primary" type="submit" value="Login">
+                    <input ng-disabled="patient_login.$invalid" class="btn btn-lg btn-block btn-primary" type="submit" disabled="disabled" value="Login">
                 </div>
             </fieldset>
+          </form>
         </div>
     </div>
 </div>

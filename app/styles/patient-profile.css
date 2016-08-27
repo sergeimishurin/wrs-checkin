@@ -1,58 +1,94 @@
 .patient-info {
-    width: 100%;
-    list-style: none;
-    height: 106px;
-    padding: 0;
+  width: 100%;
+  list-style: none;
+  height: 106px;
+  padding: 0;
 }
-ul.patient-info li{
-    float: left;
+
+ul.patient-info li {
+  float: left;
 }
+
 .patient-profile-image {
-    height: 107px;
-    width: 108px;
+  height: 107px;
+  width: 108px;
 }
+
 .patient-profile-image img {
-    height: 100%;
+  height: 100%;
 }
+
 .info-item {
-    padding: 0;
-    margin: 0;
-    margin-top: 12px;
+  padding: 0;
+  margin: 0;
+  margin-top: 12px;
 }
+
 .info-patient-fullname {
-    width: 305px;
-    padding-left: 6px;
+  width: 305px;
+  padding-left: 6px;
 }
+
 .info-patient-address {
-    width: 221px;
-    position: relative;
+  width: 221px;
+  position: relative;
 }
+
 .info-patient-address i {
-    position: absolute;
-    top: 20px;
+  position: absolute;
+  top: 20px;
 }
+
 .info-patient-address p {
-    padding-left: 21px;
+  padding-left: 21px;
 }
+
 .info-edit-button {
-    padding-top: 27px;
+  padding-top: 27px;
 }
+
 .patient-edit-button {
-    width: 140px;
-    margin-top: 83px;
+  width: 140px;
+  margin-top: 83px;
 }
 
 .gender-button {
-    width: 135px;
-    padding: 15px;
-    text-align: center !important;
-    color: #fff !important;
-    background:#ccc;
+  width: 135px;
+  padding: 15px;
+  text-align: center !important;
+  color: #fff !important;
+  background: #ccc;
 }
 
 .gender-input:checked + label {
-    background:  #0094D4;
+  background: #0094D4;
 }
+
 .gender-group {
-    height: 73px;
+  height: 73px;
+}
+
+.border-left-none {
+  border-left: none;
+  box-shadow: none;
+}
+
+.border-right-none {
+  border-right: none;
+  box-shadow: none;
+}
+
+.selectwrap {
+  position: relative;
+  float: left;
+}
+.selectwrap select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.select-arrow {
+  position: absolute;
+  right:10px;
+  top:15px;
 }

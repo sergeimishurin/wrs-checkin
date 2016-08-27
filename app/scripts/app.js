@@ -18,7 +18,7 @@ angular
     'ngTouch',
     'config',
     'angularMoment',
-    'ui.bootstrap'
+    'ui.bootstrap',
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
 

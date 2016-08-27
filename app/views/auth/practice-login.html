@@ -10,7 +10,7 @@
           <h3 class="panel-title title-white">Practice Log in</h3>
         </div>
         <div class="panel-body">
-          <form novalidate ng-submit="login(user)" name="practice_login">
+          <form novalidate ng-submit="login(user)" name="practice_login" novalidate>
             <fieldset>
               <div class="form-group">
                 <label class="control-label" for="username">Username</label>
@@ -27,7 +27,8 @@
                   <span class="remember-me">Remember Me</span>
                 </label>
               </div>
-              <input class="btn btn-lg btn-primary btn-block btn-login" type="submit" value="Login">
+              <input class="btn btn-lg btn-primary btn-block btn-login" type="submit" value="Login"
+                     ng-disabled="practice_login.$invalid" disabled="disabled">
             </fieldset>
           </form>
         </div>
