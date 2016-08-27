@@ -1,16 +1,19 @@
 <div class="main">
-  <div class="header">
-    <span class="title">Finished</span>
-    <i class="header-icon-area fa fa-4x fa-sign-out"></i>
-    <div class="info-line">You are all set. thank you for Checking-In.</div>
-    </span>
-  </div>
-  <div class="content" style="padding-left: 0;">
-    <div class="some-text">
-      Your nurse will take you to exam room momentarily
+   <patient-header title="Finished"
+                  info="You are all set. thank you for Checking-In."
+                >
+
+  </patient-header>
+  <div class="content-no-padding">
+    <div class="finished-info-container">
+      <h3>
+           Your nurse will take you to exam room momentarily
+      </h3>
+   
     </div>
-    <div class="question">
-      <div style="margin-bottom: 10px;">
+
+    <div class="finished-info-container">
+      <div class="question">
         <b>How did you like our self-service Check-In?</b>
       </div>
       <div class="likes">
@@ -53,8 +56,9 @@
         <img src="/images/bjishk.png">
       </div>
     </div>
+
     <div class="submit-input-wrapper">
-      <button class="login" >Submit</button>
+      <button ng-click="finished()" class="btn btn-primary btn-centered-bottom" >Submit</button>
     </div>
   </div>
 </div>

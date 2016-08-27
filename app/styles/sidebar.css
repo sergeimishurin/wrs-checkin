@@ -25,6 +25,9 @@
     padding-bottom: 2px;
 }
 
+.sidebar  .passed {
+    float: right;
+}
 .sidebar-devider {
     margin: 8px 0;
     width: 286px;

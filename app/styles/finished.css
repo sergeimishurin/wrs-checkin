@@ -8,15 +8,10 @@
   font-size: 22px;
   color: #666666;
 }
-.question{
-  padding-left: 25px;
-  padding-top: 40px;
-  background: #ffffff;
-  height: 320px;
-  border-left: 6px solid #BDC3C7;
-  margin-top: 16px;
+.question {
   font-size: 24px;
   color: #00529C;
+  margin-bottom: 15px;
 }
 .likes{
   padding-left: 20px;
@@ -47,6 +42,7 @@
 }
 .likes-text{
   padding-top: 10px;
+  color:#00529C;
 }
 .clear{
   clear: both;
@@ -178,3 +174,17 @@
   /*right: 25px;*/
   /*top: 20px;*/
 /*}*/
+.finished-info-container {
+  background: #fff;
+  border-left: 8px solid #ccc;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 20px;
+  overflow: auto;
+}
+.likes ul {
+  list-style: none;
+  padding:0;
+}

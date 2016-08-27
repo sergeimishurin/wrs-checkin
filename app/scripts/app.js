@@ -38,8 +38,10 @@ angular
       .state('welcome', {
         url: '/welcome',
         templateUrl: 'views/pages/welcome.html'
+      })
+      .state('return', {
+        url: '/return-device',
+        templateUrl: 'views/pages/return.html'
       });
-
-
     //$locationProvider.html5Mode(false);
   });
