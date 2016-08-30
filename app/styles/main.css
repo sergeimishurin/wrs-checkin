@@ -34,7 +34,12 @@ body {
     line-height: normal;
     font-size: 17px;
 }
-
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1 !important;
+  color: inherit;
+}
 .btn {
     border-radius: 0 !important;
     height: 48px;
@@ -152,7 +157,7 @@ form input.ng-invalid.ng-touched {
 
 .info-container {
     background: #fff;
-    border-left: 11px solid #2F8FD7;
+    border-left: 8px solid #2F8FD7;
 }
 
 .checkbox label:after,

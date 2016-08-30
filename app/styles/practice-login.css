@@ -7,8 +7,8 @@
 
 .title-white {
     color: #FFFFFF;
-    font-size: 22px;
-    font-family: 'Arial Regular', 'Arial';
+    font-size: 18px;
+    font-family: 'Open sans Regular', 'Open sans';
 }
 
 .checkbox {
@@ -24,8 +24,8 @@
     font-size: 18px;
     border-radius: 0;
     border: none;
-    padding-top: 17px;
-    padding-bottom: 17px;
+    padding-top: 16px;
+    padding-bottom: 16px;
     padding-right: 48px;
     padding-left: 48px;
 }
@@ -75,8 +75,8 @@
 }
 
 .logo {
-    padding-top: 33px;
-    padding-bottom: 33px;
+    padding-top: 35px;
+    padding-bottom: 35px;
 }
 
 .panel-login {
@@ -84,13 +84,13 @@
 }
 
 .panel-login .form-group {
-    margin-top: 23px;
+    margin-top: 24px;
 }
 
 .panel-login .panel-body {
     padding-top: 0px;
     padding-bottom: 0px;
-    padding-left: 48px;
-    padding-right: 48px;
+    padding-left: 45px;
+    padding-right: 45px;
 }
 
