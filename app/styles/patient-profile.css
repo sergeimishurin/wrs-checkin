@@ -1,7 +1,7 @@
 .patient-info {
   width: 100%;
   list-style: none;
-  height: 106px;
+  height: 110px;
   padding: 0;
 }
 
@@ -10,8 +10,8 @@ ul.patient-info li {
 }
 
 .patient-profile-image {
-  height: 107px;
-  width: 108px;
+  height: 110px;
+  width: 110px;
 }
 
 .patient-profile-image img {
@@ -25,7 +25,7 @@ ul.patient-info li {
 }
 
 .info-patient-fullname {
-  width: 305px;
+  width: 295px;
   padding-left: 6px;
 }
 
@@ -47,13 +47,17 @@ ul.patient-info li {
   padding-top: 27px;
 }
 
+.info-edit-button .btn {
+  width:70px;
+}
+
 .patient-edit-button {
   width: 140px;
   margin-top: 83px;
 }
 
 .gender-button {
-  width: 135px;
+  width: 151px;
   padding: 15px;
   text-align: center !important;
   color: #fff !important;
@@ -81,6 +85,9 @@ ul.patient-info li {
 .selectwrap {
   position: relative;
   float: left;
+}
+.selectwrap .phone{
+  width:151px;
 }
 .selectwrap select {
   -webkit-appearance: none;

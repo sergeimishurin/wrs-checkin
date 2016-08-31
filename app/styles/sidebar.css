@@ -1,8 +1,8 @@
 .sidebar {
-    width: 330px;
+    width: 320px;
     float: left;
     padding-left: 20px;
-    padding-right: 24px;
+    padding-right: 20px;
 }
 
 .sidebar-practice-logo {
@@ -16,13 +16,13 @@
 
 .sidebar-practice-fullname {
     font-family: 'Verdana Regular', 'Verdana';
-    font-weight: 400;
+    font-weight: 100;
     font-style: normal;
-    font-size: 19px;
+    font-size: 18px;
     color: #3f4b94;
     text-align: left;
-    padding-top: 20px;
-    padding-bottom: 2px;
+    padding-top: 5px;
+    padding-bottom: 8px;
 }
 
 .sidebar  .passed {
@@ -43,9 +43,9 @@
 
 .sidebar-steps .step {
     font-family: "Open Sans";
-    font-size: 22px;
+    font-size: 24px;
     color: #ffffff;
-    padding: 21px 20px;
+    padding: 20px 20px;
     background: #999999;
     margin: 15px auto;
     line-height: 1;
@@ -58,7 +58,7 @@
 
 .active-arrow {
     position: absolute;
-    right: -19px;
+    right: -20px;
     top: 0;
     width: 0;
     height: 0;
