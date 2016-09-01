@@ -11,10 +11,10 @@
 
 .welcome-title p {
   background: #fff;
-  width: 403px;
+  width: 406px;
   font-size: 35px;
   float: right;
-  height: 54px;
+  height: 55px;
   text-align: center;
   padding: 2px;
   color: #2199E8;
@@ -25,13 +25,14 @@
   border-radius: 10px!important;
   background-color: #102f88!important;
   color: #ffffff;
-  font-size: 21px!important;
+  font-size: 28px!important;
   font-family: "Open Sans";
   font-style: normal;
   font-variant: normal;
-  font-weight: 400;
+  font-weight: 100;
   line-height: 20px;
   width: 350px;
+  height:65px;
 }
 
 .welcome-logo {

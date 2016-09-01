@@ -8,7 +8,7 @@
   <div class="content-no-padding">
     <div class="info-container">
       <ul class="patient-info">
-        <li class="patient-profile-image"><img src="/images/profile.png" alt=""></li>
+        <li class="patient-profile-image"><img src="images/profile.png" alt=""></li>
         <li class="info-patient-fullname">
           <p class="info-item">
             <i class="fa fa-user fa-2x"></i>
@@ -44,13 +44,13 @@
 <div class="main" ng-if="patientEditMode">
   <patient-header title="Patient Check-In"
                   info="Let's start. Simply Follow the instructions shown below"
-                  image="/images/profile.png">
+                  image="images/profile.png">
   </patient-header>
 
   <div class="clearfix"></div>
 
   <div class="content">
-    <div class="col-md-6">
+    <div class="col-md-6 col-md-right">
       <fieldset>
         <div class="form-group">
           <label class="control-label" for="first_name">Name</label>
@@ -83,7 +83,7 @@
         </div>
       </fieldset>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6 col-md-left">
       <fieldset>
         <div class="form-group">
           <label class="control-label" for="username">&nbsp;</label>
@@ -103,23 +103,23 @@
         <div class="form-group no-padding">
 
           <label class="control-label" for="username">Phone Number</label><br>
-          <div class="col-md-5 no-padding selectwrap">
+          <div class="selectwrap pull-left">
             <i class="glyphicon glyphicon-menu-down select-arrow"></i>
-            <select class="form-control " ng-model="patient_temp.phoneNumbers.type">
+            <select class="form-control phone" ng-model="patient_temp.phoneNumbers.type">
               <option value="home">Home</option>
               <option>Mobile</option>
             </select>
           </div>
-
-          <div class="col-md-1 no-padding"></div>
-          <div class="col-md-2 no-padding">
-            <input class="form-control border-right-none" ng-model="patient_temp.phoneNumbers.area" type="text">
+          <div class="numberwrap no-padding pull-left">
+            <input class="form-control pull-left number-code border-right-none"
+                   ng-model="patient_temp.phoneNumbers.area" type="text">
+            <input class="form-control pull-right number border-left-none" ng-model="patient_temp.phoneNumbers.phone"
+                   type="text">
+            <div class="clearfix"></div>
           </div>
-          <div class="col-md-4 no-padding">
-            <input class="form-control border-left-none" ng-model="patient_temp.phoneNumbers.phone" type="text">
-          </div>
-          <div class="clearfix"></div>
         </div>
+        <div class="clearfix"></div>
+
         <div class="form-group">
           <label class="control-label" for="city">City</label>
           <input class="form-control " id="city" ng-model="patient_temp.address.city" type="text">

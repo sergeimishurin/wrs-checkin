@@ -16,30 +16,31 @@
 }
 .pharmacy-list{
 	height: 520px;
+  padding-top:16px;
 	overflow-x:scroll;
 }
 .pharmacy-list-item  {
 	float: left;
 	background: #fff;
 	padding-top: 4px;
-	height: 70px;
-	
+	height: 64px;
+
 }
 
 .pharmacy-list-container {
-	margin-bottom: 20px;
+	margin-bottom: 15px;
 }
 .pharmacy-list-item:first-child {
-	 border-left: 11px solid #2F8FD7;
+	 border-left: 8px solid #2F8FD7;
 }
 
 .pharmacy-list-item.logo img{
-	height: 60px;
+	height: 56px;
 }
 
 .pharmacy-list-item.logo {
 	width: 15%;
-	padding: 5px;
+	padding-left: 20px;
 }
 
 .pharmacy-list-item.name {
@@ -59,5 +60,52 @@
 }
 .pharmacy-list-item.buttons {
 	width: 15%;
-	padding-top: 10px;	
+	padding-top: 10px;
+}
+.pharmacy-list-item.buttons button{
+  width:70px;
+  padding:5px;
+}
+.pharmacy-name-input {
+  width: 425px;
+  margin-left:20px;
+}
+.pharmacy-zip-input {
+  width:239px;
+}
+.pharmacy-zip-input .input-group input {
+  width:150px;
+}
+.pharmacy-zip-input .input-group span {
+  width:89px;
+}
+.pharmacy-selection {
+   position: relative;
+ }
+.pharmacy-selection button{
+  position: absolute;
+  bottom: 15px;
+  margin:0 auto;
+}
+
+.confirmation {
+  background: #999999;
+  height:64px;
+  width:85%;
+}
+.confimation-btn-left {
+  background: #ffffff;
+  width: 70px;
+  height:48px;
+  margin:8px;
+}
+.confimation-btn-right {
+  background: #E74C3C;
+  width: 70px;
+  height:48px;
+  margin:8px 0;
+}
+.confirmation .message {
+  width:70%;
+  padding: 20px;
 }

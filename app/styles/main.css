@@ -34,7 +34,12 @@ body {
     line-height: normal;
     font-size: 17px;
 }
-
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1 !important;
+  color: inherit;
+}
 .btn {
     border-radius: 0 !important;
     height: 48px;
@@ -42,12 +47,12 @@ body {
 
 .btn-centered-bottom {
     position: absolute;
-    bottom: 21px;
+    bottom: 30px;
     margin-left: auto;
     margin-right: auto;
     left: 0;
     right: 0;
-    width: 264px;
+    width: 300px;
 }
 
 .btn-centered-fixed-bottom {
@@ -96,8 +101,8 @@ form input.ng-invalid.ng-touched {
 }
 
 .main {
-    width: 694px;
-    height: 646px;
+    width: 704px;
+    height: 658px;
     float: left;
 }
 
@@ -107,14 +112,26 @@ form input.ng-invalid.ng-touched {
     color: #fff;
     height: 121px;
 }
-
+table.header {
+  background: #B6BCC1;
+  width: 100%;
+  color: #fff;
+  height: 110px !important;
+}
 .header-title {
     padding-left: 33px;
-    font-family: 'Arial Regular', 'Arial';
-    font-weight: 400;
+    font-family: "Open Sans";
+    font-weight: 100;
     font-style: normal;
-    font-size: 13px;
+    font-size: 34px;
     line-height: normal;
+}
+.header-title h2{
+  font-family: "Open Sans";
+  font-weight: 100;
+  font-style: normal;
+  font-size: 34px;
+  line-height: normal;
 }
 
 .header-title .header-info {
@@ -122,29 +139,42 @@ form input.ng-invalid.ng-touched {
     font-family: 'Arial Regular', 'Arial';
     font-weight: 400;
     font-style: normal;
+    font-size:14px;
 }
 
 .header-image {
     width: 141px;
 }
-
+.header-image .btn {
+  width: 70px;
+}
 .header-image img {
-    height: 121px;
+    height: 110px;
 }
 
 .content {
     background: #F0F0F0;
-    padding-left: 28px;
-    padding-right: 28px;
+    padding-left: 20px;
+    padding-right: 20px;
     padding-top: 18px;
     height: 100%;
     overflow-x: scroll;
     position: relative;
 }
 
+.col-md-left {
+  padding-left: 10px;
+  padding-right: 0px;
+}
+
+.col-md-right {
+  padding-left: 0px;
+  padding-right: 10px;
+}
+
 .content-no-padding {
     background: #F0F0F0;
-    padding-top: 18px;
+    padding-top: 16px;
     height: 100%;
     overflow-x: scroll;
     position: relative;
@@ -152,7 +182,7 @@ form input.ng-invalid.ng-touched {
 
 .info-container {
     background: #fff;
-    border-left: 11px solid #2F8FD7;
+    border-left: 8px solid #2F8FD7;
 }
 
 .checkbox label:after,
@@ -241,4 +271,11 @@ form input.ng-invalid.ng-touched {
 .custom-billing-amount {
   position: absolute;
   top: -73px;
+  width:161px;
+}
+.btn-danger {
+  color: #fff;
+  background-color: #E74C3C !important;
+  border:none;
+
 }
