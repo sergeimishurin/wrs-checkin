@@ -3,7 +3,7 @@
   border-left: 8px solid #27AE60;
   width: 696px;
   height: 110px;
-  margin-top: 16px;
+  margin-bottom: 16px;
   background: #ffffff;
 }
 .co-pay-method{
@@ -85,26 +85,53 @@
 }
 
 .copay-credit-card-button {
-    background: url('/images/card.png');
+    /*background: url('/images/card.png');*/
     border: 6px solid #ccc;
     width: 327px;
-    height: 97px;
+    height: 110px;
     float: left;
+  background: #ffffff;
 }
 
 
 .copay-front-button {
-    background: url('/images/front.png');
+    /*background: url('/images/front.png');*/
     border: 6px solid #ccc;
     width: 327px;
-    height: 97px;
+    height: 110px;
     float: right;
+  background: #ffffff;
 }
-
+.copay-img-holder {
+  width:133px;
+  height:85px;
+}
+.copay-img-holder img{
+  width:100%;
+  height:80px;
+}
 .copay-credit-card-button.card, .copay-front-button.front {
   border-color: #27AE60!important;
 }
-
+.card  {
+  background: #FFFFFF;
+  font-size:20px;
+  color: #27AE60 !important;
+  font-family:"Arial Italic";
+}
+.card-text {
+  width: 110px;
+  margin: 10px 22px;
+  font-size: 20px;
+  color: #666666;
+  font-family: "Arial Italic";
+}
+.front {
+  background: #FFFFFF;
+  font-size: 20px;
+  color: #666666;
+  font-family: "Arial Italic";
+}
 .payment-buttons {
   margin-top: 20px;
 }
@@ -128,7 +155,9 @@
   margin-top: 96px;
 }
 .billing-img {
-  padding-right: 20px;
+  position: absolute;
+  bottom:190px;
+  right: 15px;
 }
 .cred {
   background:#B6BCC1 !important;

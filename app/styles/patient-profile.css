@@ -47,7 +47,8 @@ ul.patient-info li {
   padding-top: 27px;
 }
 
-.info-edit-button .btn {
+.info-edit-button .btn ,
+.billing-edit-button .btn{
   width:70px;
 }
 
@@ -86,6 +87,12 @@ ul.patient-info li {
   position: relative;
   float: left;
 }
+.selectwrap .date{
+  width:151px;
+}
+.selectwrap .states{
+  width:151px;
+}
 .selectwrap .phone{
   width:151px;
 }
@@ -98,4 +105,15 @@ ul.patient-info li {
   position: absolute;
   right:10px;
   top:15px;
+}
+
+.numberwrap {
+  width:151px;
+  margin-left:20px;
+}
+.number-code {
+  width:45%;
+}
+.numberwrap .number {
+  width:55%;
 }

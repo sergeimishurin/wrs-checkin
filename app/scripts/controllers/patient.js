@@ -26,6 +26,8 @@ angular.module('checkinApp')
     $scope.states = States;
 
 
+
+
     $scope.steps = [
       {title: 'Step 1 Log in', passed: 0, active: 1},
       {title: 'Step 2 Patient Profile', passed: 0, active: 0},
@@ -136,7 +138,17 @@ angular.module('checkinApp')
     $scope.deletePharmacy = function (pharmacy) {
       var index = $scope.patient.pharmacies.indexOf(pharmacy);
       pharmacy.selected = false;
+      pharmacy.removeBoxOpened = false;
       $scope.patient.pharmacies.splice(index, 1);
+    };
+
+    $scope.openConfirmation = function (pharmacy) {
+      pharmacy.removeBoxOpened = true;
+      //$scope.patient.pharmacies.splice(index, 1);
+    };
+    $scope.closeConfirmation = function (pharmacy) {
+      pharmacy.removeBoxOpened = false;
+      //$scope.patient.pharmacies.splice(index, 1);
     };
 
 

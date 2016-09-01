@@ -43,8 +43,23 @@
     </div>
 
     <div class="payment-buttons">
-      <button class="copay-credit-card-button" ng-class="[paymentMethod]" ng-click="setPaymentMethod('card')"></button>
-      <button class="copay-front-button" ng-class="[paymentMethod]" ng-click="setPaymentMethod('front')"></button>
+      <button class="copay-credit-card-button" ng-class="[paymentMethod]" ng-click="setPaymentMethod('card')">
+        <div class="pull-left card-text" ng-class="[paymentMethod]">
+          Pay By Credit Card
+        </div>
+        <div class="pull-right copay-img-holder">
+          <img src="images/cards.png" alt="">
+        </div>
+      </button>
+      <button class="copay-front-button" ng-class="[paymentMethod]" ng-click="setPaymentMethod('front')">
+        <div class="pull-left card-text" ng-class="[paymentMethod]">
+          Pay at Front Desc
+        </div>
+        <div class="pull-right copay-img-holder">
+          <img src="images/cash.png" alt="">
+        </div>
+      </button>
+      </button>
 
     </div>
 
@@ -60,7 +75,7 @@
 
   <patient-header title="Co-Pay"
                   info="You will recieve a emailed confirmation reciept after your payment has been made"
-                  image="/images/u134.png">
+                  image="images/u134.png">
 
   </patient-header>
   <div class="content-no-padding">
@@ -86,24 +101,23 @@
               <input type="text" ng-model="patient.credit_card.ccnumber" class="form-control" required/>
             </div>
             <div class="form-group col-md-12 no-padding">
-              <div class="col-md-5 no-padding selectwrap">
+              <div class="pull-left no-padding selectwrap">
                 <i class="glyphicon glyphicon-menu-down state-arrow"></i>
                 <label class="control-label">Expiration Date</label>
-                <select ng-model="patient.credit_card.ccmonth" class="form-control" required>
+                <select ng-model="patient.credit_card.ccmonth" class="form-control date" required>
                   <option value="">Month</option>
                   <option value="k"
                           ng-repeat="(k,v) in ['00','01','02','03','04','05','06','07','08','09','10','11','12']">{{v}}
                   </option>
                 </select>
               </div>
-              <div class="col-md-1"></div>
-              <div class="col-md-5 no-padding selectwrap">
+              <div class="pull-right no-padding selectwrap">
                 <i class="glyphicon glyphicon-menu-down state-arrow"></i>
                 <label class="control-label">
                   MM/YYYY
                   <i class="form-control-feedback fa fa-calendar"></i>
                 </label>
-                <select ng-model="patient.credit_card.ccyear" class="form-control" required>
+                <select ng-model="patient.credit_card.ccyear" class="form-control date" required>
                   <option value="">Year</option>
                   <option value="k" ng-repeat="k in [2016,2017,2018,2019,2020]">{{k}}</option>
                 </select>
@@ -126,6 +140,9 @@
         <div class="col-md-6 no-padding" ng-show="patient.pay_amount=='other'" >
           <input type="text" class="form-control text-center custom-billing-amount" value="" ng-model="patient.pay_amount_other" real-time-currency placeholder="Enter Amount" >
         </div>
+        <div class="col-md-6 no-padding" style="visibility: hidden;">
+          <input type="text" class="form-control text-center custom-billing-amount" value="" ng-model="patient.pay_amount_other" real-time-currency placeholder="Enter Amount" >
+        </div>
         <div class="clearfix"></div>
         <div class="col-md-6" ng-show>
           <label class="control-label">Billing Address</label>
@@ -142,7 +159,7 @@
         </div>
       </div>
       <div class="text-right billing-img">
-        <img src="/images/transfirst.png">
+        <img src="images/transfirst.png">
       </div>
     </div>
 
@@ -164,18 +181,17 @@
             <input ng-model="patient.credit_card.city" type="text" class="form-control" placeholder="Enter city"/>
           </div>
           <div class="form-group">
-            <div class="col-md-5 no-padding selectwrap">
+            <div class="no-padding selectwrap pull-left">
               <label class="control-label">State</label>
               <i class="glyphicon glyphicon-menu-down state-arrow"></i>
-              <select ng-model="patient.credit_card.state" type="text" class="form-control">
+              <select ng-model="patient.credit_card.state" type="text" class="form-control states">
                 <option value="">Select</option>
                 <option value="k" ng-repeat="(k,v) in states">{{v.name}}</option>
               </select>
             </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-5 no-padding selectwrap">
+            <div class="no-padding selectwrap pull-right">
               <label class="control-label">Zip Code</label>
-              <input ng-model="patient.credit_card.zip" type="text" placeholder="Enter zip code" class="form-control"/>
+              <input ng-model="patient.credit_card.zip" type="text" placeholder="Enter zip code" class="form-control states"/>
             </div>
           </div>
 
@@ -183,19 +199,19 @@
       </div>
       <div class="patient-login-box col-md-6 billing-address">
         <div class="col-md-12 billing-edit-button">
-          <button ng-click="changeBillingAddress()" class="btn btn-warning">Done</button>
+          <button ng-click="changeBillingAddress()" class="btn btn-warning btn-edit">Done</button>
         </div>
       </div>
       <div class="text-right billing-img">
-        <img src="/images/transfirst.png">
+        <img src="images/transfirst.png">
       </div>
     </div>
 
     <div class="clearfix"></div>
 
     <div class="copay-controls-buttons">
-      <button ng-click="cancelPayment()" class="btn btn-default pull-left">Cancel</button>
-      <button ng-click="makePayment()" ng-disabled="paymentForm.$isValid" class="btn btn-primary pull-right" disabled="disabled">Make Payment
+      <button ng-click="cancelPayment()" class="left_btn">Cancel</button>
+      <button ng-click="makePayment()" ng-disabled="paymentForm.$isValid" class="right_btn" disabled="disabled">Make Payment
       </button>
     </div>
   </div>

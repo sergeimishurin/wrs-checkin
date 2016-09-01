@@ -1,23 +1,23 @@
 <div class="main" ng-if="patient.pharmacies.length == 0 && !searchPharmacyView">
   <table class="header">
     <tr>
-        <td  class="header-title">
-            <h2>Pharmacy</h2>
-            <p class="header-info">If you have more than one pharmacy, you can prioritize your list by dragging</p>
-        </td>
-        <td class="center">
-            <i class="header-icons fa fa-4x fa-sign-out"></i>
-        </td>
-        <td class="text-right header-image">
-             <button ng-click="searchPharmacy()" class="btn btn-primary">Add</button>
-        </td>
+      <td class="header-title">
+        <h2>Pharmacy</h2>
+        <p class="header-info">If you have more than one pharmacy, you can prioritize your list by dragging</p>
+      </td>
+      <td class="center">
+        <i class="header-icons fa fa-4x fa-sign-out"></i>
+      </td>
+      <td class="text-right header-image">
+        <button ng-click="searchPharmacy()" class="btn btn-primary">Add</button>
+      </td>
     </tr>
-</table>
+  </table>
 
   <div class="content">
     <div class="add_pharmacy">
-      <img class="pharmacy-arrow" src="/images/u38.png">
-            <span class="text_add_pharmacy">
+      <img class="pharmacy-arrow" src="images/u38.png">
+      <span class="text_add_pharmacy">
                 Please add a pharmacy
             </span>
     </div>
@@ -29,121 +29,148 @@
     </div>
     <div class="pharmacy-controls">
       <button ng-click="backStep()" class="left_btn">Back</button>
-      <button ng-click="nextStep()" ng-disabled="patient.pharmacies == 0 "class="btn right_btn" disabled="disabled">Next</button>
+      <button ng-click="nextStep()" ng-disabled="patient.pharmacies == 0 " class="btn right_btn" disabled="disabled">
+        Next
+      </button>
     </div>
   </div>
 </div>
 
 
 <div class="main" ng-if="patient.pharmacies.length > 0 && !searchPharmacyView">
-    <table class="header">
+  <table class="header">
     <tr>
-        <td  class="header-title">
-            <h2>Pharmacy</h2>
-            <p class="header-info">If you have more than one pharmacy, you can prioritize your list by dragging</p>
-        </td>
-        <td class="center">
-            <i class="header-icons fa fa-4x fa-sign-out"></i>
-        </td>
-        <td class="text-right header-image">
-             <button ng-click="searchPharmacy()" class="btn btn-primary">Add</button>
-        </td>
+      <td class="header-title">
+        <h2>Pharmacy</h2>
+        <p class="header-info">If you have more than one pharmacy, you can prioritize your list by dragging</p>
+      </td>
+      <td class="center">
+        <i class="header-icons fa fa-4x fa-sign-out"></i>
+      </td>
+      <td class="text-right header-image">
+        <button ng-click="searchPharmacy()" class="btn btn-primary">Add</button>
+      </td>
     </tr>
-</table>
-<div class="content-no-padding pharmacy-content">
-     <div class="pharmacy-list">
-        <div  class="pharmacy-list-container" ng-repeat="pharmacy in patient.pharmacies">
-            <div class="pharmacy-list-item logo">
-                <img src="/images/u209.png" alt="">
-            </div>
-             <div class="pharmacy-list-item name">
-                <i class="fa fa-flag" aria-hidden="true"></i>{{pharmacy.name}}
-           <br>
-           <i class="fa fa-phone" aria-hidden="true"></i>{{pharmacy.area}} {{pharmacy.prefix}} {{pharmacy.phone}}
-            </div>
-            <div class="pharmacy-list-item address">
-                <i class="fa fa-map-marker "></i>
-           {{pharmacy.street1}}
-             {{pharmacy.city}} {{pharmacy.state}} {{pharmacy.zip}}
-            </div>
-            <div class="pharmacy-list-item miles">
-               <i class="fa fa-home fa-2x"></i>
-             0.3 miles
-            </div>
-            <div class="pharmacy-list-item buttons text-right">
-                 <button ng-click="deletePharmacy(pharmacy)" class="btn btn-danger">Delete</button>
+  </table>
+  <div class="content-no-padding pharmacy-content">
+    <div class="pharmacy-list">
+      <div class="pharmacy-list-container" ng-repeat="pharmacy in patient.pharmacies">
+        <div ng-show="!pharmacy.removeBoxOpened">
+          <div class="pharmacy-list-item logo">
+            <img src="images/u209.png" alt="">
+          </div>
+          <div class="pharmacy-list-item name">
+            <i class="fa fa-flag" aria-hidden="true"></i>{{pharmacy.name}}
+            <br>
+            <i class="fa fa-phone" aria-hidden="true"></i>{{pharmacy.area}} {{pharmacy.prefix}} {{pharmacy.phone}}
+          </div>
+          <div class="pharmacy-list-item address">
+            <i class="fa fa-map-marker "></i>
+            {{pharmacy.street1}}
+            {{pharmacy.city}} {{pharmacy.state}} {{pharmacy.zip}}
+          </div>
+          <div class="pharmacy-list-item miles">
+            <i class="fa fa-home fa-2x"></i>
+            0.3 miles
+          </div>
+          <div class="pharmacy-list-item buttons text-right">
+            <button ng-click="openConfirmation(pharmacy)" class="btn btn-danger">Delete</button>
 
-            </div>
-            <div class="clearfix"></div>
+          </div>
+          <div class="clearfix"></div>
         </div>
+        <div ng-show="pharmacy.removeBoxOpened">
+          <div class="pharmacy-list-item logo pull-left">
+            <img src="images/u209.png" alt="">
+          </div>
+          <div class="confirmation pull-left">
+            <div class="buttons pull-left">
+              <button ng-click="closeConfirmation(pharmacy)" class="btn confimation-btn-left">No</button>
+            </div>
+            <div class="message pull-left text-center">
+              Do you want to delete this pharmacy?
+            </div>
+            <div class="buttons pull-right">
+              <button ng-click="deletePharmacy(pharmacy)" class="btn confimation-btn-right">Delete</button>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
     </div>
     <div class="">
-            <button ng-click="backStep()" class="left_btn">Back</button>
-            <button ng-click="nextStep()" class="right_btn">Next</button>
+      <button ng-click="backStep()" class="left_btn">Back</button>
+      <button ng-click="nextStep()" class="right_btn">Next</button>
     </div>
-</div>
+  </div>
 
 </div>
-<div  class="main" ng-if="searchPharmacyView">
+<div class="main" ng-if="searchPharmacyView">
 
-    <patient-header title="Pharmacy"
-                    info="If you have more than one pharmacy, you can prioritize your list by dragging">
-    </patient-header>
+  <patient-header title="Pharmacy"
+                  info="If you have more than one pharmacy, you can prioritize your list by dragging">
+  </patient-header>
 
-        <div class="content-no-padding">
-            <!-- <button class="btn btn-search-toggle"><i class="fa fa-angle-down fa-2x" aria-hidden="true"></i></button> -->
-            <fieldset>
-                <div class="col-md-6">
-                     <div class="form-group">
-                        <label class="control-label" for="username">Pharmacy Name</label>
-                        <input class="form-control" id="username" ng-model="user.username" placeholder="Pharmacy name" type="text">
-                    </div>
-                </div>
-
-               <div class="">
-                     <div class="form-group">
-                        <label class="control-label" for="zipcode">Zip Code</label>
-                        <div class="input-group">
-                         <input class="form-control" id="zipcode" ng-model="user.zipcode" placeholder="Zip Code" type="text">
-                          <span class="input-group-addon search-pharmacy-button"  ng-click="doSearchPharmacy(pharmacy)" id="basic-addon2">Search</span>
-                        </div>
-
-                    </div>
-                </div>
-            </fieldset>
-
-
-            <div class="pharmacy-list">
-                <div  class="pharmacy-list-container" ng-repeat="pharmacy in pharmacies">
-                    <div class="pharmacy-list-item logo">
-                        <img src="/images/u209.png" alt="">
-                    </div>
-                     <div class="pharmacy-list-item name">
-                        <i class="fa fa-flag" aria-hidden="true"></i>{{pharmacy.name}}
-                   <br>
-                   <i class="fa fa-phone" aria-hidden="true"></i>{{pharmacy.area}} {{pharmacy.prefix}} {{pharmacy.phone}}
-                    </div>
-                    <div class="pharmacy-list-item address">
-                        <i class="fa fa-map-marker "></i>
-                   {{pharmacy.street1}}
-                     {{pharmacy.city}} {{pharmacy.state}} {{pharmacy.zip}}
-                    </div>
-                    <div class="pharmacy-list-item miles">
-                       <i class="fa fa-home fa-2x"></i>
-                     0.3 miles
-                    </div>
-                    <div class="pharmacy-list-item buttons text-right">
-                        <button ng-click="selectPharmacy(pharmacy)" ng-class="{'btn-primary':!pharmacy.selected, 'btn-danger':pharmacy.selected}" class="btn">{{!pharmacy.selected ? 'Select' : 'Unselect' }}</button>
-
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-            </div>
-
-            <div class="">
-                <button ng-click="selectPharmacies()" class="btn btn-primary btn-centered-fixed-bottom">Pharmacy selection completed</button>
-            </div>
+  <div class="content-no-padding">
+    <!-- <button class="btn btn-search-toggle"><i class="fa fa-angle-down fa-2x" aria-hidden="true"></i></button> -->
+    <fieldset>
+      <div class="pharmacy-name-input pull-left">
+        <div class="form-group">
+          <label class="control-label" for="username">Pharmacy Name</label>
+          <input class="form-control" id="username" ng-model="user.username" placeholder="Pharmacy name" type="text">
         </div>
+      </div>
+
+      <div class="pharmacy-zip-input pull-right">
+        <div class="form-group">
+          <label class="control-label" for="zipcode">Zip Code</label>
+          <div class="input-group">
+            <input class="form-control" id="zipcode" ng-model="user.zipcode" placeholder="Zip Code" type="text">
+            <span class="input-group-addon search-pharmacy-button" ng-click="doSearchPharmacy(pharmacy)"
+                  id="basic-addon2">Search</span>
+          </div>
+
+        </div>
+      </div>
+    </fieldset>
+
+
+    <div class="pharmacy-list">
+      <div class="pharmacy-list-container" ng-repeat="pharmacy in pharmacies">
+        <div class="pharmacy-list-item logo">
+          <img src="images/u209.png" alt="">
+        </div>
+        <div class="pharmacy-list-item name">
+          <i class="fa fa-flag" aria-hidden="true"></i>{{pharmacy.name}}
+          <br>
+          <i class="fa fa-phone" aria-hidden="true"></i>{{pharmacy.area}} {{pharmacy.prefix}} {{pharmacy.phone}}
+        </div>
+        <div class="pharmacy-list-item address">
+          <i class="fa fa-map-marker "></i>
+          {{pharmacy.street1}}
+          {{pharmacy.city}} {{pharmacy.state}} {{pharmacy.zip}}
+        </div>
+        <div class="pharmacy-list-item miles">
+          <i class="fa fa-home fa-2x"></i>
+          0.3 miles
+        </div>
+        <div class="pharmacy-list-item buttons text-right">
+          <button ng-click="selectPharmacy(pharmacy)"
+                  ng-class="{'btn-primary':!pharmacy.selected, 'btn-danger':pharmacy.selected}" class="btn">
+            {{!pharmacy.selected ? 'Select' : 'Yes' }}
+          </button>
+
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+
+    <div class="pharmacy-selection">
+      <button ng-click="selectPharmacies()" class="btn btn-primary btn-centered-fixed-bottom">Pharmacy selection
+        completed
+      </button>
+    </div>
+  </div>
 
 </div>
 
