@@ -20,6 +20,7 @@ angular
     'angularMoment',
     'ui.bootstrap',
     'ui.mask',
+    'as.sortable'
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
 
@@ -48,7 +49,7 @@ angular
 
   }).run(function($rootScope, $location) {
     var practice_info = window.sessionStorage.getItem('practice_info');
-    
+
     if (practice_info == null){
       $location.path('practice');
     } else {

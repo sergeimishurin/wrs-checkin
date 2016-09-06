@@ -33,6 +33,8 @@ module.exports = function(config) {
       'bower_components/bootstrap/dist/js/bootstrap.js',
       'bower_components/bootstrap-css/js/bootstrap.min.js',
       'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+      'bower_components/angular-ui-mask/dist/mask.js',
+      'bower_components/ng-sortable/dist/ng-sortable.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

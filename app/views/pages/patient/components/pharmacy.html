@@ -53,9 +53,9 @@
     </tr>
   </table>
   <div class="content-no-padding pharmacy-content">
-    <div class="pharmacy-list">
-      <div class="pharmacy-list-container" ng-repeat="pharmacy in patient.pharmacies">
-        <div ng-show="!pharmacy.removeBoxOpened">
+    <div data-as-sortable="board.dragControlListeners" data-ng-model="patient.pharmacies" class="pharmacy-list">
+      <div class="pharmacy-list-container" data-ng-repeat="pharmacy in patient.pharmacies" data-as-sortable-item>
+        <div ng-show="!pharmacy.removeBoxOpened" data-as-sortable-item-handle>
           <div class="pharmacy-list-item logo">
             <img src="images/u209.png" alt="">
           </div>

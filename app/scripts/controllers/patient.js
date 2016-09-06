@@ -87,7 +87,7 @@ angular.module('checkinApp')
     $scope.changePatientViewType = function () {
       $scope.patientEditMode = !$scope.patientEditMode;
       if ($scope.patientEditMode) {
-        angular.copy($scope.patient, $scope.patient_temp); 
+        angular.copy($scope.patient, $scope.patient_temp);
       }
     };
 
@@ -101,7 +101,12 @@ angular.module('checkinApp')
     };
 
     $scope.selectPharmacies = function () {
-      $scope.patient.pharmacies = $scope.chossedPharmacies;
+
+      for (var i=0; i < $scope.chossedPharmacies.length; i++){
+        if($scope.patient.pharmacies.indexOf($scope.chossedPharmacies[i]) === -1) {
+          $scope.patient.pharmacies.push($scope.chossedPharmacies[i]);
+        }
+      }
       $scope.searchPharmacyView = false;
     };
 
@@ -150,6 +155,8 @@ angular.module('checkinApp')
 
     $scope.cardMethodActive = false;
     $scope.doPayment = function () {
+      orderPharmacies();
+
       if ($scope.paymentMethod == 'card') {
         $scope.cardMethodActive = true;
       } else {
@@ -231,5 +238,28 @@ angular.module('checkinApp')
 
       });
     };
-    
+
+    var orderPharmacies = function(){
+      for (var i=0; i < $scope.patient.pharmacies.length; i++){
+        if(i === 0){
+          $scope.patient.pharmacies[i].is_primary = 1;
+        } else {
+          $scope.patient.pharmacies[i].is_primary = 0;
+        }
+      }
+    };
+    $scope.dragControlListeners = {
+      accept: function (sourceItemHandleScope, destSortableScope) {return true; },
+      itemMoved: function (event) {
+        console.log(456);
+      },
+      orderChanged: function(event) {
+        console.log(456);
+      },
+      containment: '#board',
+      clone: true ,
+      allowDuplicates: false
+    };
+
+
   });
