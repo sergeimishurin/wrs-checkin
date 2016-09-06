@@ -7,7 +7,7 @@
  * # patientHeader
  */
 angular.module('checkinApp')
-  .directive('patientHeader', function () {
+  .directive('patientHeader', function ($location) {
     return {
       templateUrl: 'views/pages/patient/components/header.html',
       restrict: 'E',
@@ -15,6 +15,11 @@ angular.module('checkinApp')
         title:"@",
         info:"@info",
         image:"@image"
+      },
+      link: function(scope){
+        scope.patientLogout = function(){
+          $location.path('welcome');
+        }
       }
     };
   });

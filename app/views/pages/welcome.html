@@ -1,19 +1,11 @@
 <div class="welcome">
-  <table>
-    <tr>
-      <td class="welcome-logo">
-        <img src="images/logo_ent_white.png" alt="">
-      </td>
-      <td class="welcome-address">2004 Route 17M Goshen, NY 10924-5210</td>
-      <td class="welcome-contact">Phone (845) 123-4568 | Fax (359) 155-4456</td>
-    </tr>
-
-    <tr class="welcome-info">
-      <td></td>
-      <td class="welcome-name">Lawrence Gordon, MD</td>
-      <td class="welcome-speciality text-center">Head and Neck Surgery <br>Ear Nose and Throat <br>Specialists</td>
-    </tr>
-  </table>
+  <div class="welcome-logo">
+    <img src="{{practice_info.logo}}" alt="">
+  </div>
+  <div class="welcome-address">{{practice_info.address}}</div>
+  <div class="welcome-contact">Phone {{practice_info.phone}} | Fax {{practice_info.fax}}</div>
+  <div class="welcome-name">{{practice_info.name}}</div>
+  <div class="welcome-speciality text-center">{{practice_info.title}}</div>
 
   <div class="welcome-title">
     <p class="pull-right">Welcome</p>

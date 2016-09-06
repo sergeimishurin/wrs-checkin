@@ -14,7 +14,7 @@ angular.module('checkinApp')
       // optional method
       'request': function (config) {
 
-        if(config.url.indexOf(ENV.apiEndpoint) !== -1 && $location.path() !== '/practice-login') {
+        if(config.url.indexOf(ENV.apiEndpoint) !== -1 && ($location.path() !== '/practice-login' || config.url.indexOf('/client/primary-location') !== -1) ) {
           config.url = config.url + (config.url.indexOf('?') === -1 ? '?' : '&') + 'access_token=' + window.sessionStorage.access_token;
         }
 

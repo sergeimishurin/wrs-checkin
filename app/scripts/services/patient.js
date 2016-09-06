@@ -12,7 +12,7 @@ angular.module('checkinApp')
         var url = ENV.apiEndpoint + '/client/patient';
 
         return $resource(url, {}, {
-            personalInfo: {
+            personal_info: {
                 url: url + "/personal-info/:id",
                 method: 'GET',
                 isArray: false
@@ -40,10 +40,10 @@ angular.module('checkinApp')
                 url: url + '/total-owed-sum/:id',
                 method: 'GET'
             },
-            emergencyContacts: {
-                url: url + '/emergency-contacts/:id',
-                method: 'GET'
-            },
+            // emergencyContacts: {
+            //     url: url + '/emergency-contacts/:id',
+            //     method: 'GET'
+            // },
             creditCard: {
                 url: url + '/credit-card/:id',
                 method: 'GET'

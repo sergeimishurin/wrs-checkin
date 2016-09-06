@@ -11,9 +11,7 @@
 angular.module('checkinApp')
   .filter('dateToAge', function (moment) {
     return function (_timestamp) {
-        console.log(_timestamp);
         var dateString = moment.unix(_timestamp).format('YYYY-MM-DD');
-
         return moment().diff(dateString, 'years');
     };
   });

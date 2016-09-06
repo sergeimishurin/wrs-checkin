@@ -19,6 +19,18 @@ angular.module('checkinApp')
         });
     };
 
+    // var practiceLogin = function(credentials) {
+    //   return $http({
+    //     method: 'POST',
+    //     url: "https://dev56.waitingroomsolutions.com/~thovhannisyan/master/practice_new/checkinPracticeLogin.php",
+    //     data: $.param(credentials),
+    //     headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+    //   }).then(function(res) {
+    //     window.sessionStorage.setItem('access_token', res.data.access_token);
+    //     return res.data;
+    //   });
+    // };
+
     var practiceLogin = function(credentials) {
       return $http
         .post(ENV.apiEndpoint + "/oauth/token", credentials)

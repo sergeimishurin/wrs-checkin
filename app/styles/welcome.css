@@ -1,12 +1,12 @@
 .welcome {
-  background-image: url('/images/welcome-bg.jpg');
+  background-image: url('../images/welcome-bg.jpg');
   width: 100%;
   height: 768px;
   background-repeat: no-repeat;
 }
 
 .welcome-title {
-  margin-top: 168px;
+  margin-top: 368px;
 }
 
 .welcome-title p {
@@ -36,16 +36,26 @@
 }
 
 .welcome-logo {
-  width: 215px;
+  width: 195px;
   padding-left: 15px;
+  
+}
+.welcome-logo img {
+  height: 60px !important;
 }
 
 .welcome-address {
   width: 305px;
+  position: absolute;
+  left: 215px;
+  top: 25px;
 }
 
 .welcome-contact {
-  width: 297px;
+  width: 305px;
+  position: absolute;
+  left: 540px;
+  top: 25px;
 }
 
 .welcome-logo img {
@@ -58,11 +68,20 @@
 }
 
 .welcome-name {
-  font-size: 18px; padding: 40px;
+  font-size: 18px; 
+  position: absolute;
+  left: 250px;
+  top: 90px;
+  padding: 20px;
 }
 
 .welcome-speciality {
   font-size: 18px;
+  position: absolute;
+  left: 540px;
+  top: 90px;
+  width: 255px;
+  padding: 20px;
 }
 
 .footer-logo {

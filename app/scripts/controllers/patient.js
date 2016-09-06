@@ -25,9 +25,6 @@ angular.module('checkinApp')
     $scope.editBillingAddress = false;
     $scope.states = States;
 
-
-
-
     $scope.steps = [
       {title: 'Step 1 Log in', passed: 0, active: 1},
       {title: 'Step 2 Patient Profile', passed: 0, active: 0},
@@ -66,9 +63,7 @@ angular.module('checkinApp')
 
     //Datepicker
     $scope.dateOptions = {
-      formatYear: 'yy',
-      maxDate: new Date(2020, 5, 22),
-      minDate: new Date(),
+      formatYear: 'mm/dd/yyyy',
       startingDay: 1,
       opened: false,
       open: function () {
@@ -76,8 +71,7 @@ angular.module('checkinApp')
       }
     };
     $scope.dobOptions = {
-      formatYear: 'yy',
-      minDate: new Date(),
+      formatYear: 'mm/dd/yyyy',
       startingDay: 1,
       opened: false,
       open: function () {
@@ -93,8 +87,7 @@ angular.module('checkinApp')
     $scope.changePatientViewType = function () {
       $scope.patientEditMode = !$scope.patientEditMode;
       if ($scope.patientEditMode) {
-        angular.copy($scope.patient, $scope.patient_temp);
-        console.log(45);
+        angular.copy($scope.patient, $scope.patient_temp); 
       }
     };
 
@@ -123,7 +116,6 @@ angular.module('checkinApp')
 
 
     $scope.selectPharmacy = function (pharmacy) {
-      console.log(pharmacy)
       var index = $scope.chossedPharmacies.indexOf(pharmacy);
       if (index === -1) {
         pharmacy.selected = true;
@@ -161,10 +153,10 @@ angular.module('checkinApp')
       if ($scope.paymentMethod == 'card') {
         $scope.cardMethodActive = true;
       } else {
-        //Delete $scope.patient.credit_card;
-        // Patient.updatePatientDataAndAppointmentStage({id:$scope.patient.id}, $scope.patient, function(response){
-        $scope.nextStep();
-        // });
+        delete $scope.patient.credit_card;
+        Patient.updatePatientDataAndAppointmentStage({id:$scope.patient.personal_info.id}, $scope.patient, function(response){
+            $scope.nextStep();
+        });
       }
     };
 
@@ -184,13 +176,11 @@ angular.module('checkinApp')
     };
 
     $scope.updateTotal = function() {
-      console.log($scope.patient.total,$scope.patient.totalOwedSum.owed_sum)
       $scope.patient.total = $scope.patient.totalOwedSum.owed_sum + $scope.patient.insurance.ins_co_pay;
 
     }
 
     $scope.finished = function () {
-      console.log($scope.patient)
       $state.go('return');
     };
 
@@ -199,38 +189,41 @@ angular.module('checkinApp')
       $scope.editBillingAddress = !$scope.editBillingAddress;
     };
 
-    $scope.patientLogin = function (userdata) {
+    $scope.patientLogin = function (patient_login) {
       var credentials = {
-        "first_name_initial": 'a',
         "last_name": 'test',
         "date_of_birth": '01/01/1990',
       };
+
+      // var credentials = {
+      //   "last_name": patient_login.last_name,
+      //   "date_of_birth": moment(patient_login.date_of_birth).format('MM/DD/YYYY'),
+      // };
 
       $scope.setFeedBack = function(value) {
         $scope.patient.feedback = value;
       }
 
       AuthService.patientLogin(credentials).then(function (response) {
-        $scope.patient = response;
         $q.all([
-          Patient.personalInfo({id: response.id}).$promise,
+          Patient.personal_info({id: response.id}).$promise,
           Patient.address({id: response.id}).$promise,
           Patient.phoneNumbers({id: response.id}).$promise,
           Patient.pharmacies({id: response.id}).$promise,
           Patient.insurance({id: response.id, index: 0}).$promise,
           Patient.totalOwedSum({id: response.id}).$promise,
-          Patient.emergencyContacts({id: response.id}).$promise,
+          // Patient.emergencyContacts({id: response.id}).$promise,
         ]).then(function (response) {
-          $scope.patient.personalInfo = response[0].data[0];
+          $scope.patient.personal_info = response[0].data[0];
+          $scope.patient.personal_info.date_of_birth = new Date(response[0].data[0].date_of_birth);
+
           $scope.patient.address = response[1].data;
           $scope.patient.phoneNumbers = response[2].data[0];
           $scope.patient.pharmacies = response[3].data;
           $scope.patient.insurance = response[4].data;
           $scope.patient.totalOwedSum = response[5].data;
-          $scope.patient.emergencyContacts = response[6].data;
-
+          // $scope.patient.emergencyContacts = response[6].data;
           $scope.patient.total = $scope.patient.totalOwedSum.owed_sum + $scope.patient.insurance.ins_co_pay;
-          console.log($scope.patient);
           $scope.nextStep();
         });
 
@@ -238,5 +231,5 @@ angular.module('checkinApp')
 
       });
     };
-
+    
   });

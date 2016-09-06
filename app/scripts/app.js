@@ -19,6 +19,7 @@ angular
     'config',
     'angularMoment',
     'ui.bootstrap',
+    'ui.mask',
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
 
@@ -43,5 +44,14 @@ angular
         url: '/return-device',
         templateUrl: 'views/pages/return.html'
       });
-    //$locationProvider.html5Mode(false);
+    //$locationProvider.html5Mode(false);\
+
+  }).run(function($rootScope, $location) {
+    var practice_info = window.sessionStorage.getItem('practice_info');
+    
+    if (practice_info == null){
+      $location.path('practice');
+    } else {
+      $rootScope.practice_info = JSON.parse(practice_info)
+    }
   });

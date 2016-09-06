@@ -6,7 +6,7 @@
 }
 
 .sidebar-practice-logo {
-    padding-top: 7px;
+    padding-top: 8px;
 }
 
 .sidebar-practice-logo img{
@@ -43,7 +43,7 @@
 
 .sidebar-steps .step {
     font-family: "Open Sans";
-    font-size: 24px;
+    font-size: 22px;
     color: #ffffff;
     padding: 20px 20px;
     background: #999999;
@@ -58,7 +58,7 @@
 
 .active-arrow {
     position: absolute;
-    right: -20px;
+    right: -19px;
     top: 0;
     width: 0;
     height: 0;
@@ -68,7 +68,7 @@
 }
 
 .progress-indicator {
-    background: url('/images/progress.gif');
+    background: url('../images/progress.gif');
     height: 16px;
     overflow: hidden;
 }
