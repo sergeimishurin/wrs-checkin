@@ -162,3 +162,50 @@
 .cred {
   background:#B6BCC1 !important;
 }
+
+.co-pay-info {
+  padding-left: 10px;
+  padding-top: 20px;
+  height:480px;
+  position: relative;
+  background: #ffffff;
+  border-left: 8px solid #e74c3c;
+}
+.co-pay-info .content-title {
+   font-size:24px;
+   color: #666666;
+   font-family:Arial;
+ }
+.co-pay-info .content-data {
+  font-size:16px;
+  color: #666666;
+  font-family:Arial;
+  line-height: 1;
+}
+.payment-image {
+  position: absolute;
+  bottom: 20px;
+  right:20px;
+}
+.content-title-confirm {
+  color: #e74c3c !important;
+}
+.content-data-confirm {
+  font-size: 15px ;
+}
+.complete-btn {
+  width:300px;
+  position: absolute;
+  right:202px;
+  background: #298ED2;
+  color: #ffffff;
+  font-size:16px;
+  bottom:30px;
+}
+.content-patient {
+  background: #F0F0F0;
+  padding-top: 16px;
+  height: 100%;
+  overflow-x: scroll;
+  position: relative;
+}

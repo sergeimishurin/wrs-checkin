@@ -1,0 +1,32 @@
+.main-return {
+  height: 110px;
+  width: 704px;
+  float: left;
+}
+
+.doc-return-photo {
+  position: absolute;
+  right: 85px;
+  bottom: 200px;
+}
+
+.markers {
+  eight: 530px;
+  width: 48%;
+  float: left;
+  position: absolute;
+  left: 47%;
+  bottom: 100px;
+}
+
+.return-container {
+  width: 49%;
+  background: #ffffff;
+  font-family: Arial;
+  font-size: 36px;
+  color: #FF8000;
+  padding-left: 20px;
+  position: absolute;
+  left: 16px;
+  bottom: 193px;
+}

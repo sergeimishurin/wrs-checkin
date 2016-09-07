@@ -60,6 +60,7 @@ angular.module('checkinApp')
       modelCtrl.$parsers.push(function (newViewValue) {
         var oldModelValue = modelCtrl.$modelValue;
         var newModelValue = toNumber(newViewValue);
+
         modelCtrl.$viewValue = filterFunc(newModelValue);
         var pos = getCaretPosition(elem[0]);
         elem.val(modelCtrl.$viewValue);

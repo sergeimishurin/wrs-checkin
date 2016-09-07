@@ -1,1 +1,24 @@
-asdasdasda
+<div>
+  <div ng-include="'views/layout/sidebar_return.html'"></div>
+
+  <div class="main-return">
+    <patient-header title="Finished"
+                    info="You are all set. thank you for Checking-In."
+    >
+
+    </patient-header>
+  </div>
+  <div class="return-container">
+    <div ng-if="paymentMethod == 'front'">Please Return this Device and Complate Your Payment at the Front Desk. Thank You</div>
+    <div ng-if="paymentMethod == 'card'">Please Return this Device
+      Thank You</div>
+  </div>
+  <div class="markers">
+    <div class="big-marker"></div>
+    <div class="medium-marker"></div>
+    <div class="small-marker"></div>
+  </div>
+  <div class="doc-return-photo">
+    <img src="images/bjishk.png">
+  </div>
+</div>

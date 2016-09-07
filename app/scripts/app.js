@@ -47,12 +47,13 @@ angular
       });
     //$locationProvider.html5Mode(false);\
 
-  }).run(function($rootScope, $location) {
-    var practice_info = window.sessionStorage.getItem('practice_info');
+  }).run(function ($rootScope, $location) {
+  var practice_info = window.sessionStorage.getItem('practice_info');
 
-    if (practice_info == null){
-      $location.path('practice');
-    } else {
-      $rootScope.practice_info = JSON.parse(practice_info)
-    }
-  });
+
+  if (practice_info == null) {
+    $location.path('practice');
+  } else {
+    $rootScope.practice_info = JSON.parse(practice_info)
+  }
+});

@@ -8,7 +8,7 @@
  * Controller of the checkinApp
  */
 angular.module('checkinApp')
-  .controller('PatientCtrl', function ($scope, $q, moment, Pharmacy, AuthService, States, Patient,$state) {
+  .controller('PatientCtrl', function ($scope, $q, moment, Pharmacy, AuthService, States, Patient,$state,$timeout,$rootScope) {
 
     var _today = new moment();
     $scope.today = {
@@ -150,7 +150,7 @@ angular.module('checkinApp')
 
 
     $scope.setPaymentMethod = function (method) {
-      $scope.paymentMethod = method;
+      $rootScope.paymentMethod = method;
     };
 
     $scope.cardMethodActive = false;
@@ -173,17 +173,28 @@ angular.module('checkinApp')
 
     $scope.makePayment = function () {
       $scope.cardMethodActive = false;
-      $scope.successPayment = true;
-      //If ALL validations passded
-      $scope.patient.credit_card = {};
-      //IF no
-      // Patient.updatePatientDataAndAppointmentStage({id:$scope.patient.id}, $scope.patient, function(response){
-      $scope.nextStep();
+      $scope.successPayment = false;
+      $scope.processPayment = true;
+
+      $timeout(function () {
+
+        $scope.processPayment = false;
+        $scope.successPayment = true;
+        //If ALL validations passded
+        $scope.patient.credit_card = {};
+        //IF no
+        // Patient.updatePatientDataAndAppointmentStage({id:$scope.patient.id}, $scope.patient, function(response){
+        //$scope.nextStep();
+      },4000);
       // });
     };
 
     $scope.updateTotal = function() {
-      $scope.patient.total = $scope.patient.totalOwedSum.owed_sum + $scope.patient.insurance.ins_co_pay;
+      if($scope.patient.insurance == null || $scope.patient.insurance == undefined) {
+        $scope.patient.total = $scope.patient.totalOwedSum.owed_sum
+      }else {
+        $scope.patient.total = $scope.patient.totalOwedSum.owed_sum + $scope.patient.insurance.ins_co_pay;
+      }
 
     }
 
@@ -230,7 +241,11 @@ angular.module('checkinApp')
           $scope.patient.insurance = response[4].data;
           $scope.patient.totalOwedSum = response[5].data;
           // $scope.patient.emergencyContacts = response[6].data;
-          $scope.patient.total = $scope.patient.totalOwedSum.owed_sum + $scope.patient.insurance.ins_co_pay;
+          if($scope.patient.insurance != null || $scope.patient.insurance != undefined) {
+            $scope.patient.total = $scope.patient.totalOwedSum.owed_sum + $scope.patient.insurance.ins_co_pay;
+          }else {
+            $scope.patient.total = $scope.patient.totalOwedSum.owed_sum;
+          }
           $scope.nextStep();
         });
 

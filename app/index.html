@@ -25,6 +25,7 @@
 
     <link rel="stylesheet" href="styles/finished.css">
     <link rel="stylesheet" href="styles/co-pay.css">
+    <link rel="stylesheet" href="styles/return.css">
     <!-- endbuild -->
   </head>
   <body ng-app="checkinApp">
@@ -33,7 +34,21 @@
     <![endif]-->
 
     <!--<header ui-view="header"></header>-->
-    <div ui-view></div>
+    <div class="full-page">
+      <table>
+        <tr>
+          <td class="td-text">
+            <h1 class="text-center">Oops Wrong Way <br><br> Hold Device Landscape</h1>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-image text-center">
+            <img src="images/u13.png" alt="">
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div ui-view class="oops-shown"></div>
     <!--<footer ui-view="footer"></footer>-->
 
     <div id="fb-root"></div>

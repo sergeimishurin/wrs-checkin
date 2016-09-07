@@ -277,5 +277,42 @@ table.header {
   color: #fff;
   background-color: #E74C3C !important;
   border:none;
+}
 
+.full-page {
+  height:1024px;
+  width:768px;
+}
+
+@media all and (orientation: portrait) {
+  .full-page {
+    height:1024px;
+    width:768px;
+  }
+  .full-page table {
+    height:100%;
+    width:100%;
+  }
+  .full-page table td{
+    font-size: 48px;
+    color: #e74c3c;
+  }
+  .oops-shown {
+    display: none;
+  }
+  .td-text {
+    vertical-align: middle;
+  }
+  .td-image {
+    vertical-align: top;
+  }
+}
+
+@media all and (orientation: landscape) {
+  .full-page {
+    display: none;
+  }
+  .oops-shown {
+    display: block;
+  }
 }
