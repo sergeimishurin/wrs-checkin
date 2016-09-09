@@ -12,22 +12,22 @@
             <fieldset>
                 <div class="form-group">
                     <label class="control-label" for="username">Last Name</label>
-                    <input class="form-control" id="username" 
-                            ng-model="patient_login.last_name" 
-                            placeholder="Last name" 
-                            type="text" 
+                    <input class="form-control" id="username"
+                            ng-model="patient_login.last_name"
+                            placeholder="Last name"
+                            type="text"
                             required>
                 </div>
                 <div class="form-group has-feedback">
                     <label class="control-label">Date of Birth</label>
                     <input ng-click="dateOptions.open()"
                            ng-model="patient_login.date_of_birth"
-                           type="text" 
-                           class="form-control" 
-                           uib-datepicker-popup="MM/dd/yyyy" 
-                           is-open="dateOptions.opened" 
+                           type="text"
+                           class="form-control"
+                           uib-datepicker-popup="MM/dd/yyyy"
+                           is-open="dateOptions.opened"
                            show-button-bar="false"
-                           datepicker-options="dateOptions" 
+                           datepicker-options="dateOptions"
                            placeholder="Date of birth"
                            ui-mask-placeholder="mm/dd/yyyy"
                            ui-mask="99/99/9999"
@@ -37,7 +37,7 @@
                 </div>
                 <div class="form-group">
                     <label>&nbsp;</label>
-                    <input ng-disabled="patient_login.$invalid" class="btn btn-lg btn-block btn-primary" type="submit" disabled="disabled" value="Login">
+                    <input ng-disabled="patient_login.$invalid || isWorking" class="btn btn-lg btn-block btn-primary" type="submit" disabled="disabled" value="Login">
                 </div>
             </fieldset>
           </form>

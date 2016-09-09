@@ -1,4 +1,4 @@
-<div class="main" ng-if="!cardMethodActive && !successPayment">
+<div class="main" ng-if="!cardMethodActive && !successPayment && !processPayment">
   <patient-header title="Co-Pay"
                   info="You will recieve a emailed confirmation reciept after your payment has been made"
   >
@@ -10,8 +10,8 @@
         <div class="co-pay-description" style="">Today Co-Pay</div>
       </div>
       <div class="co-pay-sum-text">
-        <input type="text" class="co-pay-input" real-time-currency disabled
-               readonly ng-model="patient.insurance.ins_co_pay" value="${{patient.insurance.ins_co_pay || 0}}" real-time-currency>
+        <input type="text" class="co-pay-input" disabled readonly value="${{patient.insurance.ins_co_pay == '' ? 0 : patient.insurance.ins_co_pay}}">
+
       </div>
       <div class="co-pay-sum-text-description">
 
@@ -23,7 +23,7 @@
       </div>
       <div class="co-pay-sum-text">
         <input type="text" class="co-pay-input input-special" ng-change="updateTotal()" real-time-currency
-               ng-model="patient.totalOwedSum.owed_sum" >
+               ng-model="patient.totalOwedSum.owed_sum">
 
       </div>
       <div class="co-pay-sum-text" style="width: 35%;">
@@ -86,10 +86,11 @@
             <div class="col-md-12 no-padding selectwrap">
               <i class="glyphicon glyphicon-menu-down state-arrow"></i>
               <label class="control-label">What amount would you like to pay?</label>
-              <select class="form-control" ng-model="patient.pay_amount">
+              <input type="text" ng-value="patient.total" class="form-control" disabled readonly/>
+             <!-- <select class="form-control" ng-model="patient.total">
                 <option value="">50$</option>
                 <option value="other">Other</option>
-              </select>
+              </select>-->
             </div>
             <div class="clearfix"></div>
             <div class="form-group">
@@ -137,11 +138,9 @@
         </fieldset>
       </div>
       <div class="patient-login-box col-md-6 billing-address">
-        <div class="col-md-6 no-padding" ng-show="patient.pay_amount=='other'" >
-          <input type="text" class="form-control text-center custom-billing-amount" value="" ng-model="patient.pay_amount_other" real-time-currency placeholder="Enter Amount" >
-        </div>
         <div class="col-md-6 no-padding" style="visibility: hidden;">
-          <input type="text" class="form-control text-center custom-billing-amount" value="" ng-model="patient.pay_amount_other" real-time-currency placeholder="Enter Amount" >
+          <input type="text" class="form-control text-center custom-billing-amount" value=""
+                 ng-model="patient.pay_amount_other" real-time-currency placeholder="Enter Amount">
         </div>
         <div class="clearfix"></div>
         <div class="col-md-6" ng-show>
@@ -191,7 +190,8 @@
             </div>
             <div class="no-padding selectwrap pull-right">
               <label class="control-label">Zip Code</label>
-              <input ng-model="patient.credit_card.zip" type="text" placeholder="Enter zip code" class="form-control states"/>
+              <input ng-model="patient.credit_card.zip" type="text" placeholder="Enter zip code"
+                     class="form-control states"/>
             </div>
           </div>
 
@@ -211,38 +211,64 @@
 
     <div class="copay-controls-buttons">
       <button ng-click="cancelPayment()" class="left_btn">Cancel</button>
-      <button ng-click="makePayment()" ng-disabled="paymentForm.$isValid" class="right_btn" disabled="disabled">Make Payment
+      <button ng-click="makePayment()" ng-disabled="paymentForm.$isValid" class="right_btn" disabled="disabled">Make
+        Payment
       </button>
     </div>
   </div>
+</div>
+<div class="main" ng-if="successPayment">
 
-  <div class="main" ng-if="successPayment">
+  <patient-header title="Co-Pay"
+                  info="You will recieve a emailed confirmation reciept after your payment has been made"
+  >
 
-    <patient-header title="Co-Pay"
-                    info="You will recieve a emailed confirmation reciept after your payment has been made"
-    >
+  </patient-header>
 
-    </patient-header>
-
-    <div class="content-patient">
-      <div class="info-holder co-pay-info">
-        <div class="content-title">&#x2713; Confirming your payment transaction</div>
-        <div class="content-data">
-          <div>This Message confirms you payment of <b>$58.00</b></div>
-          <br>
-          <div>Your account balance will be uploaded once the payment is processed. <br>
-            It can take up to five days to wthdraw the funds from your account.
-          </div>
-          <br>
-          <div>Your confirmation number is <b>258FEC4890</b></div>
-          <br>
-          <div>A receipt has been sent to <b>patient@email.com</b> for your reference.</div>
-          <br>
-          <div>Thank you for your payment.</div>
-          <br>
+  <div class="content-patient content-confirmation">
+    <div class="info-holder co-pay-info">
+      <div class="content-title content-title-confirm">&#x2713; Confirming your payment transaction</div>
+      <br><br>
+      <div class="content-data content-data-confirm">
+        <div>This Message confirms you payment of <b>$58.00</b></div>
+        <br>
+        <div>Your account balance will be uploaded once the payment is processed. <br>
+          It can take up to five days to wthdraw the funds from your account.
         </div>
-        <img class="payment-image" src="assets/images/transfirst.png" alt="">
+        <br>
+        <div>Your confirmation number is <b>258FEC4890</b></div>
+        <br>
+        <div>A receipt has been sent to <b>patient@email.com</b> for your reference.</div>
+        <br>
+        <div>Thank you for your payment.</div>
+        <br>
       </div>
-      <button ng-click="nextStep()" class="btn complete-btn">Next</button>
+      <img class="payment-image" src="images/transfirst.png" alt="">
+    </div>
+    <button ng-click="nextStep()" class="btn complete-btn ">Next</button>
+  </div>
+</div>
+
+
+<div class="main" ng-if="processPayment">
+
+  <patient-header title="Co-Pay"
+                  info="You will recieve a emailed confirmation reciept after your payment has been made">
+  </patient-header>
+
+  <div class="content-patient">
+    <div class="info-holder co-pay-info">
+      <div class="content-title">Credit Card Processing ...</div>
+      <div style="width: 48%;padding: 20px 0;">
+        <hr>
+      </div>
+      <div class="content-data">
+        <div>We are processing your credit card. Please be</div>
+        <br>
+        <div>patient, this process may take a few seconds
+        </div>
+      </div>
+      <img class="payment-image" src="images/transfirst.png" alt="">
     </div>
   </div>
+</div>

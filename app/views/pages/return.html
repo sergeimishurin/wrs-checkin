@@ -1,1 +1,11 @@
-asdasdasda
+<div>
+    <div ng-include="'views/layout/sidebar-return.html'"></div>
+    <div class="main-return">
+      <patient-header title="Finished" image="" info="You are all set. thank you for Checking-In."></patient-header>
+    </div>
+
+    <div>
+      <img ng-if="paymentMethod == 'front'" src="images/end01.png" alt="">
+      <img ng-if="paymentMethod == 'card'" src="images/end02.png" alt="">
+    </div>
+  </div>
