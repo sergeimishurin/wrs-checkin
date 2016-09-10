@@ -52,34 +52,42 @@
   <div class="content">
     <div class="col-md-6 col-md-right">
       <fieldset>
-        <div class="form-group">
+        <div class="form-group" ng-class="patient_temp.personal_info.first_name == '' ? 'has-error' : ''">
           <label class="control-label" for="first_name">Name</label>
-          <input class="form-control" id="first_name" ng-model="patient_temp.personal_info.first_name" type="text">
+          <input class="form-control" id="first_name" ng-model="patient_temp.personal_info.first_name" type="text" ng-change="checkEmpty()"
+                 uib-tooltip="Error here hello worlds"
+                 tooltip-enable="patient_temp.personal_info.first_name == ''"
+                 tooltip-is-open="patient_temp.personal_info.first_name == ''"
+                 tooltip-placement="top-right"
+                 tooltip-class="error-tooltip"
+                 >
         </div>
         <div class="form-group has-feedback">
           <label class="control-label">Date of Birth</label>
-          <input type="text" 
-                  class="form-control" 
-                  ng-click="dobOptions.open()" 
-                  type="text" 
-                  class="form-control"
-                  uib-datepicker-popup="MM/dd/yyyy"
-                  ng-model="patient_temp.personal_info.date_of_birth"
-                  is-open="dobOptions.opened" 
-                  show-button-bar="false"
-                  datepicker-options="dobOptions" 
-                  placeholder="Date of birth"
-                  ui-mask-placeholder="mm/dd/yyyy"
-                  ui-mask="99/99/9999"
-                  model-view-value="true"
-                  required/>
+          <input type="text"
+                 class="form-control"
+                 ng-click="dobOptions.open()"
+                 type="text"
+                 class="form-control"
+                 uib-datepicker-popup="MM/dd/yyyy"
+                 ng-model="patient_temp.personal_info.date_of_birth"
+                 is-open="dobOptions.opened"
+                 show-button-bar="false"
+                 datepicker-options="dobOptions"
+                 placeholder="Date of birth"
+                 ui-mask-placeholder="mm/dd/yyyy"
+                 ui-mask="99/99/9999"
+                 model-view-value="true"
+                 required/>
           <i class="dob-icon form-control-feedback fa fa-calendar"></i>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-class="patient_temp.personal_info.email == '' ? 'has-error' : ''">
+          <tooltip tooltips="" tooltip-template="Left tooltip" tooltip-side="top"
+                   ng-show="patient_temp.personal_info.first_name == ''"></tooltip>
           <label class="control-label" for="email">Email</label>
           <input class="form-control" id="email" ng-model="patient_temp.personal_info.email" type="text">
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-class="patient_temp.address.street1 == '' ? 'has-error' : ''">
           <label class="control-label" for="address">Address</label>
           <input class="form-control" id="address" ng-model="patient_temp.address.street1" type="text">
         </div>
@@ -88,16 +96,18 @@
             <label class="control-label">State</label>
             <i class="glyphicon glyphicon-menu-down state-arrow"></i>
             <select ng-model="patient_temp.address.state" class="form-control">
-              <option ng-selected="{{patient_temp.address.state == option.id}}" ng-repeat="option in states" value="{{option.id}}">{{option.name}}</option>             
-            </select>           
+              <option ng-selected="{{patient_temp.address.state == option.id}}" ng-repeat="option in states"
+                      value="{{option.id}}">{{option.name}}
+              </option>
+            </select>
           </div>
         </div>
       </fieldset>
     </div>
     <div class="col-md-6 col-md-left">
       <fieldset>
-        <div class="form-group">
-          <label class="control-label" for="username">&nbsp;</label>
+        <div class="form-group" ng-class="patient_temp.personal_info.last_name == '' ? 'has-error' : ''">
+          <label class="control-label">&nbsp;</label>
           <input class="form-control" id="last_name" ng-model="patient_temp.personal_info.last_name" type="text">
         </div>
         <div class="form-group gender-group">
@@ -113,7 +123,7 @@
 
         <div class="form-group no-padding">
 
-          <label class="control-label" for="username">Phone Number</label><br>
+          <label class="control-label">Phone Number</label><br>
           <div class="selectwrap pull-left">
             <i class="glyphicon glyphicon-menu-down select-arrow"></i>
             <select class="form-control phone" ng-model="patient_temp.phoneNumbers.type">
@@ -135,11 +145,11 @@
         </div>
         <div class="clearfix"></div>
 
-        <div class="form-group">
+        <div class="form-group" ng-class="patient_temp.address.city == '' ? 'has-error' : ''">
           <label class="control-label" for="city">City</label>
           <input class="form-control " id="city" ng-model="patient_temp.address.city" type="text">
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-class="patient_temp.address.zip == '' ? 'has-error' : ''">
           <label class="control-label" for="zip">Zip Code</label>
           <input class="form-control" id="zip" ng-model="patient_temp.address.zip" type="text">
         </div>

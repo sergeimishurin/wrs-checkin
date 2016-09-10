@@ -117,3 +117,18 @@ ul.patient-info li {
 .numberwrap .number {
   width:55%;
 }
+.error-tooltip {
+  width:65%;
+  background: #E74C3C;
+  top:-15px !important;
+}
+.error-tooltip .tooltip-inner{
+  width:65%;
+  background: #E74C3C;
+  top:-15px !important;
+}
+.error-tooltip .tooltip-arrow {
+  right:50% !important;
+  bottom: -5px !important;
+  border-top-color: #E74C3C;
+}

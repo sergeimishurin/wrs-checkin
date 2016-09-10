@@ -1,4 +1,5 @@
 <div>
+<<<<<<< HEAD
   <div ng-include="'views/layout/sidebar_return.html'"></div>
 
   <div class="main-return">
@@ -22,3 +23,15 @@
     <img src="images/bjishk.png">
   </div>
 </div>
+=======
+    <div ng-include="'views/layout/sidebar-return.html'"></div>
+    <div class="main-return">
+      <patient-header title="Finished" image="" info="You are all set. thank you for Checking-In."></patient-header>
+    </div>
+
+    <div>
+      <img ng-if="paymentMethod == 'front'" src="images/end01.png" alt="">
+      <img ng-if="paymentMethod == 'card'" src="images/end02.png" alt="">
+    </div>
+  </div>
+>>>>>>> 1530e74a0324e09599f481bed1378152b6f9a0c5

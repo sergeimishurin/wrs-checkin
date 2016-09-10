@@ -1,38 +1,38 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 .fa-2x {
-    font-size: 20px!important
+  font-size: 20px!important
 }
 
 body {
-    font-family: Open Sans;
+  font-family: Open Sans;
 }
 
 .form-control {
-    border-radius: 0;
-    border-color: #BDC3C7;
-    height: 48px;
+  border-radius: 0;
+  border-color: #BDC3C7;
+  height: 48px;
 }
 
 .form-control:focus {
-    border-color: #2199E8;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
+  border-color: #2199E8;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 
 .form-group:not(:first-child) {
-    margin-top: 23px;
+  margin-top: 23px;
 }
 
 .form-group label {
-    font-family: 'Arial Regular', 'Arial';
-    font-weight: 400;
-    font-style: normal;
-    color: #6F6F6F;
-    text-align: left;
-    line-height: normal;
-    font-size: 17px;
+  font-family: 'Arial Regular', 'Arial';
+  font-weight: 400;
+  font-style: normal;
+  color: #6F6F6F;
+  text-align: left;
+  line-height: normal;
+  font-size: 17px;
 }
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
   font-family: inherit;
@@ -41,76 +41,76 @@ body {
   color: inherit;
 }
 .btn {
-    border-radius: 0 !important;
-    height: 48px;
+  border-radius: 0 !important;
+  height: 48px;
 }
 
 .btn-centered-bottom {
-    position: absolute;
-    bottom: 30px;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
-    width: 300px;
+  position: absolute;
+  bottom: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  width: 300px;
 }
 
 .btn-centered-fixed-bottom {
-    position: fixed;
-    bottom: 21px;
-    margin-left: 55%;
-    left: 0;
-    right: 0;
-    width: 264px;
+  position: fixed;
+  bottom: 21px;
+  margin-left: 55%;
+  left: 0;
+  right: 0;
+  width: 264px;
 }
 
 .btn:hover, .btn:focus, .btn:active {
-    color: #FFFFFF;
-    outline: 0 !important;
+  color: #FFFFFF;
+  outline: 0 !important;
 }
 
 .btn-primary {
-    background: #2685CD;
-    border: none;
+  background: #2685CD;
+  border: none;
 }
 .btn-default {
-    background: #B6BCC1;
-    color:#787A7B;
-    border: none;
+  background: #B6BCC1;
+  color:#787A7B;
+  border: none;
 }
 .btn-success {
-    background: #24A657;
-    border: none;
+  background: #24A657;
+  border: none;
 }
 .btn-primary:hover {
-    opacity: 0.8;
+  opacity: 0.8;
 }
 
 .panel-body {
-    padding-top: 0px;
-    padding-bottom: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
 .logo {
-    padding-top: 15px;
-    padding-bottom: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 form input.ng-invalid.ng-touched {
-    border-color: #e74c3c;
+  border-color: #e74c3c;
 }
 
 .main {
-    width: 704px;
-    height: 658px;
-    float: left;
+  width: 704px;
+  height: 658px;
+  float: left;
 }
 
 .header {
-    background: #B6BCC1;
-    width: 100%;
-    color: #fff;
-    height: 121px;
+  background: #B6BCC1;
+  width: 100%;
+  color: #fff;
+  height: 121px;
 }
 table.header {
   background: #B6BCC1;
@@ -119,12 +119,12 @@ table.header {
   height: 110px !important;
 }
 .header-title {
-    padding-left: 33px;
-    font-family: "Open Sans";
-    font-weight: 100;
-    font-style: normal;
-    font-size: 34px;
-    line-height: normal;
+  padding-left: 33px;
+  font-family: "Open Sans";
+  font-weight: 100;
+  font-style: normal;
+  font-size: 34px;
+  line-height: normal;
 }
 .header-title h2{
   font-family: "Open Sans";
@@ -135,31 +135,31 @@ table.header {
 }
 
 .header-title .header-info {
-    color: #7E8081;
-    font-family: 'Arial Regular', 'Arial';
-    font-weight: 400;
-    font-style: normal;
-    font-size:14px;
+  color: #7E8081;
+  font-family: 'Arial Regular', 'Arial';
+  font-weight: 400;
+  font-style: normal;
+  font-size:14px;
 }
 
 .header-image {
-    width: 141px;
+  width: 141px;
 }
 .header-image .btn {
   width: 70px;
 }
 .header-image img {
-    height: 110px;
+  height: 110px;
 }
 
 .content {
-    background: #F0F0F0;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 18px;
-    height: 100%;
-    overflow-x: scroll;
-    position: relative;
+  background: #F0F0F0;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 18px;
+  height: 100%;
+  overflow-x: scroll;
+  position: relative;
 }
 
 .col-md-left {
@@ -173,83 +173,83 @@ table.header {
 }
 
 .content-no-padding {
-    background: #F0F0F0;
-    padding-top: 16px;
-    height: 100%;
-    overflow-x: scroll;
-    position: relative;
+  background: #F0F0F0;
+  padding-top: 16px;
+  height: 100%;
+  overflow-x: scroll;
+  position: relative;
 }
 
 .info-container {
-    background: #fff;
-    border-left: 8px solid #2F8FD7;
+  background: #fff;
+  border-left: 8px solid #2F8FD7;
 }
 
 .checkbox label:after,
 .radio label:after {
-    content: '';
-    display: table;
-    clear: both;
+  content: '';
+  display: table;
+  clear: both;
 }
 
 .checkbox .cr,
 .radio .cr {
-    position: relative;
-    display: inline-block;
-    border-radius: 0;
-    width: 1em;
-    background: #85bc20;
-    height: 1em;
-    color: #fff;
-    float: left;
-    margin-right: .5em;
-    margin-top: 2px;
+  position: relative;
+  display: inline-block;
+  border-radius: 0;
+  width: 1em;
+  background: #85bc20;
+  height: 1em;
+  color: #fff;
+  float: left;
+  margin-right: .5em;
+  margin-top: 2px;
 }
 
 .radio .cr {
-    border-radius: 50%;
+  border-radius: 50%;
 }
 
 .checkbox .cr .cr-icon,
 .radio .cr .cr-icon {
-    position: absolute;
-    font-size: .8em;
-    line-height: 0;
-    top: 50%;
-    left: 20%;
+  position: absolute;
+  font-size: .8em;
+  line-height: 0;
+  top: 50%;
+  left: 20%;
 }
 
 .radio .cr .cr-icon {
-    margin-left: 0.04em;
+  margin-left: 0.04em;
 }
 
 .checkbox label input[type="checkbox"],
 .radio label input[type="radio"] {
-    display: none;
+  display: none;
 }
 
 .checkbox label input[type="checkbox"] + .cr > .cr-icon,
 .radio label input[type="radio"] + .cr > .cr-icon {
-    transform: scale(3) rotateZ(-20deg);
-    opacity: 0;
-    transition: all .3s ease-in;
+  transform: scale(3) rotateZ(-20deg);
+  opacity: 0;
+  transition: all .3s ease-in;
 }
 
 .checkbox label input[type="checkbox"]:checked + .cr > .cr-icon,
 .radio label input[type="radio"]:checked + .cr > .cr-icon {
-    transform: scale(1) rotateZ(0deg);
-    opacity: 1;
+  transform: scale(1) rotateZ(0deg);
+  opacity: 1;
 }
 
 .checkbox label input[type="checkbox"]:disabled + .cr,
 .radio label input[type="radio"]:disabled + .cr {
-    opacity: .5;
+  opacity: .5;
 }
 
 .pharmacy-arrow {
-    position: absolute;
-    right: 22px;
-    top: 11px;
+  position: absolute;
+  right: 22px;
+  top: 11px;
 }
 
 .no-padding {
@@ -268,6 +268,9 @@ table.header {
   border: 0;
 }
 
+.is-working {
+  color: #FF6600;
+}
 .custom-billing-amount {
   position: absolute;
   top: -73px;

@@ -15,15 +15,20 @@ angular.module('checkinApp')
       date: _today.format('MMMM') + ' ' + _today.format('D') + ', ' + _today.format('YYYY'),
       time: _today.format("HH:mm")
     };
+
+    $rootScope.isWorking = false;
+
     $scope.patient = {};
+    $scope.patient.credit_card = {};
     $scope.patientEditMode = false;
     $scope.patient_temp = {};
     $scope.pharmacies = [];
     $scope.pharmacy = {};
     $scope.chossedPharmacies = [];
-    $scope.paymentMethod = '';
+    $rootScope.paymentMethod = '';
     $scope.editBillingAddress = false;
     $scope.states = States;
+    $scope.errors = [];
 
     $scope.steps = [
       {title: 'Step 1 Log in', passed: 0, active: 1},
@@ -92,6 +97,9 @@ angular.module('checkinApp')
     };
 
     $scope.confirmPatientChanges = function (patient_temp) {
+      //$scope.errors.push({name: 'This field is required'});
+      //console.log( $scope.errors);
+      //return false;
       angular.copy(patient_temp, $scope.patient);
       $scope.patientEditMode = false;
     };
@@ -157,12 +165,12 @@ angular.module('checkinApp')
     $scope.doPayment = function () {
       orderPharmacies();
 
-      if ($scope.paymentMethod == 'card') {
+      if ($rootScope.paymentMethod == 'card') {
         $scope.cardMethodActive = true;
       } else {
         delete $scope.patient.credit_card;
         Patient.updatePatientDataAndAppointmentStage({id:$scope.patient.personal_info.id}, $scope.patient, function(response){
-            $scope.nextStep();
+          $scope.nextStep();
         });
       }
     };
@@ -176,6 +184,7 @@ angular.module('checkinApp')
       $scope.successPayment = false;
       $scope.processPayment = true;
 
+/*<<<<<<< HEAD
       $timeout(function () {
 
         $scope.processPayment = false;
@@ -187,6 +196,17 @@ angular.module('checkinApp')
         //$scope.nextStep();
       },4000);
       // });
+=======*/
+      Patient.updatePatientDataAndAppointmentStage({id:$scope.patient.personal_info.id}, $scope.patient, function(response){
+           $timeout(function () {
+             $scope.processPayment = false;
+             $scope.successPayment = true;
+           },2000);
+           //#27AE60
+        //$scope.nextStep();
+
+       });
+/*>>>>>>> 1530e74a0324e09599f481bed1378152b6f9a0c5*/
     };
 
     $scope.updateTotal = function() {
@@ -208,6 +228,7 @@ angular.module('checkinApp')
     };
 
     $scope.patientLogin = function (patient_login) {
+      $rootScope.isWorking = true;
       var credentials = {
         "last_name": 'test',
         "date_of_birth": '01/01/1990',
@@ -241,11 +262,21 @@ angular.module('checkinApp')
           $scope.patient.insurance = response[4].data;
           $scope.patient.totalOwedSum = response[5].data;
           // $scope.patient.emergencyContacts = response[6].data;
+
           if($scope.patient.insurance != null || $scope.patient.insurance != undefined) {
             $scope.patient.total = $scope.patient.totalOwedSum.owed_sum + $scope.patient.insurance.ins_co_pay;
           }else {
             $scope.patient.total = $scope.patient.totalOwedSum.owed_sum;
           }
+/*
+
+          if(!$scope.patient.insurance.ins_co_pay) {
+            $scope.patient.insurance.ins_co_pay = 0;
+          }
+          $scope.patient.total = $scope.patient.totalOwedSum.owed_sum + $scope.patient.insurance.ins_co_pay;
+*/
+
+          $rootScope.isWorking = false;
           $scope.nextStep();
         });
 

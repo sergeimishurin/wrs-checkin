@@ -20,7 +20,8 @@ angular
     'angularMoment',
     'ui.bootstrap',
     'ui.mask',
-    'as.sortable'
+    'as.sortable',
+    '720kb.tooltips'
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
 
@@ -49,6 +50,8 @@ angular
 
   }).run(function ($rootScope, $location) {
   var practice_info = window.sessionStorage.getItem('practice_info');
+
+  var emptyEvent = new Event("empty");
 
 
   if (practice_info == null) {

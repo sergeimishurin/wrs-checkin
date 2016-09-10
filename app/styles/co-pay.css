@@ -85,21 +85,22 @@
 }
 
 .copay-credit-card-button {
-    /*background: url('/images/card.png');*/
-    border: 6px solid #ccc;
-    width: 327px;
-    height: 110px;
-    float: left;
+  /*background: url('/images/card.png');*/
+  border: 6px solid #ccc;
+  width: 327px;
+  height: 110px;
+  float: left;
   background: #ffffff;
+  outline: 0;
 }
 
 
 .copay-front-button {
-    /*background: url('/images/front.png');*/
-    border: 6px solid #ccc;
-    width: 327px;
-    height: 110px;
-    float: right;
+  /*background: url('/images/front.png');*/
+  border: 6px solid #ccc;
+  width: 327px;
+  height: 110px;
+  float: right;
   background: #ffffff;
 }
 .copay-img-holder {
@@ -136,10 +137,10 @@
   margin-top: 20px;
 }
 .copay-info-container {
-    height: 455px;
-    background: #fff;
-    border-left: 6px solid #27AE60;
-    padding-top: 10px;
+  height: 455px;
+  background: #fff;
+  border-left: 6px solid #27AE60;
+  padding-top: 10px;
 }
 .copay-controls-buttons {
   margin-top: 100px;
@@ -169,6 +170,7 @@
   height:480px;
   position: relative;
   background: #ffffff;
+<<<<<<< HEAD
   border-left: 8px solid #e74c3c;
 }
 .co-pay-info .content-title {
@@ -176,6 +178,15 @@
    color: #666666;
    font-family:Arial;
  }
+=======
+  border-left: 8px solid #27AE60;
+}
+.co-pay-info .content-title {
+  font-size:24px;
+  color: #666666;
+  font-family:Arial;
+}
+>>>>>>> 1530e74a0324e09599f481bed1378152b6f9a0c5
 .co-pay-info .content-data {
   font-size:16px;
   color: #666666;
@@ -188,7 +199,11 @@
   right:20px;
 }
 .content-title-confirm {
+<<<<<<< HEAD
   color: #e74c3c !important;
+=======
+  color: #27AE60 !important;
+>>>>>>> 1530e74a0324e09599f481bed1378152b6f9a0c5
 }
 .content-data-confirm {
   font-size: 15px ;
