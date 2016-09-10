@@ -50,17 +50,22 @@
   <div class="clearfix"></div>
 
   <div class="content">
+    <form ng-submit="confirmPatientChanges(patient_temp)" name="patient_profile">
     <div class="col-md-6 col-md-right">
       <fieldset>
-        <div class="form-group" ng-class="patient_temp.personal_info.first_name == '' ? 'has-error' : ''">
+        <div class="form-group" ng-class="{'has-error': (patient_profile.first_name.$error.required || patient_profile.first_name.$error.minlength)}">
+          <span ng-if="first_name" class="tooltiptext">
+             <div ng-messages="patient_profile.first_name.$error" role="alert" ngMessagesMultiple="multiple">
+               <p ng-message="required">Can`t be empty</p>
+               <p ng-message="minlength">Your field is too short</p>
+               <p ng-message="maxlength">Your field is too long</p>
+             </div>
+          </span>
           <label class="control-label" for="first_name">Name</label>
-          <input class="form-control" id="first_name" ng-model="patient_temp.personal_info.first_name" type="text" ng-change="checkEmpty()"
-                 uib-tooltip="Error here hello worlds"
-                 tooltip-enable="patient_temp.personal_info.first_name == ''"
-                 tooltip-is-open="patient_temp.personal_info.first_name == ''"
-                 tooltip-placement="top-right"
-                 tooltip-class="error-tooltip"
-                 >
+          <input ng-focus="first_name = true" ng-blur="first_name = false"
+                 class="form-control" id="first_name"
+                 ng-minlength="2" required name="first_name"
+                 ng-model="patient_temp.personal_info.first_name" type="text">
         </div>
         <div class="form-group has-feedback">
           <label class="control-label">Date of Birth</label>
@@ -81,15 +86,33 @@
                  required/>
           <i class="dob-icon form-control-feedback fa fa-calendar"></i>
         </div>
-        <div class="form-group" ng-class="patient_temp.personal_info.email == '' ? 'has-error' : ''">
-          <tooltip tooltips="" tooltip-template="Left tooltip" tooltip-side="top"
-                   ng-show="patient_temp.personal_info.first_name == ''"></tooltip>
+        <div class="form-group" ng-class="{'has-error': (patient_profile.email.$error.required || patient_profile.email.$error.minlength)}">
+          <span ng-if="email" class="tooltiptext">
+             <div ng-messages="patient_profile.email.$error" role="alert">
+               <p ng-message="required">Can`t be empty</p>
+               <p ng-message="minlength">Your field is too short</p>
+               <p ng-message="maxlength">Your field is too long</p>
+             </div>
+          </span>
           <label class="control-label" for="email">Email</label>
-          <input class="form-control" id="email" ng-model="patient_temp.personal_info.email" type="text">
+          <input class="form-control" id="email"
+                 ng-focus="email = true" ng-blur="email = false"
+                 ng-minlength="2" required name="email"
+                 ng-model="patient_temp.personal_info.email" type="text">
         </div>
-        <div class="form-group" ng-class="patient_temp.address.street1 == '' ? 'has-error' : ''">
+        <div class="form-group" ng-class="{'has-error':(patient_profile.address.$error.required || patient_profile.address.$error.minlength)}">
+          <span ng-if="address" class="tooltiptext">
+             <div ng-messages="patient_profile.address.$error" role="alert" ngMessagesMultiple="multiple">
+               <p ng-message="required">Can`t be empty</p>
+               <p ng-message="minlength">Your field is too short</p>
+               <p ng-message="maxlength">Your field is too long</p>
+             </div>
+          </span>
           <label class="control-label" for="address">Address</label>
-          <input class="form-control" id="address" ng-model="patient_temp.address.street1" type="text">
+          <input class="form-control" id="address"
+                 name="address" ng-model="patient_temp.address.street1" type="text"
+                 ng-focus="address = true" ng-blur="address = false"
+                 ng-minlength="2" required >
         </div>
         <div class="form-group">
           <div class="col-md-12 no-padding selectwrap">
@@ -106,9 +129,18 @@
     </div>
     <div class="col-md-6 col-md-left">
       <fieldset>
-        <div class="form-group" ng-class="patient_temp.personal_info.last_name == '' ? 'has-error' : ''">
+        <div class="form-group" ng-class="{'has-error': (patient_profile.last_name.$error.required || patient_profile.last_name.$error.minlength)}">
+          <span ng-if="last_name" class="tooltiptext">
+             <div ng-messages="patient_profile.last_name.$error" role="alert" ngMessagesMultiple="multiple">
+               <p ng-message="required">Can`t be empty</p>
+               <p ng-message="minlength">Your field is too short</p>
+               <p ng-message="maxlength">Your field is too long</p>
+             </div>
+          </span>
           <label class="control-label">&nbsp;</label>
-          <input class="form-control" id="last_name" ng-model="patient_temp.personal_info.last_name" type="text">
+          <input class="form-control" id="last_name" ng-model="patient_temp.personal_info.last_name"
+                 name="last_name" ng-model="patient_temp.address.street1" type="text"
+                 ng-focus="last_name = true" ng-blur="last_name = false" ng-minlength="2" required>
         </div>
         <div class="form-group gender-group">
           <label class="control-label">Gender</label>
@@ -145,24 +177,44 @@
         </div>
         <div class="clearfix"></div>
 
-        <div class="form-group" ng-class="patient_temp.address.city == '' ? 'has-error' : ''">
+        <div class="form-group" ng-class="{'has-error': (patient_profile.city.$error.required || patient_profile.city.$error.minlength)}">
+          <span ng-if="city" class="tooltiptext">
+             <div ng-messages="patient_profile.city.$error" role="alert" ngMessagesMultiple="multiple">
+               <p ng-message="required">Can`t be empty</p>
+               <p ng-message="minlength">Your field is too short</p>
+               <p ng-message="maxlength">Your field is too long</p>
+             </div>
+          </span>
           <label class="control-label" for="city">City</label>
-          <input class="form-control " id="city" ng-model="patient_temp.address.city" type="text">
+          <input class="form-control " id="city" ng-model="patient_temp.address.city"
+                 name="city" type="text"
+                 ng-focus="city = true" ng-blur="city = false" ng-minlength="2" required>
         </div>
-        <div class="form-group" ng-class="patient_temp.address.zip == '' ? 'has-error' : ''">
+        <div class="form-group" ng-class="{'has-error': (patient_profile.zip.$error.required || patient_profile.zip.$error.minlength)}">
+          <span ng-if="zip" class="tooltiptext">
+             <div ng-messages="patient_profile.zip.$error" role="alert" ngMessagesMultiple="multiple">
+               <p ng-message="required">Can`t be empty</p>
+               <p ng-message="minlength">Your field is too short</p>
+               <p ng-message="maxlength">Your field is too long</p>
+             </div>
+          </span>
           <label class="control-label" for="zip">Zip Code</label>
-          <input class="form-control" id="zip" ng-model="patient_temp.address.zip" type="text">
+          <input class="form-control" id="zip" ng-model="patient_temp.address.zip"
+                 name="zip" type="text"
+                 ng-focus="zip = true" ng-blur="zip = false" ng-minlength="2" required>
         </div>
       </fieldset>
       <div class="clearfix"></div>
     </div>
     <div class="col-md-12">
-      <button ng-click="changePatientViewType(patientEditMode)" class="btn btn-default pull-left patient-edit-button">
+      <button type="button" ng-click="changePatientViewType(patientEditMode)" class="btn btn-default pull-left patient-edit-button">
         Cancel
       </button>
-      <button ng-click="confirmPatientChanges(patient_temp)" class="btn btn-success pull-right patient-edit-button">
+      <button type="submit" class="btn btn-success pull-right patient-edit-button" ng-disabled="patient_profile.$invalid" disabled="disabled">
         Confirm
       </button>
     </div>
+
+    </form>
   </div>
 </div>

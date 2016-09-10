@@ -21,7 +21,7 @@ angular
     'ui.bootstrap',
     'ui.mask',
     'as.sortable',
-    '720kb.tooltips'
+    'ngMessages'
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
 
