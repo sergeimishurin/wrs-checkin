@@ -19,11 +19,13 @@
         <div class="progress-indicator">
             <div class="progress-complete" ng-style="{'width': (currentStep)*20 + 5 +'%'}"></div>
         </div>
-        <div ng-style="{'left': (currentStep)*20 + '%'}" class="percent">{{(currentStep)*20}}% <span ng-show="isWorking" class="pull-right is-working"> Working - please wait</span></div>
-
+        <div ng-style="{'left': (currentStep)*20 + '%'}" class="percent">
+          {{(currentStep)*20}}%
+          <span ng-show="isWorking" class="pull-right is-working"> Working - please wait</span>
+        </div>
     </div>
     <div class="sidebar-footer-logo">
         <p>Powered by</p>
-        <img src="images/logo.png" alt="">
+        <img src="images/logo.png">
     </div>
 </div>

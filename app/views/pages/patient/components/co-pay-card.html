@@ -1,0 +1,223 @@
+<div class="main">
+
+  <table class="header">
+    <tr>
+      <td  class="header-title">
+        <h2>Co-Pay</h2>
+        <p class="header-info">You will recieve a emailed confirmation reciept after your payment has been made</p>
+      </td>
+      <td class="center">
+        <i ng-click="patientLogout()" class="header-icons fa fa-4x fa-sign-out"></i>
+      </td>
+      <td class="header-image text-center">
+        <img class="car-image" ng-if="cardImage != ''" width="100" height="58" src="images/{{cardImage}}.png" alt="">
+      </td>
+    </tr>
+  </table>
+
+  <div class="content-no-padding">
+    <div ng-if="!editBillingAddress" class="copay-info-container">
+      <div class="patient-login-box col-md-6">
+        <fieldset>
+            <form ng-submit="makePayment()" name="paymentForm" novalidate>
+                <div class="col-md-12 no-padding selectwrap">
+                    <i class="glyphicon glyphicon-menu-down state-arrow"></i>
+                    <label class="control-label">What amount would you like to pay?</label>
+                    <input type="text" ng-value="patient.total" class="form-control" disabled readonly/>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="form-group"  ng-class="{'has-error': !paymentForm.card_name.$valid}">
+                   <span  ng-if="card_name" class="tooltiptext">
+                     <div ng-messages="paymentForm.card_name.$error" role="alert" ngMessagesMultiple="multiple">
+                       <span ng-message="required">This field is required!</span>
+                     </div>
+                  </span>
+                    <label class="control-label">
+                      <i ng-if="!paymentForm.card_name.$valid" class="fa fa-info-circle" aria-hidden="true"></i> Name on Card
+                    </label>
+                    <input type="text"
+                           name="card_name"
+                           autofocus
+                           ng-model="patient.credit_card.ccname"
+                           class="form-control"
+                           ng-focus="card_name = true"
+                           ng-blur="card_name = false"
+                           required/>
+                </div>
+
+                <!-- Card Number -->
+                <div class="form-group" ng-class="{'has-error': !paymentForm.credit_card.$valid || !valid_card_number_and_type}">
+                  <div class="pull-left no-padding form-group" style="width: 236px;">
+                     <span  ng-if="credit_card" class="tooltiptext">
+                       <div ng-messages="paymentForm.credit_card.$error" role="alert" ngMessagesMultiple="multiple">
+                         <span ng-message="required">This field is required!</span>
+                         <span ng-if="!valid_card_number_and_type">Wrong Card numbers</span>
+                       </div>
+                     </span>
+                    <label class="control-label">
+                      <i ng-if="!paymentForm.credit_card.$valid" class="fa fa-info-circle" aria-hidden="true"></i> Card Number
+                    </label>
+                    <input type="number"
+                           ng-model="patient.credit_card.ccnumber"
+                           class="form-control"
+                           name="credit_card"
+                           ng-focus="credit_card = true"
+                           ng-blur="credit_card = false"
+                           ng-change="validateCardNumber(patient.credit_card.ccnumber)"
+                           required />
+                  </div>
+
+                  <div class="pull-right no-padding" style="width: 75px;" ng-class="{'has-error': !paymentForm.cvv.$valid }">
+                     <!--<span  ng-if="cvv" class="tooltiptext">-->
+                       <!--<div ng-messages="paymentForm.cvv.$error" role="alert" ngMessagesMultiple="multiple">-->
+                         <!--<span ng-message="required">This field is required!</span>-->
+                       <!--</div>-->
+                     <!--</span>-->
+                    <label class="control-label">
+                      <i ng-if="!paymentForm.cvv.$valid" class="fa fa-info-circle" aria-hidden="true"></i> CVV
+                    </label>
+                    <input type="text"
+                           name="cvv"
+                           ng-model="patient.cvv"
+                           class="form-control"
+                           ng-focus="cvv = true"
+                           ng-blur="cvv = false"
+                           required/>
+                  </div>
+
+                </div>
+
+                <div class="form-group col-md-12 no-padding" ng-class="{'has-error': !valid_expiration_date || !paymentForm.month.$valid || !paymentForm.year.$valid}">
+                   <span  ng-if="!valid_expiration_date" class="tooltiptext">
+                         <span ng-if="!valid_expiration_date">Wrong Date</span>
+                     </span>
+                    <div class="pull-left no-padding selectwrap">
+                        <i class="glyphicon glyphicon-menu-down state-arrow"></i>
+                        <label class="control-label">Expiration Date</label>
+                        <select ng-change="validateExpirationDate()" ng-model="patient.credit_card.ccmonth" name="month" class="form-control date" required>
+                          <option value="">Month</option>
+                          <option value="01">January</option>
+                          <option value="02">February</option>
+                          <option value="03">March</option>
+                          <option value="04">April</option>
+                          <option value="05">May</option>
+                          <option value="06">June</option>
+                          <option value="07">July</option>
+                          <option value="08">August</option>
+                          <option value="09">September</option>
+                          <option value="10">October</option>
+                          <option value="11">November</option>
+                          <option value="12">December</option>
+                        </select>
+                    </div>
+                    <div class="pull-right no-padding selectwrap">
+                        <i class="glyphicon glyphicon-menu-down state-arrow"></i>
+                        <label class="control-label">
+                          MM/YYYY
+                          <i class="form-control-feedback fa fa-calendar"></i>
+                        </label>
+                        <select ng-change="validateExpirationDate()" ng-model="patient.credit_card.ccyear" name="year" class="form-control date" required>
+                          <option value="">Year</option>
+                          <option value="{{k}}" ng-repeat="k in [2016,2017,2018,2019,2020]">{{k}}</option>
+                        </select>
+                    </div>
+                </div>
+
+              <div class="clearfix"></div>
+
+              <div class="form-group">
+                  <div class="checkbox">
+                      <label>
+                          <input type="checkbox" ng-model="patient.credit_card.store">
+                          <span class="cred cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                          <span class="remember-me">Store credit card info for future transactions</span>
+                      </label>
+                  </div>
+              </div>
+        </fieldset>
+      </div>
+
+      <div class="patient-login-box col-md-6 billing-address">
+          <div class="col-md-6 no-padding" style="visibility: hidden;">
+              <input type="text" class="form-control text-center custom-billing-amount" value="" ng-model="patient.pay_amount_other" real-time-currency placeholder="Enter Amount">
+          </div>
+
+          <div class="clearfix"></div>
+
+          <div class="col-md-6" ng-show>
+              <label class="control-label">Billing Address</label>
+              4416 Shinn Street
+              New York, NY 10022
+          </div>
+
+          <div class="col-md-6">
+              <label class="control-label">Billing Address</label>
+              4416 Shinn Street
+              New York, NY 10022
+          </div>
+
+          <div class="col-md-6 billing-edit-button">
+              <button ng-click="changeBillingAddress()" class="btn btn-warning">EDIT</button>
+          </div>
+      </div>
+
+      <div class="text-right billing-img">
+          <img src="images/transfirst.png">
+      </div>
+    </div>
+
+    <!-- Edit billing Address -->
+    <div ng-if="editBillingAddress" class="copay-info-container">
+      <div class="patient-login-box col-md-6">
+          <fieldset>
+            <div class="form-group">
+                <label class="control-label">Address</label>
+                <input ng-model="patient.credit_card.street1" type="text" class="form-control" placeholder="Enter billing Address"/>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Address</label>
+                <input ng-model="patient.credit_card.street2" type="text" class="form-control" placeholder="building, Suite or APT #"/>
+            </div>
+            <div class="form-group">
+                <label class="control-label">City</label>
+                <input ng-model="patient.credit_card.city" type="text" class="form-control" placeholder="Enter city"/>
+            </div>
+            <div class="form-group">
+              <div class="no-padding selectwrap pull-left">
+                  <label class="control-label">State</label>
+                  <i class="glyphicon glyphicon-menu-down state-arrow"></i>
+                  <select ng-model="patient.credit_card.state" type="text" class="form-control states">
+                    <option value="">Select</option>
+                    <option value="k" ng-repeat="(k,v) in states">{{v.name}}</option>
+                  </select>
+              </div>
+              <div class="no-padding selectwrap pull-right">
+                  <label class="control-label">Zip Code</label>
+                  <input ng-model="patient.credit_card.zip" type="text" placeholder="Enter zip code" class="form-control states"/>
+              </div>
+            </div>
+          </fieldset>
+      </div>
+
+      <div class="patient-login-box col-md-6 billing-address">
+          <div class="col-md-12 billing-edit-button">
+            <button ng-click="changeBillingAddress()" class="btn btn-warning btn-edit">Done</button>
+          </div>
+      </div>
+
+      <div class="text-right billing-img">
+          <img src="images/transfirst.png">
+      </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="copay-controls-buttons">
+        <button ng-click="cancelPayment()" class="left_btn">Cancel</button>
+        <button ng-disabled="paymentForm.$invalid" type="submit" class="right_btn" disabled="disabled">Make Payment</button>
+    </div>
+    </form>
+  </div>
+</div>

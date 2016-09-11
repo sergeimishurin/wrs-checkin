@@ -1,0 +1,254 @@
+<div class="main">
+  <patient-header title="Patient Check-In"
+                  info="Let's start. Simply Follow the instructions shown below"
+                  image="images/profile.png">
+  </patient-header>
+
+  <div class="clearfix"></div>
+
+  <div class="content">
+    <form ng-submit="confirmPatientChanges(patient_temp)" name="patient_profile">
+      <div class="col-md-6 col-md-right">
+        <fieldset>
+
+          <!-- Patient First Name -->
+          <div class="form-group" ng-class="{'has-error': !patient_profile.first_name.$valid}">
+              <span  ng-if="first_name" class="tooltiptext">
+                 <div ng-messages="patient_profile.first_name.$error" role="alert" ngMessagesMultiple="multiple">
+                   <span ng-message="required">This field is required!</span>
+                   <span ng-message="minlength">Your field is too short</span>
+                 </div>
+              </span>
+              <label  class="control-label" for="first_name">
+                <i ng-if="!patient_profile.first_name.$valid" class="fa fa-info-circle" aria-hidden="true"></i> Name
+              </label>
+              <input ng-focus="first_name = true"
+                     ng-blur="first_name = false"
+                     class="form-control"
+                     id="first_name"
+                     autofocus
+                     ng-minlength="2"
+                     required name="first_name"
+                     ng-model="patient_temp.personal_info.first_name"
+                     type="text">
+          </div>
+
+          <!-- Patient DOB -->
+          <div class="form-group has-feedback">
+              <label class="control-label">Date of Birth</label>
+              <input type="text"
+                     class="form-control"
+                     ng-click="dobOptions.open()"
+                     type="text"
+                     class="form-control"
+                     uib-datepicker-popup="MM/dd/yyyy"
+                     ng-model="patient_temp.personal_info.date_of_birth"
+                     is-open="dobOptions.opened"
+                     show-button-bar="false"
+                     datepicker-options="dobOptions"
+                     placeholder="Date of birth"
+                     ui-mask-placeholder="mm/dd/yyyy"
+                     ui-mask="99/99/9999"
+                     model-view-value="true"
+                     required/>
+              <i class="dob-icon form-control-feedback fa fa-calendar"></i>
+          </div>
+
+          <!-- Patient Email -->
+          <div class="form-group" ng-class="{'has-error': !patient_profile.email.$valid}">
+                <span ng-if="email" class="tooltiptext">
+                   <div ng-messages="patient_profile.email.$error" role="alert">
+                       <span ng-message="email">Not valid email</span>
+                       <span ng-message="required">This field is required!</span>
+                   </div>
+                </span>
+                <label class="control-label" for="email">
+                  <i ng-if="!patient_profile.email.$valid" class="fa fa-info-circle" aria-hidden="true"></i> Email
+                </label>
+                <input class="form-control"
+                       id="email"
+                       ng-focus="email = true"
+                       ng-blur="email = false"
+                       name="email"
+                       ng-model="patient_temp.personal_info.email"
+                       type="email"
+                       required >
+          </div>
+
+          <!-- Patient Address -->
+          <div class="form-group" ng-class="{'has-error': !patient_profile.address.$valid}">
+              <span ng-if="address" class="tooltiptext">
+                 <div ng-messages="patient_profile.address.$error" role="alert" ngMessagesMultiple="multiple">
+                   <span ng-message="required">This field is required!</span>
+                   <span ng-message="minlength">Your field is too short</span>
+                 </div>
+              </span>
+              <label class="control-label" for="address">
+                <i ng-if="!patient_profile.address.$valid" class="fa fa-info-circle" aria-hidden="true"></i> Address
+              </label>
+              <input class="form-control"
+                     id="address"
+                     name="address"
+                     ng-model="patient_temp.address.street1"
+                     type="text"
+                     ng-focus="address = true"
+                     ng-blur="address = false"
+                     ng-minlength="5"
+                     required >
+          </div>
+
+          <!-- Patient State -->
+          <div class="form-group" ng-class="{'has-error': !patient_profile.state.$valid}">
+              <div class="col-md-12 no-padding selectwrap">
+                  <label class="control-label">
+                    <i ng-if="!patient_profile.state.$valid" class="fa fa-info-circle" aria-hidden="true"></i>  State</label>
+                  <i class="glyphicon glyphicon-menu-down state-arrow"></i>
+                  <select ng-model="patient_temp.address.state" name="state" class="form-control" required>
+                    <option ng-selected="{{patient_temp.address.state == option.id}}" ng-repeat="option in states"
+                            value="{{option.id}}">{{option.name}}
+                    </option>
+                  </select>
+              </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="col-md-6 col-md-left">
+        <fieldset>
+
+            <div class="form-group" ng-class="{'has-error': !patient_profile.last_name.$valid}">
+                <span ng-if="last_name" class="tooltiptext">
+                   <div ng-messages="patient_profile.last_name.$error" role="alert" ngMessagesMultiple="multiple">
+                     <span ng-message="required">This field is required!</span>
+                     <span ng-message="minlength">Your field is too short</span>
+                   </div>
+                </span>
+                <label class="control-label">&nbsp;</label>
+                <input class="form-control"
+                       id="last_name"
+                       ng-model="patient_temp.personal_info.last_name"
+                       name="last_name"
+                       type="text"
+                       ng-focus="last_name = true"
+                       ng-blur="last_name = false"
+                       ng-minlength="2"
+                       required>
+            </div>
+
+            <div class="form-group gender-group">
+                <label class="control-label">Gender</label>
+                <div class="clearfix"></div>
+
+                <!-- Male radiobutton-->
+                <input type="radio" class="gender-input hidden" id="male" name="sex" ng-model="patient_temp.personal_info.sex" value="male">
+                <label for="male" class="btn  pull-left gender-button">Male</label>
+
+                <!-- Female radiobutton-->
+                <input type="radio" class="gender-input hidden" id="female" name="sex" ng-model="patient_temp.personal_info.sex" value="female">
+                <label for="female" class="btn  pull-right gender-button">Female</label>
+            </div>
+
+            <div class="form-group no-padding" ng-class="{'has-error':!patient_profile.phone_number.$valid || !patient_profile.phone_area.$valid}">
+                <span ng-if="phone_area && !patient_profile.phone_area.$valid" class="tooltiptext">
+                   <div ng-messages="patient_profile.phone_area.$error" role="alert" ngMessagesMultiple="multiple">
+                     <span ng-message="required">This field is required!</span>
+                   </div>
+                </span>
+               <span ng-if="phone_number && !patient_profile.phone_number.$valid" class="tooltiptext">
+                   <div ng-messages="patient_profile.phone_number.$error" role="alert" ngMessagesMultiple="multiple">
+                     <span ng-message="required">This field is required!</span>
+                   </div>
+                </span>
+
+              <label class="control-label">
+                <i ng-if="!patient_profile.phone_area.$valid || !patient_profile.phone_number.$valid" class="fa fa-info-circle" aria-hidden="true"></i>  Phone Number
+              </label><br>
+              <div class="selectwrap pull-left">
+                  <i class="glyphicon glyphicon-menu-down select-arrow"></i>
+                  <select class="form-control phone" ng-model="patient_temp.phoneNumbers.type">
+                    <option value="home">Home</option>
+                    <option value="cell">Cell</option>
+                    <option value="fax">Fax</option>
+                    <option value="night-time">Night Time</option>
+                    <option value="other">Other</option>
+                    <option value="work">Work</option>
+                  </select>
+              </div>
+
+              <div class="numberwrap no-padding pull-left">
+                <input class="form-control pull-left number-code border-right-none"
+                       ng-model="patient_temp.phoneNumbers.area"
+                       name="phone_area"
+                       type="number"
+                       ng-focus="phone_area = true"
+                       ng-blur="phone_area = false"
+                       required>
+                <input class="form-control pull-right number border-left-none"
+                       ng-model="patient_temp.phoneNumbers.phone"
+                       name="phone_number"
+                       type="number"
+                       ng-focus="phone_number = true"
+                       ng-blur="phone_number = false"
+                       required>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <!--Patient City -->
+            <div class="form-group" ng-class="{'has-error': !patient_profile.city.$valid}">
+                <span ng-if="city" class="tooltiptext">
+                   <div ng-messages="patient_profile.city.$error" role="alert" ngMessagesMultiple="multiple">
+                     <span ng-message="required">This field is required!</span>
+                     <span ng-message="minlength">Your field is too short</span>
+                   </div>
+                </span>
+                <label class="control-label" for="city">
+                    <i ng-if="!patient_profile.city.$valid" class="fa fa-info-circle" aria-hidden="true"></i> City
+                </label>
+                <input class="form-control " id="city" ng-model="patient_temp.address.city"
+                         name="city" type="text"
+                         ng-focus="city = true"
+                         ng-blur="city = false"
+                         ng-minlength="2"
+                         required>
+            </div>
+
+            <div class="form-group" ng-class="{'has-error': !patient_profile.zip.$valid}">
+                <span ng-if="zip" class="tooltiptext">
+                     <div ng-messages="patient_profile.zip.$error" role="alert" ngMessagesMultiple="multiple">
+                       <span ng-message="required">Can`t be empty</span>
+                       <span ng-message="number">Should be number</span>
+                       <span ng-message="minlength">Should be at least 5 dijits</span>
+                     </div>
+                </span>
+                <label class="control-label" for="zip">Zip Code</label>
+                <input class="form-control"
+                       id="zip"
+                       ng-model="patient_temp.address.zip"
+                       name="zip"
+                       type="number"
+                       ng-focus="zip = true"
+                       ng-blur="zip = false"
+                       ng-minlength="5"
+                       required>
+            </div>
+
+        </fieldset>
+
+        <div class="clearfix"></div>
+
+      </div>
+      <div class="col-md-12">
+        <button type="button" ng-click="changePatientViewType(patientEditMode)" class="btn btn-default pull-left patient-edit-button">
+          Cancel
+        </button>
+        <button type="submit" class="btn btn-success pull-right patient-edit-button" ng-disabled="patient_profile.$invalid" disabled="disabled">
+          Confirm
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>

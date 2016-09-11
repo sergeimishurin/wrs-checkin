@@ -96,9 +96,9 @@ body {
   padding-bottom: 15px;
 }
 
-form input.ng-invalid.ng-touched {
-  border-color: #e74c3c;
-}
+/*form input.ng-invalid.ng-touched {*/
+  /*border-color: #e74c3c;*/
+/*}*/
 
 .main {
   width: 704px;

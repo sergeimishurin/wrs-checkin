@@ -210,3 +210,8 @@
   overflow-x: scroll;
   position: relative;
 }
+
+.car-image {
+  border-radius: 6px;
+  height: 58px!important;
+}

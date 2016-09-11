@@ -1,14 +1,7 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name checkinApp.controller:PatientCtrl
- * @description
- * # PatientCtrl
- * Controller of the checkinApp
- */
 angular.module('checkinApp')
-  .controller('PatientCtrl', function ($scope, $q, moment, Pharmacy, AuthService, States, Patient,$state,$timeout,$rootScope) {
+  .controller('PatientCtrl', function ($scope, $q, moment, Pharmacy, AuthService, States, Patient, $state, $timeout, $rootScope) {
 
     var _today = new moment();
     $scope.today = {
@@ -29,6 +22,9 @@ angular.module('checkinApp')
     $scope.editBillingAddress = false;
     $scope.states = States;
     $scope.errors = [];
+    $scope.valid_card_number_and_type = true;
+    $scope.valid_expiration_date = true;
+    $scope.cardImage = '';
 
     $scope.steps = [
       {title: 'Step 1 Log in', passed: 0, active: 1},
@@ -65,7 +61,6 @@ angular.module('checkinApp')
       }
     };
 
-
     //Datepicker
     $scope.dateOptions = {
       formatYear: 'mm/dd/yyyy',
@@ -75,6 +70,7 @@ angular.module('checkinApp')
         this.opened = true;
       }
     };
+
     $scope.dobOptions = {
       formatYear: 'mm/dd/yyyy',
       startingDay: 1,
@@ -110,8 +106,8 @@ angular.module('checkinApp')
 
     $scope.selectPharmacies = function () {
 
-      for (var i=0; i < $scope.chossedPharmacies.length; i++){
-        if($scope.patient.pharmacies.indexOf($scope.chossedPharmacies[i]) === -1) {
+      for (var i = 0; i < $scope.chossedPharmacies.length; i++) {
+        if ($scope.patient.pharmacies.indexOf($scope.chossedPharmacies[i]) === -1) {
           $scope.patient.pharmacies.push($scope.chossedPharmacies[i]);
         }
       }
@@ -169,7 +165,7 @@ angular.module('checkinApp')
         $scope.cardMethodActive = true;
       } else {
         delete $scope.patient.credit_card;
-        Patient.updatePatientDataAndAppointmentStage({id:$scope.patient.personal_info.id}, $scope.patient, function(response){
+        Patient.updatePatientDataAndAppointmentStage({id: $scope.patient.personal_info.id}, $scope.patient, function (response) {
           $scope.nextStep();
         });
       }
@@ -184,21 +180,21 @@ angular.module('checkinApp')
       $scope.successPayment = false;
       $scope.processPayment = true;
 
-      Patient.updatePatientDataAndAppointmentStage({id:$scope.patient.personal_info.id}, $scope.patient, function(response){
-           $timeout(function () {
-             $scope.processPayment = false;
-             $scope.successPayment = true;
-           },2000);
-           //#27AE60
+      Patient.updatePatientDataAndAppointmentStage({id: $scope.patient.personal_info.id}, $scope.patient, function (response) {
+        $timeout(function () {
+          $scope.processPayment = false;
+          $scope.successPayment = true;
+        }, 2000);
+        //#27AE60
         //$scope.nextStep();
 
-       });
+      });
     };
 
-    $scope.updateTotal = function() {
-      if($scope.patient.insurance == null || $scope.patient.insurance == undefined) {
+    $scope.updateTotal = function () {
+      if ($scope.patient.insurance == null || $scope.patient.insurance == undefined) {
         $scope.patient.total = $scope.patient.totalOwedSum.owed_sum
-      }else {
+      } else {
         $scope.patient.total = $scope.patient.totalOwedSum.owed_sum + $scope.patient.insurance.ins_co_pay;
       }
 
@@ -213,21 +209,22 @@ angular.module('checkinApp')
       $scope.editBillingAddress = !$scope.editBillingAddress;
     };
 
-    $scope.patientLogin = function (patient_login) {
+
+    $scope.setFeedBack = function (value) {
+      $scope.patient.feedback = value;
+    };
+
+    /**
+     * @description
+     * # Patient Main login functional, get all required data for patient
+     */
+    $scope.patientLogin = function (credentials) {
       $rootScope.isWorking = true;
+
       var credentials = {
-        "last_name": 'test',
-        "date_of_birth": '01/01/1990',
+        "last_name": 'test',            //credentials.last_name,
+        "date_of_birth": '01/01/1990',  //moment(credentials.date_of_birth).format('MM/DD/YYYY'),
       };
-
-      // var credentials = {
-      //   "last_name": patient_login.last_name,
-      //   "date_of_birth": moment(patient_login.date_of_birth).format('MM/DD/YYYY'),
-      // };
-
-      $scope.setFeedBack = function(value) {
-        $scope.patient.feedback = value;
-      }
 
       AuthService.patientLogin(credentials).then(function (response) {
         $q.all([
@@ -248,7 +245,7 @@ angular.module('checkinApp')
           $scope.patient.insurance = response[4].data;
           $scope.patient.totalOwedSum = response[5].data;
           // $scope.patient.emergencyContacts = response[6].data;
-          if(!$scope.patient.insurance.ins_co_pay) {
+          if (!$scope.patient.insurance.ins_co_pay) {
             $scope.patient.insurance.ins_co_pay = 0;
           }
           $scope.patient.total = $scope.patient.totalOwedSum.owed_sum + $scope.patient.insurance.ins_co_pay;
@@ -256,33 +253,96 @@ angular.module('checkinApp')
           $rootScope.isWorking = false;
           $scope.nextStep();
         });
-
       }, function (response) {
-
+        alert('Something goes wrong, please try again later!');
       });
     };
 
-    var orderPharmacies = function(){
-      for (var i=0; i < $scope.patient.pharmacies.length; i++){
-        if(i === 0){
+    var orderPharmacies = function () {
+      for (var i = 0; i < $scope.patient.pharmacies.length; i++) {
+        if (i === 0) {
           $scope.patient.pharmacies[i].is_primary = 1;
         } else {
           $scope.patient.pharmacies[i].is_primary = 0;
         }
       }
     };
+
     $scope.dragControlListeners = {
-      accept: function (sourceItemHandleScope, destSortableScope) {return true; },
+      accept: function (sourceItemHandleScope, destSortableScope) {
+        return true;
+      },
       itemMoved: function (event) {
         console.log(456);
       },
-      orderChanged: function(event) {
+      orderChanged: function (event) {
         console.log(456);
       },
       containment: '#board',
-      clone: true ,
+      clone: true,
       allowDuplicates: false
     };
 
+    $scope.validateCardNumber = function(number) {
+      if(typeof number == 'undefined') {
+        $scope.valid_card_number_and_type = false;
+        return;
+      }
+
+      $scope.valid_card_number_and_type = true;
+
+      var ntype = '';
+
+      switch (number.toString().substring(0, 4)) {
+        case '6011':
+          if (String(number).length == 16) ntype = 'discover';
+          break;
+      }
+
+      switch (number.toString().substring(0, 2)) {
+        case '51':
+          if (number.toString().length == 16) ntype = 'mastercard';
+          break;
+        case '52':
+          if (number.toString().length == 16) ntype = 'mastercard';
+          break;
+        case '53':
+          if (number.toString().length == 16) ntype = 'mastercard';
+          break;
+        case '54':
+          if (number.toString().length == 16) ntype = 'mastercard';
+          break;
+        case '55':
+          if (number.toString().length == 16) ntype = 'mastercard';
+          break;
+        case '34':
+          if (number.toString().length == 15) ntype = 'amex';
+          break;
+        case '37':
+          if (number.toString().length == 15) ntype = 'amex';
+          break;
+        default:
+          $scope.valid_card_number_and_type = false;
+      }
+
+      if (number.toString().substring(0, 1) == '4' && (number.toString().length == 13 || number.toString().length == 16)) {
+        ntype = 'visa';
+        $scope.valid_card_number_and_type = true;
+      }
+
+      $scope.cardImage = ntype;
+    };
+
+    $scope.validateExpirationDate = function() {
+      var _month = $scope.patient.credit_card.ccmonth;
+      var _year = $scope.patient.credit_card.ccyear;
+
+      var now = new Date();
+      if ((parseInt(_year, 10) + 2000) < parseInt(now.getFullYear(), 10) || ((parseInt(_year, 10) + 2000) == parseInt(now.getFullYear(), 10) && parseInt(_month, 10) < parseInt(now.getMonth(), 10))) {
+        $scope.valid_expiration_date = false;
+      } else {
+        $scope.valid_expiration_date = true;
+      }
+    }
 
   });

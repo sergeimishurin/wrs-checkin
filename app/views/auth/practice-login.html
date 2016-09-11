@@ -1,39 +1,80 @@
 <div class="container">
-  <div class="row">
-    <div class="login-box">
-      <div class="logo">
-        <img src="images/logo.png">
-      </div>
-      <div class="clearfix"></div>
-      <div class="panel panel-default panel-login">
-        <div class="panel-heading heading-green">
-          <h3 class="panel-title title-white">Practice Log in</h3>
+    <div class="row">
+        <div class="login-box">
+            <!--Logo section-->
+            <div class="logo">
+                <img src="images/logo.png">
+            </div>
+            <div class="clearfix"></div>
+            <!--Main Login section-->
+            <div class="panel panel-default panel-login">
+                <div class="panel-heading heading-green">
+                    <h3 class="panel-title title-white">Practice Log in</h3>
+                </div>
+                <div class="panel-body">
+                    <!--Practice Login Form-->
+                    <form novalidate ng-submit="login()" name="practice_login" novalidate>
+                        <fieldset>
+                            <!-- Username field-->
+                            <div class="form-group" ng-class="{'has-error': !practice_login.practice_username.$valid && !practice_login.practice_username.$pristine}">
+                               <span  ng-if="practice_username" class="tooltiptext">
+                                   <div ng-messages="practice_login.practice_username.$error" role="alert" ngMessagesMultiple="multiple">
+                                     <span ng-message="required">Can`t be empty</span>
+                                     <span ng-message="minlength">Your field is too short</span>
+                                   </div>
+                               </span>
+                               <label class="control-label" for="username">
+                                 <i ng-if="!practice_login.practice_username.$valid && !practice_login.practice_username.$pristine" class="fa fa-info-circle" aria-hidden="true"></i> Username
+                               </label>
+                               <input class="form-control"
+                                      id="username"
+                                      name="practice_username"
+                                      ng-model="practice_credentials.username"
+                                      placeholder="enter your username"
+                                      ng-focus="practice_username = true"
+                                      ng-blur="practice_username = false"
+                                      type="text"
+                                      ng-minlength="2"
+                                      required>
+                            </div>
+                            <!-- Password field-->
+                           <div class="form-group" ng-class="{'has-error': !practice_login.practice_password.$valid && !practice_login.practice_password.$pristine}">
+                               <span  ng-if="practice_password" class="tooltiptext">
+                                   <div ng-messages="practice_login.practice_password.$error" role="alert" ngMessagesMultiple="multiple">
+                                     <span ng-message="required">Can`t be empty</span>
+                                     <span ng-message="minlength">Your field is too short</span>
+                                   </div>
+                               </span>
+                                <label class="control-label" for="password">
+                                  <i ng-if="!practice_login.practice_password.$valid && !practice_login.practice_password.$pristine" class="fa fa-info-circle" aria-hidden="true"></i> Password
+                                </label>
+                                <input class="form-control"
+                                       id="password"
+                                       name="practice_password"
+                                       ng-model="practice_credentials.password"
+                                       placeholder="enter your password"
+                                       type="password"
+                                       ng-focus="practice_password = true"
+                                       ng-blur="practice_password = false"
+                                       ng-minlength="6"
+                                       required>
+                           </div>
+                           <!-- Remember me field-->
+                           <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" ng-model="practice_credentials.remember">
+                                    <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                    <span class="remember-me">Remember Me</span>
+                                </label>
+                           </div>
+                           <!-- Submit button-->
+                           <input class="btn btn-lg btn-primary btn-block btn-login" type="submit" value="Login" ng-disabled="practice_login.$invalid" disabled="disabled">
+                        </fieldset>
+                    </form>
+                </div>
+            </div>  <!-- End Main Login section-->
+
+            <p class="login-footer-text">© 2016 WRS Health. All rights reserved. Subject to <a href="#">Terms & Conditions</a></p>
         </div>
-        <div class="panel-body">
-          <form novalidate ng-submit="login()" name="practice_login" novalidate>
-            <fieldset>
-              <div class="form-group" show-errors>
-                <label class="control-label" for="username">Username</label>
-                <input class="form-control" id="username" ng-model="practice_credentials.username" placeholder="enter your username" type="text" required>
-              </div>
-              <div class="form-group" show-errors>
-                <label class="control-label" for="password">Password</label>
-                <input class="form-control" id="password" ng-model="practice_credentials.password" placeholder="enter your password" type="password" required>
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" ng-model="practice_credentials.remember">
-                  <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-                  <span class="remember-me">Remember Me</span>
-                </label>
-              </div>
-              <input class="btn btn-lg btn-primary btn-block btn-login" type="submit" value="Login"
-                     ng-disabled="practice_login.$invalid" disabled="disabled">
-            </fieldset>
-          </form>
-        </div>
-      </div>
-      <p class="login-footer-text">© 2016 WRS Health. All rights reserved. Subject to <a href="#">Terms & Conditions</a></p>
     </div>
-  </div>
 </div>

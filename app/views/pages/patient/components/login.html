@@ -1,45 +1,70 @@
 <div class="main">
     <patient-header title="Patient Check-In"
                     info="Let's start. Simply Follow the instructions shown below"
-                    image="images/profile.png">
+                    image="">
     </patient-header>
 
     <div class="clearfix"></div>
 
     <div class="content">
         <div class="patient-login">
-          <form ng-submit="patientLogin(patient_login)" name="patient_login">
-            <fieldset>
-                <div class="form-group">
-                    <label class="control-label" for="username">Last Name</label>
-                    <input class="form-control" id="username"
-                            ng-model="patient_login.last_name"
-                            placeholder="Last name"
-                            type="text"
-                            required>
-                </div>
-                <div class="form-group has-feedback">
-                    <label class="control-label">Date of Birth</label>
-                    <input ng-click="dateOptions.open()"
-                           ng-model="patient_login.date_of_birth"
-                           type="text"
-                           class="form-control"
-                           uib-datepicker-popup="MM/dd/yyyy"
-                           is-open="dateOptions.opened"
-                           show-button-bar="false"
-                           datepicker-options="dateOptions"
-                           placeholder="Date of birth"
-                           ui-mask-placeholder="mm/dd/yyyy"
-                           ui-mask="99/99/9999"
-                           model-view-value="true"
-                           required/>
-                    <i class="dob-icon form-control-feedback fa fa-calendar"></i>
-                </div>
-                <div class="form-group">
-                    <label>&nbsp;</label>
-                    <input ng-disabled="patient_login.$invalid || isWorking" class="btn btn-lg btn-block btn-primary" type="submit" disabled="disabled" value="Login">
-                </div>
-            </fieldset>
+          <!--Patient Login Form-->
+          <form ng-submit="patientLogin(patient_login)" name="patient_login" novalidate>
+              <fieldset>
+
+                  <!--Patient Username-->
+                  <div class="form-group" ng-class="{'has-error': !patient_login.patient_username.$valid && !patient_login.patient_username.$pristine}">
+                      <span  ng-if="patient_username" class="tooltiptext">
+                           <div ng-messages="patient_login.patient_username.$error" role="alert" ngMessagesMultiple="multiple">
+                             <span ng-message="required">Can`t be empty</span>
+                             <span ng-message="minlength">Your field is too short</span>
+                           </div>
+                      </span>
+                      <label class="control-label" for="username">
+                        <i ng-if="!patient_login.patient_username.$valid && !patient_login.patient_username.$pristine" class="fa fa-info-circle" aria-hidden="true"></i>  Last Name
+                      </label>
+                      <input class="form-control"
+                             id="username"
+                             name="patient_username"
+                             ng-model="patient_login.last_name"
+                             placeholder="Last name"
+                             ng-focus="patient_username = true"
+                             ng-blur="patient_username = false"
+                             type="text"
+                             ng-minlength="2"
+                             required>
+                  </div>
+
+                  <!--Patient DOB-->
+                  <div class="form-group has-feedback" ng-class="{'has-error':  dateOptions.opened && !patient_login.patient_dob.$valid}">
+                      <label class="control-label">
+                        <i ng-if="dateOptions.opened && !patient_login.patient_dob.$valid" class="fa fa-info-circle" aria-hidden="true"></i>  Date of Birth
+                      </label>
+                      <input ng-click="dateOptions.open()"
+                             ng-model="patient_login.date_of_birth"
+                             name="patient_dob"
+                             ng-focus="patient_dob = true"
+                             ng-blur="patient_dob = false"
+                             type="text"
+                             class="form-control"
+                             uib-datepicker-popup="MM/dd/yyyy"
+                             is-open="dateOptions.opened"
+                             show-button-bar="false"
+                             datepicker-options="dateOptions"
+                             placeholder="Date of birth"
+                             ui-mask-placeholder="mm/dd/yyyy"
+                             ui-mask="99/99/9999"
+                             model-view-value="true"
+                             ng-required="true"/>
+                      <i class="dob-icon form-control-feedback fa fa-calendar"></i>
+                  </div>
+
+                  <!--Submit button-->
+                  <div class="form-group">
+                      <label>&nbsp;</label>
+                      <input ng-disabled="patient_login.$invalid || isWorking" class="btn btn-lg btn-block btn-primary" type="submit" disabled="disabled" value="Login">
+                  </div>
+              </fieldset>
           </form>
         </div>
     </div>

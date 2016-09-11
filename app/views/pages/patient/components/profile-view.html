@@ -1,0 +1,41 @@
+<div class="main">
+  <patient-header title="Patient Check-In"
+                  info="Complete and confirm the account(s) information below">
+  </patient-header>
+
+  <div class="clearfix"></div>
+
+  <div class="content-no-padding">
+    <div class="info-container">
+      <ul class="patient-info">
+        <li class="patient-profile-image"><img src="images/profile.png" alt=""></li>
+        <li class="info-patient-fullname">
+          <p class="info-item">
+            <i class="fa fa-user fa-2x"></i>
+            <span>{{patient.personal_info.last_name}} {{patient.personal_info.first_name}} | {{patient.dateOfBirth | dateToAge}} Yrs</span>
+          </p>
+          <p class="info-item">
+            <i class="fa fa-envelope fa-2x"></i>
+            <span>{{patient.personal_info.email}}</span>
+          </p>
+          <p class="info-item">
+            <i class="fa fa-phone fa-2x"></i>
+            <span>{{patient.phoneNumbers.area}} {{patient.phoneNumbers.phone}}</span>
+          </p>
+        </li>
+        <li class="info-patient-address">
+          <i class="fa fa-home fa-2x"></i>
+          <p class="info-item home-icon"> {{patient.address.street1}}
+            <br>
+            {{patient.address.city}} {{patient.address.state}} {{patient.address.zip}}
+          </p>
+
+        </li>
+        <li class="info-edit-button">
+          <button ng-click="changePatientViewType(patientEditMode)" class="btn btn-primary">Edit</button>
+        </li>
+      </ul>
+    </div>
+    <button ng-click="nextStep()" class="btn btn-primary btn-centered-bottom">Patient Profile Completed</button>
+  </div>
+</div>
