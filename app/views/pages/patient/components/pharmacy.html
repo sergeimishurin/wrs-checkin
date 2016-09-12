@@ -115,16 +115,16 @@
     <fieldset>
       <div class="pharmacy-name-input pull-left">
         <div class="form-group">
-          <label class="control-label" for="username">Pharmacy Name</label>
-          <input class="form-control" id="username" ng-model="user.username" placeholder="Pharmacy name" type="text">
+          <label class="control-label" for="pharmacy_name">Pharmacy Name</label>
+          <input class="form-control" id="pharmacy_name" ng-model="pharmacy.name" placeholder="Pharmacy name" type="text">
         </div>
       </div>
 
       <div class="pharmacy-zip-input pull-right">
         <div class="form-group">
-          <label class="control-label" for="zipcode">Zip Code</label>
+          <label class="control-label" for="pharmacy_zipcode">Zip Code</label>
           <div class="input-group">
-            <input class="form-control" id="zipcode" ng-model="user.zipcode" placeholder="Zip Code" type="text">
+            <input class="form-control" id="pharmacy_zipcode" ng-model="pharmacy.zipcode" placeholder="Zip Code" type="text">
             <span class="input-group-addon search-pharmacy-button" ng-click="doSearchPharmacy(pharmacy)"
                   id="basic-addon2">Search</span>
           </div>

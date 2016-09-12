@@ -117,21 +117,24 @@
 .card  {
   background: #FFFFFF;
   font-size:20px;
-  color: #27AE60 !important;
-  font-family:"Arial Italic";
+  font-family:"Arial";
 }
 .card-text {
   width: 110px;
   margin: 10px 22px;
   font-size: 20px;
   color: #666666;
-  font-family: "Arial Italic";
+  font-family: "Arial";
+  font-style: italic;
+}
+.copay-credit-card-button.card .card-text, .copay-front-button.front .card-text{
+  color: #27AE60!important;
 }
 .front {
   background: #FFFFFF;
   font-size: 20px;
   color: #666666;
-  font-family: "Arial Italic";
+  font-family: "Arial";
 }
 .payment-buttons {
   margin-top: 20px;
