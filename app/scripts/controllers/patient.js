@@ -10,6 +10,7 @@ angular.module('checkinApp')
     };
 
     $rootScope.isWorking = false;
+    $scope.errorMessage = '';
 
     $scope.patient = {};
     $scope.patient.credit_card = {};
@@ -254,7 +255,8 @@ angular.module('checkinApp')
           $scope.nextStep();
         });
       }, function (response) {
-        alert('Something goes wrong, please try again later!');
+        $rootScope.isWorking = false;
+        $scope.errorMessage = "Something goes wrong! Please try again later!";
       });
     };
 

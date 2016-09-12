@@ -13,6 +13,7 @@
               <fieldset>
 
                   <!--Patient Username-->
+                  <h4 class="text-danger">{{errorMessage}}</h4>
                   <div class="form-group" ng-class="{'has-error': !patient_login.patient_username.$valid && !patient_login.patient_username.$pristine}">
                       <span  ng-if="patient_username" class="tooltiptext">
                            <div ng-messages="patient_login.patient_username.$error" role="alert" ngMessagesMultiple="multiple">

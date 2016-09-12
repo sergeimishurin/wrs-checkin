@@ -53,7 +53,7 @@
                      <span  ng-if="credit_card" class="tooltiptext">
                        <div ng-messages="paymentForm.credit_card.$error" role="alert" ngMessagesMultiple="multiple">
                          <span ng-message="required">This field is required!</span>
-                         <span ng-if="!valid_card_number_and_type">Wrong Card numbers</span>
+                         <span ng-if="!valid_card_number_and_type && paymentForm.credit_card.$valid">Wrong Card numbers</span>
                        </div>
                      </span>
                     <label class="control-label">

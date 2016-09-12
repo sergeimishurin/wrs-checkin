@@ -10,7 +10,7 @@
             <div class="co-pay-description" style="">Today Co-Pay</div>
           </div>
           <div class="co-pay-sum-text">
-            <input type="text" class="co-pay-input" disabled readonly value="${{patient.insurance.ins_co_pay == '' ? 0 : patient.insurance.ins_co_pay}}">
+            <input type="text" class="co-pay-input" disabled readonly value="{{patient.insurance.ins_co_pay == '' ? 0.00 : patient.insurance.ins_co_pay | currency}}">
           </div>
           <div class="co-pay-sum-text-description"></div>
       </div>

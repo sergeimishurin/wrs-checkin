@@ -3,6 +3,7 @@
 angular.module('checkinApp')
   .controller('PracticeLoginCtrl', function ($rootScope, $scope, $state, AuthService) {
     $scope.user = {};
+    $scope.errorMessage = '';
 
     $scope.login = function () {
       var credentials = {
@@ -29,7 +30,7 @@ angular.module('checkinApp')
 
         $state.go('welcome');
       }, function (response) {
-          alert("Something goes wrong! Please try again later!");
+          $scope.errorMessage = "Something goes wrong! Please try again later!";
       });
     };
   });

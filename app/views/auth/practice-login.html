@@ -16,6 +16,7 @@
                     <form novalidate ng-submit="login()" name="practice_login" novalidate>
                         <fieldset>
                             <!-- Username field-->
+                            <h4 class="text-danger">{{errorMessage}}</h4>
                             <div class="form-group" ng-class="{'has-error': !practice_login.practice_username.$valid && !practice_login.practice_username.$pristine}">
                                <span  ng-if="practice_username" class="tooltiptext">
                                    <div ng-messages="practice_login.practice_username.$error" role="alert" ngMessagesMultiple="multiple">
