@@ -7,13 +7,12 @@
     <div class="clearfix"></div>
 
     <div class="content">
+        <h4 class="text-danger">{{errorMessage}}</h4>
         <div class="patient-login">
           <!--Patient Login Form-->
           <form ng-submit="patientLogin(patient_login)" name="patient_login" novalidate>
               <fieldset>
-
-                  <!--Patient Username-->
-                  <h4 class="text-danger">{{errorMessage}}</h4>
+                  <!--Patient Username-->                  
                   <div class="form-group" ng-class="{'has-error': !patient_login.patient_username.$valid && !patient_login.patient_username.$pristine}">
                       <span  ng-if="patient_username" class="tooltiptext">
                            <div ng-messages="patient_login.patient_username.$error" role="alert" ngMessagesMultiple="multiple">

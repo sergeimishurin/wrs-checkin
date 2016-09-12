@@ -30,7 +30,7 @@ angular.module('checkinApp')
 
         $state.go('welcome');
       }, function (response) {
-          $scope.errorMessage = "Something goes wrong! Please try again later!";
+          $scope.errorMessage = "Invalid username or password.";
       });
     };
   });

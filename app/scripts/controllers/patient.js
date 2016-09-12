@@ -256,7 +256,7 @@ angular.module('checkinApp')
         });
       }, function (response) {
         $rootScope.isWorking = false;
-        $scope.errorMessage = "Something goes wrong! Please try again later!";
+        $scope.errorMessage = "Invalid Last Name, Date of Birth or You have not appointment for today.";
       });
     };
 
@@ -301,31 +301,34 @@ angular.module('checkinApp')
           break;
       }
 
-      switch (number.toString().substring(0, 2)) {
-        case '51':
-          if (number.toString().length == 16) ntype = 'mastercard';
-          break;
-        case '52':
-          if (number.toString().length == 16) ntype = 'mastercard';
-          break;
-        case '53':
-          if (number.toString().length == 16) ntype = 'mastercard';
-          break;
-        case '54':
-          if (number.toString().length == 16) ntype = 'mastercard';
-          break;
-        case '55':
-          if (number.toString().length == 16) ntype = 'mastercard';
-          break;
-        case '34':
-          if (number.toString().length == 15) ntype = 'amex';
-          break;
-        case '37':
-          if (number.toString().length == 15) ntype = 'amex';
-          break;
-        default:
-          $scope.valid_card_number_and_type = false;
+      if(ntype === '') {
+        switch (number.toString().substring(0, 2)) {
+          case '51':
+            if (number.toString().length == 16) ntype = 'mastercard';
+            break;
+          case '52':
+            if (number.toString().length == 16) ntype = 'mastercard';
+            break;
+          case '53':
+            if (number.toString().length == 16) ntype = 'mastercard';
+            break;
+          case '54':
+            if (number.toString().length == 16) ntype = 'mastercard';
+            break;
+          case '55':
+            if (number.toString().length == 16) ntype = 'mastercard';
+            break;
+          case '34':
+            if (number.toString().length == 15) ntype = 'amex';
+            break;
+          case '37':
+            if (number.toString().length == 15) ntype = 'amex';
+            break;
+          default:
+            $scope.valid_card_number_and_type = false;
+        }
       }
+      
 
       if (number.toString().substring(0, 1) == '4' && (number.toString().length == 13 || number.toString().length == 16)) {
         ntype = 'visa';
