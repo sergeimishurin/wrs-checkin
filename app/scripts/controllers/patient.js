@@ -118,7 +118,7 @@ angular.module('checkinApp')
 
     $scope.doSearchPharmacy = function (pharmacy) {
       pharmacy.type = 'retail';
-      pharmacy.name = 'cvs';
+      pharmacy.name = pharmacy['name'];
       Pharmacy.query(pharmacy, function (response) {
         $scope.pharmacies = response.data;
       });
@@ -181,6 +181,8 @@ angular.module('checkinApp')
       $scope.successPayment = false;
       $scope.processPayment = true;
 
+      $scope.patient.credit_card.amount = $scope.patient.total;
+
       Patient.updatePatientDataAndAppointmentStage({id: $scope.patient.personal_info.id}, $scope.patient, function (response) {
         $timeout(function () {
           $scope.processPayment = false;
@@ -223,9 +225,14 @@ angular.module('checkinApp')
       $rootScope.isWorking = true;
 
       var credentials = {
-        "last_name": 'test',            //credentials.last_name,
-        "date_of_birth": '01/01/1990',  //moment(credentials.date_of_birth).format('MM/DD/YYYY'),
+        "last_name": 'test',
+        "date_of_birth": '01/01/1990',
       };
+
+      // var credentials = {
+      //   "last_name": credentials.last_name,
+      //   "date_of_birth": moment(credentials.date_of_birth).format('MM/DD/YYYY'),
+      // };
 
       AuthService.patientLogin(credentials).then(function (response) {
         $q.all([
@@ -240,7 +247,22 @@ angular.module('checkinApp')
           $scope.patient.personal_info = response[0].data[0];
           $scope.patient.personal_info.date_of_birth = new Date(response[0].data[0].date_of_birth);
 
-          $scope.patient.address = response[1].data;
+          angular.forEach(response[1].data, function (address, index) {
+            if(address.type === "billing") {
+                $scope.patient.billing_address = address;
+            } else if(address.type === "home") {
+                $scope.patient.address  = address;
+            }
+          });
+
+          if(typeof $scope.patient.billing_address == 'undefined') {
+            var billing_address = angular.copy($scope.patient.address);
+            billing_address.type = 'billing';
+
+            $scope.patient.billing_address = billing_address;
+          }
+
+          // $scope.patient.address = response[1].data;
           $scope.patient.phoneNumbers = response[2].data[0];
           $scope.patient.pharmacies = response[3].data;
           $scope.patient.insurance = response[4].data;
