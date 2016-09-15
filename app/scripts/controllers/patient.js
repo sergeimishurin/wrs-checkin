@@ -187,6 +187,7 @@ angular.module('checkinApp')
       $scope.processPayment = true;
 
       $scope.patient.credit_card.amount = $scope.patient.total;
+      $scope.patient.credit_card.ccselect = 'new';
 
       Patient.updatePatientDataAndAppointmentStage({id: $scope.patient.personal_info.id}, $scope.patient, function (response) {
         $timeout(function () {
