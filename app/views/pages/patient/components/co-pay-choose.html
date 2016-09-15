@@ -10,7 +10,7 @@
             <div class="co-pay-description" style="">Today's Co-Pay</div>
           </div>
           <div class="co-pay-sum-text">
-            <input type="text" class="co-pay-input" disabled readonly value="{{patient.insurance.ins_co_pay == '' ? 0.00 : patient.insurance.ins_co_pay | currency}}">
+            <input type="text" class="co-pay-input" ng-change="updateTotal()" ng-disabled="patient.totalOwedSum.owed_sum != 0" ng-readonly="patient.totalOwedSum.owed_sum != 0"  real-time-currency ng-model="patient.insurance.ins_co_pay">
           </div>
           <div class="co-pay-sum-text-description"></div>
       </div>

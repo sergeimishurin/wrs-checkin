@@ -113,26 +113,54 @@
   <div class="content-no-padding">
     <!-- <button class="btn btn-search-toggle"><i class="fa fa-angle-down fa-2x" aria-hidden="true"></i></button> -->
     <fieldset>
+      <form ng-submit="doSearchPharmacy(pharmacy)" name="search_pharmacy" novalidate>
       <div class="pharmacy-name-input pull-left">
-        <div class="form-group">
-          <label class="control-label" for="pharmacy_name">Pharmacy Name</label>
-          <input class="form-control" id="pharmacy_name" ng-model="pharmacy.name" placeholder="Pharmacy name" type="text">
+
+        <div class="form-group" ng-class="{'has-error': !search_pharmacy.pharmacy_name.$valid && !search_pharmacy.pharmacy_name.$pristine}">
+            <span  ng-if="pharmacy_name" class="tooltiptext">
+                 <div ng-messages="search_pharmacy.pharmacy_name.$error" role="alert" ngMessagesMultiple="multiple">
+                   <span ng-message="minlength">Your field is too short</span>
+                 </div>
+            </span>
+
+          <label class="control-label" for="pharmacy_name">
+            <i ng-if="!search_pharmacy.pharmacy_name.$valid && !search_pharmacy.pharmacy_name.$pristine" class="fa fa-info-circle" aria-hidden="true"></i>    Pharmacy Name</label>
+          <input class="form-control"
+                 id="pharmacy_name"
+                 ng-model="pharmacy.name"
+                 name="pharmacy_name"
+                 placeholder="Pharmacy name"
+                 ng-focus="pharmacy_name = true"
+                 ng-blur="pharmacy_name = false"
+                 type="text"
+                 ng-minlength="3">
         </div>
       </div>
-
       <div class="pharmacy-zip-input pull-right">
-        <div class="form-group">
-          <label class="control-label" for="pharmacy_zipcode">Zip Code</label>
+        <div class="form-group" ng-class="{'has-error': !search_pharmacy.pharmacy_zip.$valid && !search_pharmacy.pharmacy_zip.$pristine}">
+           <span  ng-if="pharmacy_zip" class="tooltiptext">
+                 <div ng-messages="search_pharmacy.pharmacy_zip.$error" role="alert" ngMessagesMultiple="multiple">
+                   <span ng-message="required">Zip Code is required</span>
+                 </div>
+            </span>
+          <label class="control-label" for="pharmacy_zipcode">
+            <i ng-if="!search_pharmacy.pharmacy_zip.$valid && !search_pharmacy.pharmacy_zip.$pristine" class="fa fa-info-circle" aria-hidden="true"></i>   Zip Code</label>
           <div class="input-group">
-            <input class="form-control" id="pharmacy_zipcode" ng-model="pharmacy.zipcode" placeholder="Zip Code" type="text">
-            <span class="input-group-addon search-pharmacy-button" ng-click="doSearchPharmacy(pharmacy)"
-                  id="basic-addon2">Search</span>
+            <input class="form-control"
+                   id="pharmacy_zipcode"
+                   ng-model="pharmacy.zipcode"
+                   name="pharmacy_zip"
+                   placeholder="Zip Code"
+                   type="number"
+                   ng-focus="pharmacy_zip = true"
+                   ng-blur="pharmacy_zip = false"
+                   required >
+            <button ng-disabled="search_pharmacy.$invalid || isWorking" type="submit" class="input-group-addon submit-pharmacy search-pharmacy-button" id="basic-addon2">Search</button>
           </div>
-
         </div>
       </div>
+      </form>
     </fieldset>
-
 
     <div class="pharmacy-list">
       <div class="pharmacy-list-container" ng-repeat="pharmacy in pharmacies">
@@ -161,6 +189,9 @@
 
         </div>
         <div class="clearfix"></div>
+      </div>
+      <div ng-if="pharmacies.length == 0">
+        <h2 class="text-center">No results</h2>
       </div>
     </div>
 

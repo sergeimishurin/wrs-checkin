@@ -119,8 +119,12 @@ angular.module('checkinApp')
     $scope.doSearchPharmacy = function (pharmacy) {
       pharmacy.type = 'retail';
       pharmacy.name = pharmacy['name'];
+      $rootScope.isWorking = true;
       Pharmacy.query(pharmacy, function (response) {
         $scope.pharmacies = response.data;
+        $rootScope.isWorking = false;
+      }, function(){
+        $rootScope.isWorking = false;
       });
     };
 
@@ -188,10 +192,10 @@ angular.module('checkinApp')
           $scope.processPayment = false;
           $scope.successPayment = true;
         }, 2000);
-        //#27AE60
-        //$scope.nextStep();
-
+      }, function(response){
+          $scope.cancelPayment();
       });
+
     };
 
     $scope.updateTotal = function () {
@@ -271,8 +275,8 @@ angular.module('checkinApp')
           if (!$scope.patient.insurance.ins_co_pay) {
             $scope.patient.insurance.ins_co_pay = 0;
           }
-          $scope.patient.total = $scope.patient.totalOwedSum.owed_sum + $scope.patient.insurance.ins_co_pay;
 
+          $scope.patient.total = $scope.patient.totalOwedSum.owed_sum + $scope.patient.insurance.ins_co_pay;
           $rootScope.isWorking = false;
           $scope.nextStep();
         });
@@ -350,7 +354,7 @@ angular.module('checkinApp')
             $scope.valid_card_number_and_type = false;
         }
       }
-      
+
 
       if (number.toString().substring(0, 1) == '4' && (number.toString().length == 13 || number.toString().length == 16)) {
         ntype = 'visa';

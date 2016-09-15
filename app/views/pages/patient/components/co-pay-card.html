@@ -10,7 +10,7 @@
         <i ng-click="patientLogout()" class="header-icons fa fa-4x fa-sign-out"></i>
       </td>
       <td class="header-image text-center">
-        <img class="car-image" ng-if="cardImage != ''" width="100" height="58" src="images/{{cardImage}}.png" alt="">
+        <img class="car-image" ng-if="cardImage != ''" width="100" height="58" src="images/card/{{cardImage}}.png" alt="">
       </td>
     </tr>
   </table>
@@ -19,14 +19,14 @@
     <form ng-submit="makePayment()" name="paymentForm" novalidate>
       <div ng-if="!editBillingAddress" class="copay-info-container">
         <div class="patient-login-box col-md-6">
-          <fieldset>            
+          <fieldset>
                   <div class="col-md-12 no-padding selectwrap">
                       <i class="glyphicon glyphicon-menu-down state-arrow"></i>
                       <label class="control-label">What amount would you like to pay?</label>
-                      <input type="text" 
+                      <input type="text"
                               ng-value="patient.total"
-                              class="form-control" 
-                              disabled 
+                              class="form-control"
+                              disabled
                               readonly/>
                   </div>
 
