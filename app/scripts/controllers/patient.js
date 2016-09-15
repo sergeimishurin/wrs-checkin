@@ -195,8 +195,8 @@ angular.module('checkinApp')
           $scope.successPayment = true;
         }, 2000);
       }, function(response){
-          $scope.paymentError = response;
-          $scope.cancelPayment();
+          $scope.paymentError = response.data;
+          $scope.cardMethodActive = true;
       });
 
     };
