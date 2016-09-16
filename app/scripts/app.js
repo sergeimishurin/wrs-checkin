@@ -44,7 +44,8 @@ angular
       })
       .state('return', {
         url: '/return-device',
-        templateUrl: 'views/pages/return.html'
+        templateUrl: 'views/pages/return.html',
+        controller: 'ReturnDeviceCtrl'
       });
     //$locationProvider.html5Mode(false);\
 
