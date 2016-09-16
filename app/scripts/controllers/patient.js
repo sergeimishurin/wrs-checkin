@@ -11,6 +11,7 @@ angular.module('checkinApp')
 
     $rootScope.isWorking = false;
     $scope.errorMessage = '';
+    $scope.paymentError = null;
 
     $scope.patient = {};
     $scope.patient.credit_card = {};
@@ -193,6 +194,7 @@ angular.module('checkinApp')
           $scope.successPayment = true;
         }, 2000);
       }, function(response){
+          $scope.paymentError = response;
           $scope.cancelPayment();
       });
 

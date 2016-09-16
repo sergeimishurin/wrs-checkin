@@ -16,8 +16,13 @@
   </table>
 
   <div class="content-no-padding">
+
     <form ng-submit="makePayment()" name="paymentForm" novalidate>
       <div ng-if="!editBillingAddress" class="copay-info-container">
+        <div ng-if="paymentError">
+          <h4 class="text-danger text-center">
+            <i class="fa fa-info-circle ng-scope" aria-hidden="true"></i>{{paymentError.error_message}}</h4>
+        </div>
         <div class="patient-login-box col-md-6">
           <fieldset>
                   <div class="col-md-12 no-padding selectwrap">
@@ -216,7 +221,7 @@
 
       <div class="copay-controls-buttons">
           <button ng-click="cancelPayment()" class="left_btn">Cancel</button>
-          <button ng-disabled="paymentForm.$invalid" type="submit" class="right_btn" disabled="disabled">Make Payment</button>
+          <button ng-disabled="paymentForm.$invalid || !valid_card_number_and_type" type="submit" class="right_btn" disabled="disabled">Make Payment</button>
       </div>
     </form>
   </div>
