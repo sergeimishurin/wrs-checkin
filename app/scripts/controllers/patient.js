@@ -182,7 +182,8 @@ angular.module('checkinApp')
     };
 
     $scope.makePayment = function () {
-      var _patient = $scope.patient;
+      var _patient = '';
+      _patient = angular.copy($scope.patient);
 
       $scope.cardMethodActive = false;
       $scope.successPayment = false;
@@ -200,8 +201,8 @@ angular.module('checkinApp')
           $scope.successPayment = true;
         }, 2000);
       }, function(response){
-          $scope.paymentError = response;
-         
+          $scope.paymentError = response.data;
+          $scope.cardMethodActive = true;
       });
 
     };
