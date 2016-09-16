@@ -182,21 +182,26 @@ angular.module('checkinApp')
     };
 
     $scope.makePayment = function () {
+      var _patient = $scope.patient;
+
       $scope.cardMethodActive = false;
       $scope.successPayment = false;
       $scope.processPayment = true;
 
-      $scope.patient.credit_card.amount = $scope.patient.total;
-      $scope.patient.credit_card.ccselect = 'new';
+      if(_patient.credit_card){
+        _patient.credit_card.ccnumber =  _patient.credit_card.ccnumber.toString();
+        _patient.credit_card.amount = _patient.total;
+        _patient.credit_card.ccselect = 'new';
+      }
 
-      Patient.updatePatientDataAndAppointmentStage({id: $scope.patient.personal_info.id}, $scope.patient, function (response) {
+      Patient.updatePatientDataAndAppointmentStage({id: _patient.personal_info.id}, _patient, function (response) {
         $timeout(function () {
           $scope.processPayment = false;
           $scope.successPayment = true;
         }, 2000);
       }, function(response){
           $scope.paymentError = response;
-          $scope.cancelPayment();
+         
       });
 
     };
